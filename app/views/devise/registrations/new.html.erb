@@ -1,6 +1,6 @@
 <div class="devise-body">
-  <div class="container h-100 d-flex justify-content-center align-items-center">
-    <div class="devise-form mb-5 mx-5 mt-1 p-5 rounded col-xs-8 col-md-8 shadow">
+  <div class="container d-flex justify-content-center align-items-center mt-5 pt-3">
+    <div id="sign-up-form"class="devise-form mb-5 mx-5 mt-4 p-5 rounded col-xs-8 col-md-8 shadow">
       <h2>Sign up</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -11,6 +11,9 @@
                       required: true,
                       autofocus: true,
                       input_html: { autocomplete: "email" }%>
+          <%= f.input :username,
+                      required: true,
+                      autofocus: true%>
           <%= f.input :password,
                       required: true,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -18,6 +21,24 @@
           <%= f.input :password_confirmation,
                       required: true,
                       input_html: { autocomplete: "new-password" } %>
+          <%= f.input :first_name,
+                      required: true,
+                      autofocus: true%>
+          <%= f.input :last_name,
+                      required: true,
+                      autofocus: true%>
+          <%= f.input :birthday,
+                      as: :date,
+                      start_year: Date.today.year - 100,
+                      end_year: Date.today.year,
+                      order: [:day, :month, :year],
+                      required: true,
+                      autofocus: true,
+                      input_html: { style: "background-color: white"} %>
+          <%= f.input :gender,
+                      collection: %w[Male Female Other],
+                      required: true,
+                      autofocus: true%>
         </div>
 
         <div class="form-actions">

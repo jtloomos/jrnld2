@@ -1,6 +1,7 @@
 .tasks-section {
   background-color: white;
   padding-bottom: 30px;
+  min-height: 80vh;
 }
 
 .tasks-container-header {
@@ -38,6 +39,10 @@
   box-shadow: 2px 2px 2px $secondary-color;
   height: 100%;
   align-content: flex-start;
+  width: 100%;
+  &:hover {
+    box-shadow: 5px 5px 3px #ACA7A6;
+  }
 }
 
 .task-card .task-description {
@@ -45,9 +50,13 @@
   padding: 16px;
 }
 
-.task-card .task-title {
+.task-card .task-title a {
   padding: 16px;
   height: 20%;
+  color: black;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .task-card figure {
