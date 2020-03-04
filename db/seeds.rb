@@ -134,7 +134,7 @@ entry_seed = [
     content: 'You know Harley thought he was the big Mac Daddy in his Halloween costume last month. But I have news for him... //
     I can wear that stylish hat much better than Harley. See? I even have the fur coat.' },
   { user_id: User.third.id,
-    created_at: Date(2018,11,21),
+    created_at: Date.new(2018,11,21),
     title: 'Da Bird is da bomb!',
     content: 'I FOUND this GREAT toy in my TOYBOX the other day.  Who wants to play with DA BIRD?!?! I do, I DO!!!!!//
     What could be BETTER than a WAND toy with FEATHERS!?!? Nothing! Let\'s PLAY!//
