@@ -11,6 +11,13 @@ class EntriesController < ApplicationController
     end
 
     @user = current_user
+
+    @markers = @entries.map do |entry|
+      {
+        lat: entry.latitude,
+        lng: entry.longitude
+      }
+    end
   end
 
   def show
