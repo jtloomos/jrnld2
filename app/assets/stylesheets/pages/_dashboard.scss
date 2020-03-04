@@ -1,0 +1,68 @@
+.tasks-section {
+  background-color: white;
+  padding-bottom: 30px;
+}
+
+.tasks-container-header {
+  width: 70%;
+  background-color: white;
+  text-align: center;
+  padding-top: 30px;
+  color: $primary-color;
+  margin: auto;
+}
+
+.task-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 16px;
+}
+
+.tasks-list {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px;
+}
+
+.task-card {
+  background-color: white;
+  opacity: 0.8;
+  border: 1px solid $secondary-color;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 20px;
+  box-shadow: 2px 2px 2px $secondary-color;
+  height: 100%;
+  align-content: flex-start;
+}
+
+.task-card .task-description {
+  height: 30%;
+  padding: 16px;
+}
+
+.task-card .task-title {
+  padding: 16px;
+  height: 20%;
+}
+
+.task-card figure {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: $secondary-color;
+  margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-card figure .fas {
+  font-size: 35px;
+}

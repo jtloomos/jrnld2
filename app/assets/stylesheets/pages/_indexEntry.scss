@@ -62,5 +62,11 @@
   .container {
     max-width: 1560px;
   }
-
 }
+
+.entry-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
