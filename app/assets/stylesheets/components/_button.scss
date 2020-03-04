@@ -1,0 +1,36 @@
+.btn-solid {
+  color: white;
+  border: 1px solid white;
+  padding: 8px 24px;
+  border-radius: 5px;
+  font-weight: lighter;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  background-color: $primary-color;
+}
+
+.btn-solid:hover {
+  opacity: .7;
+  color: white;
+}
+
+.btn-ghost {
+  color: $primary-color;
+  background-color: white;
+  border: 1px solid $primary-color;
+  padding: 8px 24px;
+  border-radius: 5px;
+  font-weight: lighter;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  color-opacity: .7;
+  a {
+    color: $primary-color;
+  }
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+  color: $primary-color;
+  text-decoration: underline;
+}

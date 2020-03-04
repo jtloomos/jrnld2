@@ -1,1 +1,229 @@
-// Specific CSS for your home-page
+// Banner-specific CSS
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  background-color: $primary-color;
+  height: 100vh;
+  width: 100%;
+  // background-image: url(background.png);
+  // background-repeat: repeat;
+}
+
+.banner h3 {
+  text-align: center;
+  color: white;
+  font-weight: light;
+  margin: 16px 64px;
+  line-height: 56px;
+  font-size: 48px;
+}
+
+.banner p {
+  color: white;
+  opacity: 0.8;
+}
+
+.banner .log-in a {
+  color: white;
+  font-weight: bold;
+  &:hover {
+    color: white;
+  }
+}
+
+.banner .btn-ghost {
+  margin: 52px 0px;
+}
+
+
+// Video-specific CSS
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: white;
+  height: 60vh;
+}
+
+.video-card {
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  width: 70%;
+  height: 90%;
+  margin: auto;
+  box-shadow: 2px 2px 2px $primary-color;
+}
+
+
+// Features-specific CSS
+.features-section {
+  background-color: white;
+  padding-bottom: 30px;
+}
+
+.features-container-header {
+  width: 70%;
+  background-color: white;
+  text-align: center;
+  padding-top: 30px;
+  color: $primary-color;
+  margin: auto;
+}
+
+.feature-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 16px;
+}
+
+.features-list {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px;
+}
+
+.feature-card {
+  background-color: white;
+  opacity: 0.8;
+  border: 1px solid $secondary-color;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 20px;
+  box-shadow: 2px 2px 2px $secondary-color;
+  height: 100%;
+  align-content: flex-start;
+}
+
+.feature-card .feature-description {
+  height: 30%;
+  padding: 16px;
+}
+
+.feature-card .feature-title {
+  padding: 16px;
+  height: 20%;
+}
+
+.feature-card figure {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  background-color: $secondary-color;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-card figure .fas {
+  font-size: 40px;
+}
+// Benefits-specific CSS
+.benefits-section {
+  background-color: $secondary-color;
+}
+
+.benefits-container-header {
+  width: 100%;
+  background-color: $secondary-color;
+  text-align: left;
+  padding-top: 30px;
+  color: $primary-color;
+  padding-left: 16px;
+}
+
+.benefits {
+  display: flex;
+  justify-content: space-between;
+}
+
+.benefits-pic-container img {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.benefit-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 24px;
+}
+
+.benefits-list figure {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  flex-grow: 0;
+  background-color: $secondary-color;
+  border: 1px solid black;
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.benefits-list .benefit-content {
+  width: 80%;
+}
+
+// Review-specific CSS
+.reviews-section {
+  background-color: white;
+}
+
+.reviews-container-header {
+  width: 100%;
+  background-color: white;
+  text-align: center;
+  padding-top: 30px;
+  color: $primary-color;
+}
+
+.reviews-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  width: 100%;
+}
+
+.review-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 16px;
+  width: 100%;
+}
+
+.review-card {
+  background-color: white;
+  opacity: 0.8;
+  border: 1px solid $secondary-color;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 20px;
+  box-shadow: 2px 2px 2px $secondary-color;
+  height: 100%;
+  align-content: flex-start;
+  width: 100%;
+  p {
+    padding: 0px 16px;
+  }
+}
+
+.review-card .review-content {
+  font-style: italic;
+}
