@@ -1,0 +1,49 @@
+.profile-container {
+  background-color: $secondary-color;
+  h2 {
+    color: $primary-color;
+    padding-top: 32px;
+    padding-bottom: 16px;
+  }
+}
+
+.profile-information {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  display: flex;
+  margin: auto;
+  background: white;
+  padding: 0px;
+}
+
+.profile-information .avatar-large {
+  margin: auto;
+}
+
+.edit-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.profile-reminders {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  display: flex;
+  margin: auto;
+  background: white;
+  padding: 0px;
+}
+
+.profile-header {
+  width: 100%;
+  background-color: white;
+  text-align: left;
+  padding-top: 30px;
+  color: $primary-color;
+  padding-left: 16px;
+}
+
+.reminders-list .btn-solid:hover {
+  opacity: 1;
+}
