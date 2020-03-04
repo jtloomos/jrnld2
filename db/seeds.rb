@@ -34,7 +34,7 @@ user_seed = [
     gender: 'female',
     first_name: 'Emilie',
     last_name: 'Drop',
-    birthday: Date.new(1994,04,13}
+    birthday: Date.new(1994,04,13)}
 ]
 
 user_seed.each do |user|
