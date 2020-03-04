@@ -10,6 +10,8 @@ require 'faker'
 
 User.destroy_all
 Reminder.destroy_all
+Entry.destroy_all
+Tag.destroy_all
 
 ################ USER SEED ################
 
