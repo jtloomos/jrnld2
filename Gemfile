@@ -10,6 +10,8 @@ gem 'pundit'
 gem 'rails', '5.2.4.1'
 gem 'redis'
 
+gem 'geocoder'
+
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'sassc-rails'
