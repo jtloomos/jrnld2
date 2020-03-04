@@ -1,5 +1,5 @@
 <div class="devise-body">
-  <div class="container d-flex justify-content-center align-items-center mt-5">
+  <div class="container d-flex justify-content-center align-items-center mt-5 pt-3">
     <div id="sign-up-form"class="devise-form mb-5 mx-5 mt-4 p-5 rounded col-xs-8 col-md-8 shadow">
       <h2>Sign up</h2>
 
@@ -33,7 +33,8 @@
                       end_year: Date.today.year,
                       order: [:day, :month, :year],
                       required: true,
-                      autofocus: true%>
+                      autofocus: true,
+                      input_html: { style: "background-color: white"} %>
           <%= f.input :gender,
                       collection: %w[Male Female Other],
                       required: true,
