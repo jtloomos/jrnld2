@@ -42,7 +42,7 @@
 
 .emotion {
   color: $green;
-  font-size: 50px;
+  font-size: 20px;
 }
 
 .index-entry-background {
@@ -68,5 +68,22 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.entry-list {
+  justify-content: center
+}
+
+.entries-return {
+  text-align: center;
+}
+
+.entries-return a {
+  color: black;
+}
+
+.entries-return a:hover {
+  color: black;
+}
+
 
 
