@@ -15,6 +15,7 @@ class EntriesController < ApplicationController
   end
 
   def create
+    # @entry_tag = EntryTag.create!(tag: @tag, entry: @entry)
   end
 
   def edit

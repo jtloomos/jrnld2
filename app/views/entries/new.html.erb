@@ -7,17 +7,17 @@
     <div class="col-lg-3 order-2 order-lg-1 border">
       <p>Reminders:</p>
       <% @reminders.each do |reminder| %>
-        <button type="button" class="btn btn-outline-info btn-sm mb-2" id="btn-reminder"><%= reminder.title %></button>
+          <button type="button" class="btn btn-outline-info btn-sm mb-2" id="btn-reminder"><%= reminder.title %></button>
       <% end %>
     </div>
 
     <div class="col-lg-9 order-1 order-lg-2 border">
-      <div class="border">
+      <!-- <div class="border" id="entry-tags-div">
         (tags)
-      </div>
-
+      </div> -->
       <div class="border">
         <%= simple_form_for [@entry] do |f| %>
+          <%= f.association :tags, collection: Tag.all, input_html: { id: 'entry-tags-div' } %> <!--NEED TO FILTER for current user -->
           <%= f.input :title, input_html: { class: 'form-control' } %>
           <%= f.input :content, input_html: { class: 'form-control' } %>
           <%= f.input :location, input_html: { class: 'form-control' } %>
