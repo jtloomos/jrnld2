@@ -1,0 +1,2 @@
+class EntryTag < ApplicationRecord
+end
