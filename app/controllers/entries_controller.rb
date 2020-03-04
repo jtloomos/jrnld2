@@ -8,6 +8,10 @@ class EntriesController < ApplicationController
   end
 
   def new
+    @entry = Entry.new
+    authorize @entry
+
+    @reminders = Reminder.where(user_id: current_user.id)
   end
 
   def create

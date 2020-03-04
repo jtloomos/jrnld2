@@ -5,6 +5,10 @@ class EntryPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    true
+  end
+
   def show?
     record
   end
