@@ -74,10 +74,12 @@ end
 entry_seed = [
   { user_id: User.first.id,
     created_at: Date.new(2012,04,11),
+    location: "Chicago, United States",
     title: 'Spring in Mexico: a Heated Experience',
     content:  'A week of incredible heat has been the setting for Mandy and her cats Mexican orientation.  We have seen the hottest temperatures since we have moved here(over 35 degrees) and it did not rain for 1 month!  That dry spell was broken with rain over the last couple of days and a return to a more comfortable temperature range of 29-33 degrees celsius (+30 almost seems chilly by comparison).  The cats having been loving their new friends and their new location so the interaction between the five cats and the 16 turtles has been priceless.  All the cats have been getting along and that is good because we have been out of the house a lot.  We have been finding apartments with Mandy, introducing her to our friends and preparing for more friends to visit as well as our eventual departure.  We are enjoying our remaining time here as much as possible by diving and taking advantage of  the local food, drink and cheer. It is still hard to believe that we will be returning soon but we are looking forward to another amazing road trip, and our reunion with friends and family.  After all our adventures and with all our amazing friends my roots have been firmly anchored here in Cozumel.  There will always be more adventures in the future but my heart will  reside in this island paradise.' },
   { user_id: User.first.id,
     created_at: Date.new(2012,04,03),
+    location: "Rome, Italy",
     title: 'Five Cats and a Birthday.',
     content:  'After arriving last night, Loretta, Mandy and her three cats are waking up to a Mexican sunrise.  For Homer, Froggy, and Mini Mew the sights, sounds, and stress of a 12 hour travel day has melted away and now they are left with tropical paradise to explore.  So far all is well between all five of the cats!  We introduced them last night and there was not much drama at all. The were lucky enough to arrive on Liz’s birthday so after unloading at our place, we had some island cheer and closed down El Moro.  This birthday dinner was the summation of a full day of diving and having birthday fun.  Even though the day was long we still celebrated late and the staff at El Moro was more than accommodating by keeping the restaurant open an extra hour just for us.  Today we will allow our guests to settle in somewhat and the we will have to prepare for Liz’s birthday party tonight.  We have been very busy the last week planning for Liz’s birthday, preparing for Mandy’s arrival, planning our return, finishing our taxes, turning on our services at home, servicing the car, etc.  In between the work we have been visiting friends and diving when we can.  Now that most of the work is done we can enjoy our last month here and spend time with our last few visitors before having to face the frigid spring temperatures in the North once again.' },
   { user_id: User.first.id,
@@ -89,6 +91,7 @@ entry_seed = [
     On the 20th everyone got together at El Piques for the going away party.  Lots of people made it out and we all ate, drank and had a great time!  After we headed back to our place for a few more drinks.  It was a great night with friends!  The next day, we made it to Primas for breakfast before dropping Daryl and Nakita off at the ferry.  See you guys in Edmonton soon!' },
   { user_id: User.second.id,
     created_at: Date.new(2016,03,03),
+    location: "Buenos Aires, Argentina",
     title: 'What a day',
     content:  'Dear Diary, //
     I’m so upset!! I don’t even know where to begin!//
@@ -99,6 +102,7 @@ entry_seed = [
     Kate' },
   { user_id: User.second.id,
     created_at: Date.new(2016,03,04),
+    location: "Paris, France",
     title: 'Getting better',
     content:  'Dear Diary,//
     Today was a little better. I texted Sarah last night asking if she wanted to have lunch with me today, just the two of us, and she said sure. I told her that just because I’m hanging out with Jane, it doesn’t change anything about our friendship. After all, we’ve been friends since first grade! She said that she knows that, but she just felt like the third wheel because she doesn’t think that Jane likes her and because Jane and I have a lot of classes together. I told her not to worry about what Jane thought and that I’d talk to her about it. Sarah felt a lot better, and after we both cried a little, we spent the rest of lunch catching up on the latest gossip, which I missed!  //
@@ -110,6 +114,7 @@ entry_seed = [
     Kate' },
   { user_id: User.second.id,
     created_at: Date.new(2016,03,06),
+    location: "Tokyo, Japan",
     title: 'Busy busy',
     content:  'Dear Diary,//
     Sorry I didn’t get to write last night! It was such a busy day, and I was too tired to write anything...//
@@ -120,21 +125,25 @@ entry_seed = [
     Kate' },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,27),
+    location: "London, England",
     title: 'What About MY Good Times?',
     content: 'I KNOW that Daisy is ALWAYS saying that I RUIN her Good Times.  But from MY point of view... She NEVER wants to have any FUN with me.  That ruins MY Good Times!' },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,26),
+    location: "Santiago, Chile",
     title: 'Proof That I\'m a Genius!',
     content: 'My Mommeh always says that I am very, very smart (of course she\'s proud of me). Here is a little bit of proof that I might be a genius! I was playing around in the bathtub while she was changing the litter box...//
     And I came right up to the faucet. Now I should tell you that this shower/tub has never been used except to keep the litter box in an out-of-the-way place. I have never seen any water come out of this faucet.//
     But I came right up to it and tried to drink from it!' },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,22),
+    location: "Johannesburg, South Africa",
     title: 'The REAL Mac Daddy',
     content: 'You know Harley thought he was the big Mac Daddy in his Halloween costume last month. But I have news for him... //
     I can wear that stylish hat much better than Harley. See? I even have the fur coat.' },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,21),
+    location: "Athens, Greece",
     title: 'Da Bird is da bomb!',
     content: 'I FOUND this GREAT toy in my TOYBOX the other day.  Who wants to play with DA BIRD?!?! I do, I DO!!!!!//
     What could be BETTER than a WAND toy with FEATHERS!?!? Nothing! Let\'s PLAY!//
@@ -144,12 +153,14 @@ entry_seed = [
     I\'ve GOT you in my GRASP now, BIRD!' },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,19),
+    location: "Sydney, Australia",
     title: 'I\'m Curious!',
     content: 'One thing about me that you might or might not know is that I am a very curious cat.  I must be a part of everything, especially when I see the camera (because treats could be involved!)//
     If you pay attention, there are still many interesting and exciting things to see and do and experience!//
     As Voltaire said, "Judge a cat by her questions rather than by her answers" (or something like that).' },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,15),
+    location: "Cairo, Egypt",
     title: 'Blue is pretty!',
     content: 'Isn\'t  this suit a pretty color? I never knew blue could look so nice! I especially like the matching satin bow that shows off my waistline.//
     Here, let me lift my arm so you can see it better. Oh, and the sea-quinns, too!//
@@ -157,6 +168,7 @@ entry_seed = [
     Hey! How did this silly picture get here?' },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,12),
+    location: "Dublin, Ireland",
     title: 'Sheet monster!',
     content: 'You MIGHT not realize it but I am VERY, VERY BRAVE! See, MONSTERS live actually INSIDE the sheets. I don\'t mean to SCARE you, but it is the TRUTH. I am on the ALERT at ALL TIMES. In fact, I hear one NOW!!!!!//
     GOTCHA!!!//

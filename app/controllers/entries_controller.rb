@@ -1,5 +1,7 @@
 class EntriesController < ApplicationController
   def index
+    @entries = policy_scope(Entry)
+    @user = current_user
   end
 
   def show
