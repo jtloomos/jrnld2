@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    @user = current_user
+    authorize @user
   end
 
   def preferences
