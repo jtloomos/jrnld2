@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :entries
   has_many :entry_tags, through: :entries
 
+  validates_presence_of :username, :first_name, :last_name, :birthday, :gender
+  validates :username, uniqueness: true
+
   def tags
     self.entry_tags.map do |entry_tag|
       entry_tag.tag
