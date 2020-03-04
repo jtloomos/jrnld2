@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: 'pages#home'
   get 'contact', to: 'pages#contact'
 
+  resources :users, only: [:show, :update]
   get 'dashboard', to: 'users#dashboard', as: 'dashboard'
   get 'preferences', to: 'users#preferences', as: 'preferences'
   get 'analytics', to: 'users#analytics', as: 'analytics'
-  resources :users, only: [:show, :update]
 
   resources :entries
 
