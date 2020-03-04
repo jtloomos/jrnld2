@@ -1,8 +1,6 @@
 <br>
 
 <div class="container border p-3 mt-5">
-  (body)
-
   <div class="row row-cols-1 row-cols-lg-2 border">
     <div class="col-lg-3 order-2 order-lg-1 border">
       <p>Reminders:</p>
@@ -12,19 +10,13 @@
     </div>
 
     <div class="col-lg-9 order-1 order-lg-2 border">
-      <!-- <div class="border" id="entry-tags-div">
-        (tags)
-      </div> -->
-      <div class="border">
-        <%= simple_form_for [@entry] do |f| %>
-          <%= f.association :tags, collection: Tag.all, input_html: { id: 'entry-tags-div' } %> <!--NEED TO FILTER for current user -->
-          <%= f.input :title, input_html: { class: 'form-control' } %>
-          <%= f.input :content, input_html: { class: 'form-control' } %>
-          <%= f.input :location, input_html: { class: 'form-control' } %>
-          <%= f.button :submit, class: "btn btn-solid" %>
-        <% end %>
-      </div>
+      <%= simple_form_for [@entry] do |f| %>
+        <%= f.association :tags, collection: current_user.tags.uniq, input_html: { class: 'select2', multiple: "multiple", id: 'entry-tags-div' } %> <!--NEED TO FILTER for current user -->
+        <%= f.input :title, input_html: { class: 'form-control' } %>
+        <%= f.input :content, input_html: { class: 'form-control' } %>
+        <%= f.input :location, input_html: { class: 'form-control' } %>
+        <%= f.button :submit, class: "btn btn-solid" %>
+      <% end %>
     </div>
   </div>
-
 </div>

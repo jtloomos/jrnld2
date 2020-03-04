@@ -9,6 +9,10 @@ class EntryPolicy < ApplicationPolicy
     true
   end
 
+  def create?
+    true
+  end
+
   def show?
     record
   end
