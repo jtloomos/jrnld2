@@ -108,15 +108,15 @@
 
 .feature-card .feature-title {
   padding: 16px;
-  height: 20%;
+  height: 10%;
 }
 
 .feature-card figure {
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background-color: $secondary-color;
-  margin-top: 30px;
+  margin-top: 16px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -125,7 +125,7 @@
 }
 
 .feature-card figure .fas {
-  font-size: 40px;
+  font-size: 35px;
 }
 // Benefits-specific CSS
 .benefits-section {
@@ -146,10 +146,17 @@
   justify-content: space-between;
 }
 
+.benefits-container {
+  padding-left: 30px;
+}
+
 .benefits-pic-container img {
   width: 100%;
   padding: 0px;
   margin: 0px;
+  position: sticky;
+  height: 100%;
+  object-fit: cover;
 }
 
 .benefit-card {
@@ -157,13 +164,12 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  padding: 24px;
 }
 
 .benefits-list figure {
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   flex-grow: 0;
   background-color: $secondary-color;
   border: 1px solid black;
@@ -174,7 +180,7 @@
 }
 
 .benefits-list .benefit-content {
-  width: 80%;
+  width: 85%;
 }
 
 // Review-specific CSS
