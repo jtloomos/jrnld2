@@ -10,7 +10,7 @@
       <div class="w-100 px-3">
         <%= simple_form_for :search, url: entries_path, method: "GET", html: { class: '' } do |f| %>
         <div>
-        <%= f.input :query, label: false, placeholder: "Search for...", input_html: { class: '' } %>
+        <%= f.input :query, label: false, placeholder: "Search by location, tag, or entry text...", input_html: { class: '' } %>
         </div>
         <% end %>
     </div>
@@ -39,7 +39,7 @@
                   </div>
                   <div class="d-flex flex-column justify-content-center px-3 entry-information">
                     <h2 class="mb-1"><b><%= entry.title %></b></h2>
-                    <h6 class="mb-0 pl-1"><b><%= entry.location %></b></h6>
+                    <h6 class="mb-0 pl-1"><b><i class="fas fa-thumbtack"></i> <%= entry.location %></b></h6>
                   </div>
                 </div>
                 <div class="my-4">

@@ -10,16 +10,27 @@
       <div class="w-100 px-3">
         <%= simple_form_for :search, url: map_path, method: "GET", html: { class: '' } do |f| %>
         <div>
-        <%= f.input :location, label: false, placeholder: "Enter a location", input_html: { class: '' } %>
+        <%= f.input :location, label: false, placeholder: "Enter a location", input_html: { class: "auto-address" } %>
         </div>
         <% end %>
     </div>
     </div>
 
-    <div class="row justify-content-center px-3">
-      <div id="map" class="col-12 px-0 rounded shadow" style="width: 100%; height: 500px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    <% if @entries.empty? && @query.present? %>
+      <div class="row justify-content-center">
+        <h3 class="m-3"><em>No entries found for <b><%= @query %></b>. Search again.</em></h3>
       </div>
-    </div>
+    <% else %>
+      <% if !@query.nil? %>
+        <div class="row justify-content-center">
+          <h3 class="m-3"><em>Showing <%= @entries.length %> result(s) for <b><%= @query %></b>...</em></h3>
+        </div>
+      <% end %>
+      <div class="row justify-content-center px-3">
+        <div id="map" class="col-12 px-0 rounded shadow" style="width: 100%; height: 500px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+    <%end%>
 
     <div class="row justify-content-center">
       <span class="entries-return btn-solid"><%= link_to "See all entries", map_path %></span>
