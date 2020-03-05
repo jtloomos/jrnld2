@@ -75,6 +75,8 @@ class EntriesController < ApplicationController
       end
     end
 
+    raise
+
     redirect_to entries_path
   end
 
