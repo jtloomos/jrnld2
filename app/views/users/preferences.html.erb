@@ -11,7 +11,7 @@
         <% end %>
       <% end %>
         <% @user_reminders.each do |reminder| %>
-        <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
+        <div class="btn-ghost reminder active"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
         <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %>>
         <% i += 1 %>
       <% end %>
