@@ -1,6 +1,7 @@
 <div class="profile-container row justify-content-center mt-5">
   <h2 class="text-center col-12 my-3">My Profile</h2>
-  <div class="profile-information col-10 row justify-content-center">
+
+  <div class="profile-information my-2 col-10 row justify-content-center">
     <h4 class="profile-header my-2 col-11">Profile information</h4>
     <div class="profile-picture d-flex p-3 col-lg-3 col-sm-4 col-12">
       <%= image_tag 'default-avatar.png', class: "avatar-large mt-2" %>
@@ -11,19 +12,85 @@
       <%= f.input :email %>
       <%= f.input :birthday %>
       <%= f.input :gender %>
-      <%= f.submit %>
+      <%= f.button :submit, "Save Changes", class: "btn btn-solid" %>
     <% end %>
-    <div class="profile-reminders my-4 col-10 row justify-content-center">
-      <h4 class="profile-header my-2 col-11">My journaling reminders</h4>
-      <div class="reminders-list col-lg-10 col-11">
-        <% current_user.reminders.each do |reminder| %>
-        <div class="btn btn-solid"><%= reminder.title %></div>
-        <% end %>
-      </div>
-      <div class="edit-content text-center col-11">
-        <%= link_to "Edit reminders", "#", class: "btn btn-ghost" %>
+
+    <div data-toggle="modal" data-target="#passwordModal" class="profile-link col-11 my-2">
+      Change password
+    </div>
+
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Change password</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= simple_form_for(@user) do |f| %>
+            <%= f.input :old_password %>
+            <%= f.input :password, label: "New password" %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" data-dismiss="modal">Close</button>
+            <%= f.button :submit, "Confirm", class: "btn btn-solid" %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
 
+    <div data-toggle="modal" data-target="#deleteModal" class="profile-link col-11 mt-2 mb-5">
+      Delete account
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete account</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete your account?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" data-dismiss="modal">Close</button>
+            <%= link_to "Delete", user_path(current_user), method: :delete, class: "btn btn-ghost" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="profile-reminders my-2 col-10 row justify-content-center">
+    <h4 class="profile-header my-2 col-11">My journaling reminders</h4>
+    <div class="reminders-list col-11">
+      <% current_user.reminders.each do |reminder| %>
+      <div class="btn btn-ghost"><%= reminder.title %></div>
+      <% end %>
+    </div>
+    <% if current_user.reminders.empty? %>
+      <div class="edit-content text-center col-11">
+        <%= link_to "Add reminders", preferences_path, class: "btn btn-solid" %>
+      </div>
+    <% else %>
+      <div class="edit-content text-center col-11">
+        <%= link_to "Edit reminders", preferences_path, class: "btn btn-solid" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="profile-reminders mt-2 mb-4 col-10 row justify-content-center">
+    <h4 class="profile-header my-2 col-11">Set notifications frequency</h4>
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :notifications, collection: @notifications, label: false %>
+      <%= f.button :submit, "Save Changes", class: "btn btn-solid" %>
+    <% end %>
   </div>
 </div>
