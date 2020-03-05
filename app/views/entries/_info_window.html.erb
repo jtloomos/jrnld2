@@ -1,0 +1,27 @@
+<div class="info-window">
+  <%= link_to entry_path(entry.id) do %>
+    <div class="d-flex flex-column justify-content-center map-entry-card p-3" style="background-color:white">
+      <div class="d-flex">
+        <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; color: white">
+          <span class="text-center"><%= Date::ABBR_MONTHNAMES[entry.created_at.month].upcase %></span>
+          <h1 class="text-center mb-0"><%= entry.created_at.day %></h1>
+        </div>
+        <div class="d-flex flex-column justify-content-center px-3 entry-information">
+          <h2 class="mb-1"><b><%= entry.title %></b></h2>
+          <h6 class="mb-0 pl-1" style="text-align:left"><b><%= entry.location %></b></h6>
+        </div>
+      </div>
+      <div class="my-4" style="text-align:left">
+        <span><em>"<%= entry.content.truncate(350, omission: "...") %>"</em></span>
+      </div>
+      <div class="d-flex justify-content-end align-items-center flex-wrap">
+        <% entry.entry_tags.each do |entry_tag| %>
+          <div class="tag px-2 mr-1 mt-1">
+            <span><%= Tag.find(entry_tag.tag_id).title %></span>
+          </div>
+        <% end %>
+        <i class="fas fa-smile mt-1"></i>
+      </div>
+    </div>
+  <% end %>
+</div>

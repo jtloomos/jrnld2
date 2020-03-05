@@ -11,13 +11,6 @@ class EntriesController < ApplicationController
     end
 
     @user = current_user
-
-    @markers = @entries.map do |entry|
-      {
-        lat: entry.latitude,
-        lng: entry.longitude
-      }
-    end
   end
 
   def map
@@ -36,12 +29,15 @@ class EntriesController < ApplicationController
     @markers = @entries.map do |entry|
       {
         lat: entry.latitude,
-        lng: entry.longitude
+        lng: entry.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { entry: entry }),
       }
     end
   end
 
   def show
+    @entry = Entry.find(params[:id])
+    authorize @entry
   end
 
   def new
