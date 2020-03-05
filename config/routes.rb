@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'map', to: 'entries#map', as: 'map'
   resources :entries
 
-  resources :tags, only: [:create, :update]
+  resources :tags, only: [:create] #janette removing the update method
   resources :reminders, only: [:create, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

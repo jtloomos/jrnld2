@@ -10,6 +10,7 @@ gem 'pundit'
 gem 'rails', '5.2.4.1'
 gem 'redis'
 
+gem 'faker'
 gem 'geocoder'
 
 gem 'autoprefixer-rails'
@@ -18,8 +19,6 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-
-gem 'faker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
