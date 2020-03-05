@@ -1,7 +1,10 @@
 class RemindersController < ApplicationController
   def create
-    @reminder = Reminder.create(reminder_params)
+    @reminder = Reminder.new(reminder_params)
+    @reminder.user = current_user
+    @reminder.save
     authorize @reminder
+    redirect_to preferences_path
   end
 
   def update
@@ -10,6 +13,6 @@ class RemindersController < ApplicationController
   private
 
   def reminder_params
-    params.require(:reminder).permit(:title, :user_id)
+    params.require(:reminder).permit(:title)
   end
 end
