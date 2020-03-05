@@ -40,10 +40,31 @@
   background-color: white;
   text-align: left;
   padding-top: 30px;
+  padding-bottom: 20px;
   color: $primary-color;
   padding-left: 16px;
 }
 
 .reminders-list .btn-solid:hover {
   opacity: 1;
+}
+
+.profile-container form {
+  width: 90%;
+}
+
+.form-control input {
+  background-color: white;
+}
+
+.delete-account a {
+  color: black;
+  font-size: 12px;
+  padding-bottom: 18px;
+  opacity: 0.7;
+  &:hover {
+    color: black;
+    opacity: 1;
+    text-decoration: none;
+  }
 }

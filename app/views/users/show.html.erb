@@ -1,73 +1,29 @@
 <div class="profile-container row justify-content-center mt-5">
-  <h2 class="text-center col-12">My Profile</h2>
-  <div class="profile-information col-9 row justify-content-center">
-    <h4 class="profile-header">Profile information</h4>
-    <div class="profile-picture d-flex justify-content-center p-3 col-lg-3 col-sm-4 col-12">
-        <%= image_tag 'default-avatar.png', class: "avatar-large" %>
+  <h2 class="text-center col-12 my-3">My Profile</h2>
+  <div class="profile-information col-10 row justify-content-center">
+    <h4 class="profile-header my-2 col-11">Profile information</h4>
+    <div class="profile-picture d-flex p-3 col-lg-3 col-sm-4 col-12">
+      <%= image_tag 'default-avatar.png', class: "avatar-large mt-2" %>
     </div>
-    <div class="profile-content py-3 px-2 col-lg-9 col-sm-8 col-11">
-      <div class="name pb-2">
-        <b><%= @user.first_name %> <%= @user.last_name %></b>
+    <%= simple_form_for(@user) do |f| %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :email %>
+      <%= f.input :birthday %>
+      <%= f.input :gender %>
+      <%= f.submit %>
+    <% end %>
+    <div class="profile-reminders my-4 col-10 row justify-content-center">
+      <h4 class="profile-header my-2 col-11">My journaling reminders</h4>
+      <div class="reminders-list col-lg-10 col-11">
+        <% current_user.reminders.each do |reminder| %>
+        <div class="btn btn-solid"><%= reminder.title %></div>
+        <% end %>
       </div>
-      <div class="username pb-2">
-        <i><%= @user.username %></i>
-      </div>
-      <div class="contact pb-2">
-        <i class="fas fa-envelope-square"></i> <%= @user.email %>
-      </div>
-      <div class="birthday pb-2">
-        <i class="far fa-calendar-alt"></i> <%= @user.birthday %>
+      <div class="edit-content text-center col-11">
+        <%= link_to "Edit reminders", "#", class: "btn btn-ghost" %>
       </div>
     </div>
-    <div class="edit-content text-center col-lg-12 col-sm-12 col-12">
-      <%= link_to "Edit profile", "#", class: "btn btn-ghost" %>
-    </div>
-  </div>
 
-  <div class="profile-reminders mt-4 col-9 row justify-content-center">
-    <h4 class="profile-header">My journaling reminders</h4>
-    <div class="reminders-list p-3 col-lg-12 col-sm-12 col-12">
-        <div class="btn btn-solid">Family</div>
-        <div class="btn btn-solid">Friends</div>
-        <div class="btn btn-solid">Healthy food</div>
-        <div class="btn btn-solid">Sport</div>
-        <div class="btn btn-solid">Travel</div>
-        <div class="btn btn-solid">Vegan</div>
-        <div class="btn btn-solid">Use public transport</div>
-    </div>
-    <div class="edit-content text-center col-lg-12 col-sm-12 col-12">
-      <%= link_to "Edit reminders", "#", class: "btn btn-ghost" %>
-    </div>
   </div>
-
-  <div class="tasks-list pb-3 row col-9 justify-content-center">
-    <div class="task-container col-lg-4 col-sm-7 col-11">
-      <div class="task-card">
-        <figure>
-          <i class="fas fa-edit"></i>
-        </figure>
-         <h3 class="task-title"><%= link_to "Start new entry", new_entry_path %></h3>
-         <p class="task-description">Capture daily thoughts, emotions and images.</p>
-      </div>
-    </div>
-    <div class="task-container col-lg-4 col-sm-7 col-11">
-      <div class="task-card">
-        <figure>
-          <i class="fas fa-list"></i>
-        </figure>
-        <h3 class="task-title"><%= link_to "View all entries", entries_path %></h3>
-        <p class="task-description">View or search for journal entries.</p>
-      </div>
-    </div>
-    <div class="task-container col-lg-4 col-sm-7 col-11">
-      <div class="task-card">
-        <figure>
-          <i class="fas fa-chart-bar"></i>
-        </figure>
-        <h3 class="task-title"><%= link_to "My analytics", analytics_path(current_user) %></h3>
-        <p class="task-description">Get insights from JRNLD analytics.</p>
-      </div>
-    </div>
-  </div>
-
 </div>
