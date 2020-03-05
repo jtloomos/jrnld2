@@ -5,7 +5,7 @@ const initSelect2 = () => {
   $('.select2').select2({
     tags: true,             // Allow custom tags to be entered
     tokenSeparators: [','], // Allow comma-separated tags
-    createTag: function (params) {  // An attempt to sort the entry tags - no luck so far
+    createTag: function (params) {  // If new tag is a number and does not exist yet, append tag_ to the tag id
       var term = $.trim(params.term);
 
       if (term === '') {
