@@ -14,14 +14,24 @@ class UsersController < ApplicationController
 
   def preferences
     @user_reminders = Reminder.where(user: current_user).map { |r| r.title.upcase}
-    @reminders = %w[SPORTS FAMILY FRIENDS SPECIAL ONE] + @user_reminders
-    @notifications = ["Twice a day", "Once a day", "Once a week", "Never"]
+    @default_reminders = %w[SPORTS FAMILY FRIENDS SPECIAL ONE]
     @reminder = Reminder.new
-
   end
 
   def new_preferences
-    raise
+    user_reminders = Reminder.where(user_id: current_user.id).pluck(:title)
+    reminders = params.select {|key, value| key =~ /reminder-\d/ }
+
+    user_reminders.each do |user_reminder|
+      db_reminder = Reminder.find_by(title: user_reminder)
+      db_reminder.destroy unless reminders.values.include?(user_reminder) || !db_reminder
+    end
+
+    reminders.each do |key,reminder|
+      Reminder.create(title: reminder, user: current_user) unless user_reminders.include?(reminder)
+    end
+
+    redirect_to
   end
 
   def analytics

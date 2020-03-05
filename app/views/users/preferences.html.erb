@@ -2,11 +2,21 @@
   <h2>What do you want to journal about?</h1>
   <form action="/preferences" method= "post">
     <div class="default-reminders d-flex flex-wrap justify-content-around">
-      <% @reminders.each do |reminder| %>
-        <div class="btn-ghost reminder active"><input style="width:100%; height: 100%; display: none;" class="boolean optional" type="checkbox"><%= reminder %></div>
+      <% i = 0 %>
+      <% @default_reminders.each do |reminder| %>
+        <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder %></label></div>
+        <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder %>>
+        <% i += 1 %>
+      <% end %>
+        <% @user_reminders.each do |reminder| %>
+        <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder %></label></div>
+        <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder %>>
+        <% i += 1 %>
       <% end %>
     </div>
-    <input type="submit">
+
+    <input type="hidden" name="authenticity_token" value= <%= form_authenticity_token %>>
+    <input type="submit" value="Set reminders">
   </form>
 
 
@@ -18,11 +28,4 @@
         <%= f.button :submit%>
       <% end %>
     </div>
-
-
-    <label for="notifications-frequency"><h2>How often do you want to receive notifications?</h2></label>
-    <%= simple_form_for @user do |f| %>
-      <%= f.input :notifications, collection: @notifications, label: false %>
-      <%= f.submit, value: "Update"%>
-    <% end %>
 </div>

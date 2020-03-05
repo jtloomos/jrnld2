@@ -1,4 +1,4 @@
-.remainder {
+.reminder {
   text-decoration: none;
   transition: all .2s ease-in-out;
   &:hover {
@@ -6,7 +6,16 @@
   }
 }
 
-.remainder.active {
-    background-color: #891b00de;
+.reminder.active {
+    background-color: #891B00;
     color: white;
 }
+
+
+.reminder-label {
+}
+
+.reminder-check {
+  display: none;
+}
+
