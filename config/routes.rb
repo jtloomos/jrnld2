@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: 'pages#home'
+  unauthenticated :user do
+    root to: "pages#home"
+  end
+
+  authenticated :user do
+    root "users#dashboard"
+  end
+
   get 'contact', to: 'pages#contact'
 
   resources :users, only: [:show, :update]
