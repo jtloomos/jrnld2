@@ -8,11 +8,14 @@
 
 require 'faker'
 
-User.destroy_all
-Reminder.destroy_all
+puts "Destroy old seeds"
+EntryTag.destroy_all
 Entry.destroy_all
+Reminder.destroy_all
 Tag.destroy_all
+User.destroy_all
 
+puts "Starting seeding process..."
 ################ USER SEED ################
 
 user_seed = [
