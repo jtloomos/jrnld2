@@ -5,6 +5,27 @@ const initSelect2 = () => {
   $('.select2').select2({
     tags: true,             // Allow custom tags to be entered
     tokenSeparators: [','], // Allow comma-separated tags
+    createTag: function (params) {  // An attempt to sort the entry tags - no luck so far
+      var term = $.trim(params.term);
+
+      if (term === '') {
+        return null;
+      }
+
+      var termId = ''
+
+      if (!isNaN(term)) {
+        termId = 'tag_' + term;
+      } else {
+        termId = term;
+      }
+
+      return {
+        id: termId,
+        text: term,
+        newTag: true // add additional parameters
+      }
+    }
   });
 
   // Track all the reminder buttons
@@ -18,7 +39,6 @@ const initSelect2 = () => {
         // Upon reminder button click, do the following to add/remove entry tags:
         var data = JSON.parse(reminder.dataset.content);  // Grab hash of clicked reminder attributes
         const values = $('.select2').val();   // Grab all the current entry tags
-        console.log(values);                  //IS THIS RIGHT??
 
         // Check if reminder text exists in option list already
         const tagId = $('.select2 option').filter(function () { return $(this).html() == data.title; }).val()
@@ -26,7 +46,8 @@ const initSelect2 = () => {
         // If current_user.tags exists, and reminder was just activated, add entry tag
         if (tagId) {
           if (event.currentTarget.classList.contains("active")) {
-            values.push(tagId) // NOT WORKING!
+            values.push(tagId) // NOT WORKING FOR SORTING!
+
           } else {
             // If current_user.tags exists, and reminder was just deactivated, remove entry tag
             for( var i = 0; i < values.length; i++){ if ( values[i] === tagId) { values.splice(i, 1); i--; }}
@@ -41,7 +62,7 @@ const initSelect2 = () => {
     });
   }
 
-  // When EDIT an existing entry, pre-select existing entry tags, as follows:
+  // For the EDIT ENTRY page, pre-select existing entry tags, as follows:
 
   // Preselecting options in an remotely-sourced (AJAX) Select2
   // https://select2.org/programmatic-control/add-select-clear-items#preselecting-options-in-an-remotely-sourced-ajax-select2
