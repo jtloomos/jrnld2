@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get 'contact', to: 'pages#contact'
 
-  resources :users, only: [:show, :update]
+  resources :users, only: [:show, :update, :destroy]
   get 'dashboard', to: 'users#dashboard', as: 'dashboard'
   get 'preferences', to: 'users#preferences', as: 'preferences'
   get 'analytics', to: 'users#analytics', as: 'analytics'
