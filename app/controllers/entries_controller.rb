@@ -20,6 +20,27 @@ class EntriesController < ApplicationController
     end
   end
 
+  def map
+     if params[:search].present? && params[:search][:location].present?
+      sql_query = "location ILIKE :query"
+      @query = params[:search][:location]
+      @entries = policy_scope(Entry).near(params[:search][:location], 100)
+      authorize @entries
+    else
+      @entries = policy_scope(Entry)
+      authorize @entries
+    end
+
+    @user = current_user
+
+    @markers = @entries.map do |entry|
+      {
+        lat: entry.latitude,
+        lng: entry.longitude
+      }
+    end
+  end
+
   def show
   end
 

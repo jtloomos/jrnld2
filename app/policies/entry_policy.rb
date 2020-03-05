@@ -8,4 +8,8 @@ class EntryPolicy < ApplicationPolicy
   def show?
     record
   end
+
+  def map?
+    true
+  end
 end

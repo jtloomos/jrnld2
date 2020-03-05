@@ -1,7 +1,9 @@
-  <div class="entry-container m-5" style="min-height: 80vh">
-
-    <div class="row justify-content-end px-3">
-       <span class="entries-return btn-solid"><%= link_to "Map View", entries_path %></span>
+<div class="entry-container m-5" style="min-height: 80vh">
+  <br>
+  <div class="large-card p-2 bg-white mt-1 p-3">
+    <div class="row justify-content-between px-3 align-items-center">
+      <h1 class="mb-0"><em>My Entries</em></h1>
+      <span class="entries-return btn-solid"><i class="fas fa-globe-americas"></i> <%= link_to "Map View", map_path %></span>
     </div>
 
     <div class="row justify-content-center">
@@ -18,7 +20,7 @@
       <% @entries.each do |entry| %>
         <div class="holder mb-4 col-xs-12 col-md-6 col-lg-4">
           <%= link_to entry_path(:id) do %>
-            <div class="d-flex flex-column justify-content-center entry-card p-2 bg-white">
+            <div class="d-flex flex-column justify-content-center entry-card p-2" style="background-color:#F0F0F0">
               <div class="d-flex">
                 <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; color: white">
                   <span class="text-center"><%= Date::ABBR_MONTHNAMES[entry.created_at.month].upcase %></span>
@@ -47,7 +49,8 @@
     </div>
 
     <div class="row justify-content-center">
-      <span class="entries-return btn-solid"><%= link_to "Return to all entries", entries_path %></span>
+      <span class="entries-return btn-solid"><%= link_to "See to all entries", entries_path %></span>
     </div>
   </div>
+</div>
 
