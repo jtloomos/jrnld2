@@ -5,8 +5,20 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    true
+  end
+
   def dashboard?
-      true
+    true
+  end
+
+  def edit?
+    @user == record
+  end
+
+  def update?
+    @user == record
   end
 
   def preferences?

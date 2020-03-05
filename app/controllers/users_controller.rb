@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_action :authorize_user, only: [:dashboard, :preferences]
 
   def show
+    @user = current_user
+    authorize @user
   end
 
   def update

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'preferences', to: 'users#preferences', as: 'preferences'
   get 'analytics', to: 'users#analytics', as: 'analytics'
 
+  get 'map', to: 'entries#map', as: 'map'
   resources :entries
 
   resources :tags, only: [:create, :update]
