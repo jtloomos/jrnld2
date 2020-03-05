@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:show]
 
   def index
     if params[:search].present? && params[:search][:query].present?

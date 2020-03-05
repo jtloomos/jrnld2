@@ -2,12 +2,13 @@
   <%= link_to entry_path(entry.id) do %>
     <div class="d-flex flex-column justify-content-center map-entry-card p-3" style="background-color:white">
       <div class="d-flex">
-        <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; color: white">
+        <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; height: 120px; color: white">
           <span class="text-center"><%= Date::ABBR_MONTHNAMES[entry.created_at.month].upcase %></span>
-          <h1 class="text-center mb-0"><%= entry.created_at.day %></h1>
+          <h1 class="text-center m-0 pt-1"><%= entry.created_at.day %></h1>
+          <span class="text-center"><%= entry.created_at.year %></span>
         </div>
-        <div class="d-flex flex-column justify-content-center px-3 entry-information">
-          <h2 class="mb-1"><b><%= entry.title %></b></h2>
+        <div class="d-flex flex-column justify-content-center px-3 entry-information" style="width: 80%">
+          <h2 class="mb-1"><b><%= entry.title.truncate(30, omission: "...") %></b></h2>
           <h6 class="mb-0 pl-1" style="text-align:left"><b><i class="fas fa-thumbtack"></i> <%= entry.location %></b></h6>
         </div>
       </div>
