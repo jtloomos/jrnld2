@@ -1,0 +1,29 @@
+<div class="container d-flex flex-column justify-content-center mt-5 p-5">
+  <h2>What do you want to journal about?</h1>
+  <div class="default-reminders d-flex flex-wrap justify-content-around">
+    <button class="btn-ghost reminder active">SPORTS</button>
+    <button class="btn-ghost reminder">FAMILY</button>
+    <button class="btn-ghost reminder">SPECIAL ONE</button>
+    <button class="btn-ghost reminder">BUBU</button>
+    <button class="btn-ghost reminder">NANA</button>
+    <% current_user.reminders.each do |reminder| %>
+      <button class="btn-ghost reminder"><%= reminder.title.upcase %></button>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-content-around">
+    <%= simple_form_for @reminder, url: reminders_path do |f| %>
+      <%= f.input :title, placeholder: "Add your own!", label: false %>
+      <%f.hidden_field :user_id, value: current_user.id %>
+      <%= f.button :submit%>
+    <% end %>
+  </div>
+
+  <label for="notifications-frequency"><h2>How often do you want to receive notifications?</h2></label>
+  <select id="notifications-frequency">
+    <option value="Twice a day">Twice a day</option>
+    <option value="Once a day">Once a day</option>
+    <option value="Once per week">Once per week</option>
+    <option value="Never">Never</option>
+  </select>
+</div>

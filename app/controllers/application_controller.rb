@@ -17,6 +17,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :first_name, :last_name, :birthday, :gender])
   end
 
+  def after_sign_in_path_for(resource)
+    dashboard_path
+  end
+
+
+
+
   private
 
   def skip_pundit?

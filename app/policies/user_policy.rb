@@ -8,4 +8,8 @@ class UserPolicy < ApplicationPolicy
   def dashboard?
       true
   end
+
+  def preferences?
+    true
+  end
 end
