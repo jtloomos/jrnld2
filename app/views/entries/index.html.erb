@@ -1,67 +1,53 @@
-<div class="container p-3 mt-5 entry-page-body">
-  <h1><em>My Entries</em></h1>
+  <div class="entry-container m-5" style="min-height: 80vh">
 
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <%= simple_form_for :search, url: entries_path, method: "GET", html: { class: '' } do |f| %>
-      <div>
-        <%= f.input :query, label: false, placeholder: "Search for...", input_html: { class: '' } %>
-      </div>
-      <% end %>
+    <div class="row justify-content-end px-3">
+       <span class="entries-return btn-solid"><%= link_to "Map View", entries_path %></span>
     </div>
-  </div>
 
-  <div class="row entry-list">
+    <div class="row justify-content-center">
+      <div class="w-100 px-3">
+        <%= simple_form_for :search, url: entries_path, method: "GET", html: { class: '' } do |f| %>
+        <div>
+        <%= f.input :query, label: false, placeholder: "Search for...", input_html: { class: '' } %>
+        </div>
+        <% end %>
+    </div>
+    </div>
 
-    <% if @entries.empty? %>
-      <div class="d-flex flex-column justify-content-center">
-        <h3 class="m-3"><em>No entries found for <b><%= @query %></b>. Search again.</em></h3>
-        <span class="entries-return"><%= link_to "Return to all entries", entries_path %></span>
-      </div>
-    <% else %>
-      <% if !@query.nil? %>
-        <h3 class="m-3"><em>Showing <%= @entries.length %> result(s) for <b><%= @query %></b>...</em></h3>
-      <% end %>
-
+    <div class="row justify-content-center">
       <% @entries.each do |entry| %>
-        <div class="entry-holder p-3 col-12">
-          <%= link_to entry_path(entry.id) do %>
-            <div class="entry-container p-2 d-flex">
-              <div class="date px-3 d-flex flex-column justify-content-center">
-                <span><%= Date::ABBR_MONTHNAMES[entry.created_at.month].upcase %></span>
-                <h1><%= entry.created_at.day %></h1>
+        <div class="holder mb-4 col-xs-12 col-md-6 col-lg-4">
+          <%= link_to entry_path(:id) do %>
+            <div class="d-flex flex-column justify-content-center entry-card p-2 bg-white">
+              <div class="d-flex">
+                <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; color: white">
+                  <span class="text-center"><%= Date::ABBR_MONTHNAMES[entry.created_at.month].upcase %></span>
+                  <h1 class="text-center mb-0"><%= entry.created_at.day %></h1>
+                </div>
+                <div class="d-flex flex-column justify-content-center px-2 entry-information">
+                  <h2 class="mb-1"><b><%= entry.title %></b></h2>
+                  <h6 class="mb-0 pl-1"><b><%= entry.location %></b></h6>
+                </div>
               </div>
-              <div class="entry-content">
-                <div class="entry-text px-2">
-                  <span><em><%= entry.content.truncate(350, omission: "...") %></em></span>
-                </div>
-                <div class="entry-information d-flex justify-content-between">
-                  <div class="entry-location px-2">
-                    <span><%= entry.location %></span>
+              <div class="my-2">
+                <span><em>"<%= entry.content.truncate(350, omission: "...") %>"</em></span>
+              </div>
+              <div class="d-flex justify-content-end align-items-center flex-wrap">
+                <% entry.entry_tags.each do |entry_tag| %>
+                  <div class="tag px-2 mr-1 mt-1">
+                    <span><%= Tag.find(entry_tag.tag_id).title %></span>
                   </div>
-                  <div class="entry-characteristics d-flex">
-                    <div class="all-tags d-flex flex-row justify-content-center">
-                      <% entry.entry_tags.each do |entry_tag| %>
-                        <div class="tag px-2 m-1">
-                          <span><%= Tag.find(entry_tag.tag_id).title %></span>
-                        </div>
-                      <% end %>
-                    </div>
-                    <div class="emotion d-flex flex-column justify-content-center">
-                      <i class="fas fa-smile"></i>
-                    </div>
-                  </div>
-                </div>
+                <% end %>
+                <i class="fas fa-smile mt-1"></i>
               </div>
             </div>
           <% end %>
         </div>
       <% end %>
-      <div class="container">
-        <div id="map" class="p-3 col-12 " style="width: 100%; height: 600px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-        </div>
-      </div>
-    <span class="entries-return mt-3"><%= link_to "Return to all entries", entries_path %></span>
-    <% end %>
+    </div>
+
+    <div class="row justify-content-center">
+      <span class="entries-return btn-solid"><%= link_to "Return to all entries", entries_path %></span>
+    </div>
   </div>
-</div>
+
