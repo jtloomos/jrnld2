@@ -14,32 +14,32 @@ const initSelect2 = () => {
     reminders.forEach((reminder) => {
       reminder.addEventListener("click", (event) => {
         event.currentTarget.classList.toggle("active");
+
         // Upon reminder button click, do the following to add/remove entry tags:
-        var data = JSON.parse(reminder.dataset.content);  // Hash of reminder attributes
+        var data = JSON.parse(reminder.dataset.content);  // Grab hash of clicked reminder attributes
         const values = $('.select2').val();   // Grab all the current entry tags
+        console.log(values);                  //IS THIS RIGHT??
+
         // Check if reminder text exists in option list already
         const tagId = $('.select2 option').filter(function () { return $(this).html() == data.title; }).val()
+
+        // If current_user.tags exists, and reminder was just activated, add entry tag
         if (tagId) {
           if (event.currentTarget.classList.contains("active")) {
-            values.push(tagId) // this needs to push to the end of the full list!!!
-          } else { // remove the deactivated reminder from the entry tag list
+            values.push(tagId) // NOT WORKING!
+          } else {
+            // If current_user.tags exists, and reminder was just deactivated, remove entry tag
             for( var i = 0; i < values.length; i++){ if ( values[i] === tagId) { values.splice(i, 1); i--; }}
           }
           $('.select2').val(values).trigger('change');
         } else {
-          // Create a DOM Option and pre-select by default
-          var newOption = new Option(data.title, "newTag"+data.id , true, true);
-          // Append it to the select
+          // If current_user.tags doesn't exist, add the tag and entry tag
+          var newOption = new Option(data.title, data.title, true, true);
           $('select.select2').append(newOption).trigger('change');
         }
       });
     });
   }
-
-
-
-
-
 
   // When EDIT an existing entry, pre-select existing entry tags, as follows:
 
