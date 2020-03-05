@@ -20,16 +20,9 @@
     </div>
 
 
-    <%= simple_form_for @user do |f| %>
-      <%= f.input :notifications, collection: @notifications %>
-    <% end %>
     <label for="notifications-frequency"><h2>How often do you want to receive notifications?</h2></label>
-    <select id="notifications-frequency">
-      <option value="Twice a day">Twice a day</option>
-      <option value="Once a day">Once a day</option>
-      <option value="Once per week">Once per week</option>
-      <option value="Never">Never</option>
-    </select>
-
-
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :notifications, collection: @notifications, label: false %>
+      <%= f.submit, value: "Update"%>
+    <% end %>
 </div>
