@@ -38,6 +38,12 @@ class EntriesController < ApplicationController
   def show
     @entry = Entry.find(params[:id])
     authorize @entry
+
+    @markers =[
+      {
+        lat: @entry.latitude,
+        lng: @entry.longitude
+      }]
   end
 
   def new

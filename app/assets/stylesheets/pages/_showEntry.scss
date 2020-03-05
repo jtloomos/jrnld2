@@ -1,0 +1,19 @@
+.individual-entry-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.entry-text {
+  color: gray;
+}
+
+
+.entry-title h1{
+  text-align: left;
+  padding-top: 30px;
+  color: black;
+}
+
+.entry-location span {
+  color: $primary-color;
+}
