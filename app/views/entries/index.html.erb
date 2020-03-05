@@ -31,14 +31,14 @@
         <% @entries.each do |entry| %>
           <div class="holder mb-4 col-xs-12 col-md-6">
             <%= link_to entry_path(entry.id) do %>
-              <div class="d-flex flex-column justify-content-center entry-card p-3" style="background-color:#F0F0F0">
+              <div class="d-flex flex-column justify-content-between entry-card p-3 h-100" style="background-color:#F0F0F0">
                 <div class="d-flex">
-                  <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; color: white">
+                  <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; height: 100px; color: white">
                     <span class="text-center"><%= Date::ABBR_MONTHNAMES[entry.created_at.month].upcase %></span>
                     <h1 class="text-center mb-0"><%= entry.created_at.day %></h1>
                   </div>
-                  <div class="d-flex flex-column justify-content-center px-3 entry-information">
-                    <h2 class="mb-1"><b><%= entry.title %></b></h2>
+                  <div class="d-flex flex-column justify-content-center px-3 entry-information" style="width: 80%">
+                    <h2 class="mb-1"><b><%= entry.title.truncate(30, omission: "...") %></b></h2>
                     <h6 class="mb-0 pl-1"><b><i class="fas fa-thumbtack"></i> <%= entry.location %></b></h6>
                   </div>
                 </div>
