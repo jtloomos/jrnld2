@@ -3,14 +3,16 @@
   <form action="/preferences" method= "post">
     <div class="default-reminders d-flex flex-wrap justify-content-around">
       <% i = 0 %>
-      <% @default_reminders.each do |reminder| %>
-        <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder %></label></div>
-        <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder %>>
-        <% i += 1 %>
+      <% if current_user.reminders.empty? %>
+        <% @default_reminders.each do |reminder| %>
+          <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
+          <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %>>
+          <% i += 1 %>
+        <% end %>
       <% end %>
         <% @user_reminders.each do |reminder| %>
-        <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder %></label></div>
-        <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder %>>
+        <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
+        <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %>>
         <% i += 1 %>
       <% end %>
     </div>
