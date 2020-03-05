@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update]
   get 'dashboard', to: 'users#dashboard', as: 'dashboard'
   get 'preferences', to: 'users#preferences', as: 'preferences'
+  post 'preferences', to: 'users#new_preferences'
   get 'analytics', to: 'users#analytics', as: 'analytics'
 
   get 'map', to: 'entries#map', as: 'map'

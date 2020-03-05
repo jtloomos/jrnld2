@@ -24,4 +24,8 @@ class UserPolicy < ApplicationPolicy
   def preferences?
     true
   end
+
+  def new_preferences?
+    true
+  end
 end
