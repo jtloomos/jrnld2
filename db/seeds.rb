@@ -12,6 +12,7 @@ User.destroy_all
 Reminder.destroy_all
 Entry.destroy_all
 Tag.destroy_all
+EntryTag.destroy_all
 
 ################ USER SEED ################
 
@@ -58,6 +59,7 @@ reminder_seed = [
   { user_id: User.second.id, title: 'friends' },
   { user_id: User.second.id, title: 'love' },
   { user_id: User.second.id, title: 'fashion' },
+  { user_id: User.second.id, title: 'bubu' },
   { user_id: User.third.id, title: 'excercise' },
   { user_id: User.third.id, title: 'food' },
   { user_id: User.third.id, title: 'family' },
@@ -189,21 +191,18 @@ tag_seed = [
   { title: 'food' },
   { title: 'culture' },
   { title: 'love' },
+  { title: 'love' },
   { title: 'wildlife' },
   { title: 'adventure' },
   { title: 'beer' },
   { title: 'school' },
   { title: 'friends' },
-  { title: 'love' },
   { title: 'fashion' },
   { title: 'family' },
   { title: 'play' },
   { title: 'beauty' },
   { title: 'career' },
   { title: 'flowers' },
-  { title: 'love' },
-  { title: 'love' },
-  { title: 'love' },
   { title: 'ocean' },
   { title: 'fitness' },
   { title: 'boys' },

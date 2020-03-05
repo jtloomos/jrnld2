@@ -58,8 +58,21 @@ class EntriesController < ApplicationController
     authorize @entry
     @entry.user = current_user
     @entry.save!
-    # @entry_tag = EntryTag.create!(tag: @tag, entry: @entry)
 
+    params[:entry][:tag_ids].each do |id|
+      if id.match?(/\A\d+\z/) # if id is a number (current_user.tags exists)
+        @entry_tag = EntryTag.create!(tag_id: id, entry: @entry)
+      elsif id.match?(/\A(tag_).+\z/) # if id title is a number and current_user.tags does not exist
+        @gsub = id.gsub(/(tag_)/, "")
+        @tag = Tag.create!(title: @gsub)
+        @entry_tag = EntryTag.create!(tag: @tag, entry: @entry)
+      elsif id.match?(/\A.+\z/) # if id is text and current_user.tags does not exist
+        @tag = Tag.create!(title: id)
+        @entry_tag = EntryTag.create!(tag: @tag, entry: @entry)
+      else
+        # if params passes an empty id, do nothing
+      end
+    end
     redirect_to entries_path
   end
 
