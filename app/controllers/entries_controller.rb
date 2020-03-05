@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
     if params[:search].present? && params[:search][:query].present?
       sql_query = "content ILIKE :query OR tags.title ILIKE :query OR location ILIKE :query"
       @query = params[:search][:query]
-      @entries = policy_scope(Entry).joins(tags: :entry_tags).where(sql_query, query: "%#{params[:search][:query]}%").distinct
+      @entries = policy_scope(Entry).left_outer_joins(tags: :entry_tags).where(sql_query, query: "%#{params[:search][:query]}%").distinct
     else
       @entries = policy_scope(Entry)
     end
