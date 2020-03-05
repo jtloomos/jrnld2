@@ -1,8 +1,8 @@
 <div class="entry-container m-5" style="min-height: 80vh">
   <br>
+  <h2 class="text-center" style="color:#891B00">My Entries</h2>
   <div class="large-card p-2 bg-white mt-1 p-3">
-    <div class="row justify-content-between px-3 align-items-center">
-      <h1 class="mb-0"><em>My Entries</em></h1>
+    <div class="row justify-content-end px-3 align-items-center">
       <span class="entries-return btn-solid"><i class="fas fa-globe-americas"></i> <%= link_to "Map View", map_path %></span>
     </div>
 
@@ -29,20 +29,20 @@
       <% end %>
       <div class="row justify-content-left">
         <% @entries.each do |entry| %>
-          <div class="holder mb-4 col-xs-12 col-md-6 col-lg-4">
-            <%= link_to entry_path(:id) do %>
-              <div class="d-flex flex-column justify-content-center entry-card p-2" style="background-color:#F0F0F0">
+          <div class="holder mb-4 col-xs-12 col-md-6">
+            <%= link_to entry_path(entry.id) do %>
+              <div class="d-flex flex-column justify-content-center entry-card p-3" style="background-color:#F0F0F0">
                 <div class="d-flex">
                   <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; color: white">
                     <span class="text-center"><%= Date::ABBR_MONTHNAMES[entry.created_at.month].upcase %></span>
                     <h1 class="text-center mb-0"><%= entry.created_at.day %></h1>
                   </div>
-                  <div class="d-flex flex-column justify-content-center px-2 entry-information">
+                  <div class="d-flex flex-column justify-content-center px-3 entry-information">
                     <h2 class="mb-1"><b><%= entry.title %></b></h2>
                     <h6 class="mb-0 pl-1"><b><%= entry.location %></b></h6>
                   </div>
                 </div>
-                <div class="my-2">
+                <div class="my-4">
                   <span><em>"<%= entry.content.truncate(350, omission: "...") %>"</em></span>
                 </div>
                 <div class="d-flex justify-content-end align-items-center flex-wrap">

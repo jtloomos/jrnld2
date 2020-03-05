@@ -6,7 +6,7 @@ class EntryPolicy < ApplicationPolicy
   end
 
   def show?
-    record
+    true
   end
 
   def map?
