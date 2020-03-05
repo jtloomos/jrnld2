@@ -5,8 +5,16 @@ class EntryPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    true
+  end
+
+  def create?
+    true
+  end
+
   def show?
-    record
+    true
   end
 
   def map?

@@ -11,13 +11,6 @@ class EntriesController < ApplicationController
     end
 
     @user = current_user
-
-    @markers = @entries.map do |entry|
-      {
-        lat: entry.latitude,
-        lng: entry.longitude
-      }
-    end
   end
 
   def map
@@ -36,18 +29,38 @@ class EntriesController < ApplicationController
     @markers = @entries.map do |entry|
       {
         lat: entry.latitude,
-        lng: entry.longitude
+        lng: entry.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { entry: entry }),
       }
     end
   end
 
   def show
+    @entry = Entry.find(params[:id])
+    authorize @entry
+
+    @markers =[
+      {
+        lat: @entry.latitude,
+        lng: @entry.longitude
+      }]
   end
 
   def new
+    @entry = Entry.new
+    authorize @entry
+
+    @reminders = Reminder.where(user_id: current_user.id)
   end
 
   def create
+    @entry = Entry.new(entry_params)
+    authorize @entry
+    @entry.user = current_user
+    @entry.save!
+    # @entry_tag = EntryTag.create!(tag: @tag, entry: @entry)
+
+    redirect_to entries_path
   end
 
   def edit
@@ -57,5 +70,11 @@ class EntriesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def entry_params
+    params.require(:entry).permit(:title, :content, :location)
   end
 end
