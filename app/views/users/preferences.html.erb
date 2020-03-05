@@ -1,7 +1,13 @@
 <div class="container d-flex flex-column justify-content-center mt-5 p-5">
+    <div class="d-flex">
+    <%= simple_form_for @reminder do |f|%>
+      <%= f.input :title, placeholder: "What do you want to journal about?", label: false, id: "reminder-title" %>
+      <%= f.submit %>
+    <% end %>
+    </div>
   <h2>What do you want to journal about?</h1>
   <form action="/preferences" method= "post">
-    <div class="default-reminders d-flex flex-wrap justify-content-around">
+    <div class="default-reminders d-flex flex-wrap justify-content-around align-items-center">
       <% i = 0 %>
       <% if current_user.reminders.empty? %>
         <% @default_reminders.each do |reminder| %>
@@ -12,9 +18,12 @@
       <% end %>
         <% @user_reminders.each do |reminder| %>
         <div class="btn-ghost reminder active"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
-        <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %>>
+        <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %> checked>
         <% i += 1 %>
       <% end %>
+    </div>
+      <i class="fas fa-plus-circle fa-2x" id="plus-reminder" data-form="<%=  %>"></i>
+    <div class="btn-ghost reminder new-reminder">
     </div>
 
     <input type="hidden" name="authenticity_token" value= <%= form_authenticity_token %>>
