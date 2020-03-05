@@ -60,12 +60,11 @@ class EntriesController < ApplicationController
     params[:entry][:tag_ids].each do |id|
       if id.match?(/\A\d+\z/) # if id is a number (current_user.tags exists)
         @entry_tag = EntryTag.create!(tag_id: id, entry: @entry)
-        # WHAT IF user enters a number as a custom/new tag though?? FOCKKKK
-      elsif id.match?(/\A(tag_).+\z/) # if id is an integer number (current_user.tags does not exist)
+      elsif id.match?(/\A(tag_).+\z/) # if id title is a number and current_user.tags does not exist
         @gsub = id.gsub(/(tag_)/, "")
         @tag = Tag.create!(title: @gsub)
         @entry_tag = EntryTag.create!(tag: @tag, entry: @entry)
-      elsif id.match?(/\A.+\z/) # if id is text (current_user.tags does not exist)
+      elsif id.match?(/\A.+\z/) # if id is text and current_user.tags does not exist
         @tag = Tag.create!(title: id)
         @entry_tag = EntryTag.create!(tag: @tag, entry: @entry)
       else
