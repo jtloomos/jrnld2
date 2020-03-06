@@ -5,7 +5,7 @@ const HTML = (title) => {return `<input id="reminder-check-${title}" class ="rem
 
 plus.addEventListener("click", (event) => {
   const title = document.querySelector("#new-reminder")
-  if (title !== "") {
+  if (title.value !== "") {
   repo.insertAdjacentHTML("beforeend", HTML(title.value))
   };
   title.value = ""

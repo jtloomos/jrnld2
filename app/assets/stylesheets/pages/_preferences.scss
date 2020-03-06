@@ -7,11 +7,6 @@
   }
 }
 
-// .reminder.active {
-//   background-color: #891B00;
-//   color: white;
-// }
-
 .reminder-check {
   display: none;
   &:checked + .reminder {
