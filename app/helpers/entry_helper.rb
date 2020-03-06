@@ -21,7 +21,7 @@ module EntryHelper
     data = JSON.parse( response )
     names_array = []
     data["entities"].each do | names_hash |
-      if (names_hash["category"] == "name") && (names_hash["confidence_score"] >= 0.79)
+      if (names_hash["category"] == "name") && (names_hash["confidence_score"] >= 0.60)
         names_array << names_hash["name"]
       end
     end
