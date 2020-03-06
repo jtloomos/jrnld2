@@ -12,6 +12,12 @@ gem 'redis'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 
+# gem 'paralleldots', '~> 3.2.9'
+gem 'rest-client', '~> 2.0.2'
+
+gem 'words_counted'
+
+
 gem 'faker'
 gem 'geocoder'
 gem "algoliasearch-rails"
