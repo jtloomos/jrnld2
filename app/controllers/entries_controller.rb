@@ -59,8 +59,38 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.save!
 
+    create_entry_tags
+    redirect_to entries_path
+  end
+
+  def edit
+    @entry = Entry.find(params[:id])
+    authorize @entry
+  end
+
+  def update
+    @entry = Entry.find(params[:id])
+    authorize @entry
+    @entry.update!(entry_params)
+
+    create_entry_tags
+    redirect_to entries_path
+  end
+
+  def destroy
+  end
+
+  private
+
+  def entry_params
+    params.require(:entry).permit(:title, :content, :location)
+  end
+
+  def create_entry_tags
     params[:entry][:tag_ids].each do |id|
-      if id.match?(/\A\d+\z/) # if id is a number (current_user.tags exists)
+      if id.match?(/\A\d+\z/) && @entry.tags.pluck("id").include?(id.to_i)
+        # if tag is already associated with this entry, do nothing
+      elsif id.match?(/\A\d+\z/) # if id is a number (current_user.tags exists)
         @entry_tag = EntryTag.create!(tag_id: id, entry: @entry)
       elsif id.match?(/\A(tag_).+\z/) # if id title is a number and current_user.tags does not exist
         @gsub = id.gsub(/(tag_)/, "")
@@ -73,21 +103,5 @@ class EntriesController < ApplicationController
         # if params passes an empty id, do nothing
       end
     end
-    redirect_to entries_path
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
-  private
-
-  def entry_params
-    params.require(:entry).permit(:title, :content, :location)
   end
 end
