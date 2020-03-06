@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authorize_user, only: [:dashboard, :preferences, :new_preferences]
 
   def show
     @user = current_user
@@ -25,24 +26,44 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    @user = current_user
-    authorize @user
   end
 
   def preferences
+    @user_reminders = Reminder.where(user: current_user)
+    @default_reminders = Reminder.where(user: nil)
+  end
+
+  def new_preferences
+    user_reminders = Reminder.where(user_id: current_user.id)
+    reminders = params.select {|key, value| key =~ /reminder-.+/ }.values
+
+    user_reminders.each do |user_reminder|
+      user_reminder.destroy unless reminders.include?(user_reminder.title)
+    end
+
+    reminders.each do |reminder|
+      Reminder.create(title: reminder, user: current_user) unless user_reminders.pluck(:title).include?(reminder)
+    end
+
+    redirect_to dashboard_path
   end
 
   def analytics
   end
 
-  def destroy
+  private
+
+  def authorize_user
     @user = current_user
+    authorize @user
+  end
+
+  def destroy
+    @user = User.find(params[:id])
     authorize @user
     @user.destroy
     redirect_to root_path
   end
-
-  private
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :birthday, :gender, :notifications)
