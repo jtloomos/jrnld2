@@ -20,8 +20,7 @@ class UsersController < ApplicationController
 
   def new_preferences
     user_reminders = Reminder.where(user_id: current_user.id)
-    reminders = params.select {|key, value| key =~ /reminder-\d/ }.values
-
+    reminders = params.select {|key, value| key =~ /reminder-.+/ }.values
     user_reminders.each do |user_reminder|
       user_reminder.destroy unless reminders.include?(user_reminder.title)
     end

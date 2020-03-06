@@ -1,9 +1,12 @@
-const reminders = document.querySelectorAll('.reminder-label')
-// const entryTagsDiv = document.querySelector('#entry-tags-div')
-// TO BE USED TO ADD PILLS TO THE TAGS INPUT
+// const reminders = document.querySelectorAll('.reminder-label')
+// const plus = document.querySelector("#plus-reminder")
 
-reminders.forEach((reminder) => {
-  reminder.addEventListener("click", (event) => {
-    event.currentTarget.parentElement.classList.toggle("active");
-  });
-});
+// plus.addEventListener("click", (event) => {
+//   reminders.push()
+// });
+
+// reminders.forEach((reminder) => {
+//   reminder.addEventListener("click", (event) => {
+//     event.currentTarget.parentElement.classList.toggle("active");
+//   });
+// });

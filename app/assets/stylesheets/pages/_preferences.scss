@@ -7,18 +7,17 @@
   }
 }
 
-.reminder.active {
-    background-color: #891B00;
-    color: white;
-}
-
-
-.reminder-label {
-
-}
+// .reminder.active {
+//   background-color: #891B00;
+//   color: white;
+// }
 
 .reminder-check {
   display: none;
+  &:checked + .reminder {
+    background-color: #891B00 !important;
+    color: white !important;
+  }
 }
 
 #plus-reminder {
@@ -26,7 +25,7 @@
   width: 32px;
   height: 32px;
   &:hover {
-    transform: scale(1.15)
+    transform: scale(1.1)
   }
 }
 
@@ -34,4 +33,25 @@
   font-size: 2em;
   border: 0;
   width: 100%;
+  text-align: center;
+}
+
+#new-reminder {
+  border: 0;
+  width: 650px;
+  height: 40px;
+  margin: 5px;
+  padding: 5px;
+  background-color: transparent;
+  font-size: 1.1em;
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+  display: flex;
+}
+
+#plus-button {
+  background-color: transparent;
+  border: 0;
 }
