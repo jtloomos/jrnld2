@@ -31,7 +31,6 @@ class UsersController < ApplicationController
   def preferences
     @user_reminders = Reminder.where(user: current_user)
     @default_reminders = Reminder.where(user: nil)
-    @reminder = Reminder.new
   end
 
   def new_preferences
@@ -57,6 +56,7 @@ class UsersController < ApplicationController
   def authorize_user
     @user = current_user
     authorize @user
+  end
 
   def destroy
     @user = User.find(params[:id])

@@ -27,6 +27,7 @@ class UserPolicy < ApplicationPolicy
 
   def new_preferences?
     true
+  end
 
   def destroy?
     @user == record
