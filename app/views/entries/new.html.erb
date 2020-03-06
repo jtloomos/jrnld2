@@ -1,7 +1,7 @@
 <br>
 
 <div class="container p-3 mt-5" id="new-entry">
-  <div class="row row-cols-1 row-cols-lg-2">
+  <div class="row row-cols-1 row-cols-lg-2 border rounded-sm p-3">
     <div class="col-lg-3 order-2 order-lg-1">
       <p>Reminders:</p>
       <% @reminders.each do |reminder| %>
@@ -12,11 +12,11 @@
     <div class="col-lg-9 order-1 order-lg-2">
       <%= simple_form_for [@entry] do |f| %>
         <%= f.association :tags, collection: current_user.tags.uniq, input_html: { class: 'select2', multiple: "multiple", id: 'entry-tags-div' } %> <!--NEED TO FILTER for current user -->
-        <%= f.input :title, input_html: { class: 'form-control' } %>
-        <%= f.input :content, input_html: { class: 'form-control' } %>
+        <%= f.input :title, placeholder: 'Title...', label: false, input_html: { class: 'form-control' } %>
+        <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control', rows: 5 } %>
         <%= f.hidden_field :start_entry %>
-        <%= f.input :emoji, collection: ["Happy", "Neutral", "Sad", "Angry"] %>
-        <%= f.input :location, input_html: { class: 'form-control' } %>
+        <%= f.input :emoji, label: false, collection: ["Happy", "Neutral", "Sad", "Angry"] %>
+        <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address' } %>
         <%= f.button :submit, class: "btn btn-solid" %>
       <% end %>
     </div>
