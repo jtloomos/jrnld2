@@ -38,6 +38,7 @@ class EntriesController < ApplicationController
   def show
     @entry = Entry.find(params[:id])
     authorize @entry
+    @analytic = Analytic.find_by_entry_id(params[:entry_id])
 
     @markers =[
       {
@@ -47,7 +48,7 @@ class EntriesController < ApplicationController
   end
 
   def new
-    @entry = Entry.new
+    @entry = Entry.new(start_entry: Time.now)
     authorize @entry
 
     @reminders = Reminder.where(user_id: current_user.id)
@@ -83,7 +84,7 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:title, :content, :location)
+    params.require(:entry).permit(:title, :content, :location, :start_entry, :emoji)
   end
 
   def create_entry_tags

@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_192145) do
+ActiveRecord::Schema.define(version: 2020_03_06_173024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "analytics", force: :cascade do |t|
+    t.integer "word_count"
+    t.string "time_spent"
+    t.string "emotion"
+    t.string "emoji"
+    t.string "location"
+    t.string "created_day"
+    t.string "created_time"
+    t.string "weather"
+    t.string "people"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "temperature"
+    t.bigint "entry_id"
+    t.index ["entry_id"], name: "index_analytics_on_entry_id"
+  end
 
   create_table "entries", force: :cascade do |t|
     t.string "title"
@@ -24,6 +41,8 @@ ActiveRecord::Schema.define(version: 2020_03_05_192145) do
     t.string "location"
     t.float "latitude"
     t.float "longitude"
+    t.string "emoji"
+    t.datetime "start_entry"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
@@ -73,8 +92,19 @@ ActiveRecord::Schema.define(version: 2020_03_05_192145) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "word_frequencies", force: :cascade do |t|
+    t.string "word"
+    t.integer "frequency"
+    t.bigint "analytic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["analytic_id"], name: "index_word_frequencies_on_analytic_id"
+  end
+
+  add_foreign_key "analytics", "entries"
   add_foreign_key "entries", "users"
   add_foreign_key "entry_tags", "entries"
   add_foreign_key "entry_tags", "tags"
   add_foreign_key "reminders", "users"
+  add_foreign_key "word_frequencies", "analytics"
 end
