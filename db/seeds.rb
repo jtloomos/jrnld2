@@ -51,24 +51,28 @@ end
 ################ REMINDER SEED ################
 
 reminder_seed = [
-  { user_id: User.first.id, title: 'cat' },
-  { user_id: User.first.id, title: 'food' },
-  { user_id: User.first.id, title: 'culture' },
-  { user_id: User.first.id, title: 'love' },
-  { user_id: User.first.id, title: 'wildlife' },
-  { user_id: User.first.id, title: 'adventure' },
-  { user_id: User.first.id, title: 'beer' },
-  { user_id: User.second.id, title: 'school' },
-  { user_id: User.second.id, title: 'friends' },
-  { user_id: User.second.id, title: 'love' },
-  { user_id: User.second.id, title: 'fashion' },
-  { user_id: User.second.id, title: 'bubu' },
-  { user_id: User.third.id, title: 'excercise' },
-  { user_id: User.third.id, title: 'food' },
-  { user_id: User.third.id, title: 'family' },
-  { user_id: User.third.id, title: 'play' },
-  { user_id: User.third.id, title: 'beauty' },
-  { user_id: User.third.id, title: 'love' }
+  { title: 'SPORTS' },
+  { title: 'FAMILY' },
+  { title: 'SPECIAL ONE' },
+  { title: 'WORK' },
+  { title: 'HOME' },
+  { user_id: User.first.id, title: 'FOOD' },
+  { user_id: User.first.id, title: 'CULTURE' },
+  { user_id: User.first.id, title: 'LOVE' },
+  { user_id: User.first.id, title: 'WILDFIRE' },
+  { user_id: User.first.id, title: 'ADVENTURE' },
+  { user_id: User.first.id, title: 'BEER' },
+  { user_id: User.second.id, title: 'SCHOOL' },
+  { user_id: User.second.id, title: 'FRIENDS' },
+  { user_id: User.second.id, title: 'LOVE' },
+  { user_id: User.second.id, title: 'FASHION' },
+  { user_id: User.second.id, title: 'FOOTBALL' },
+  { user_id: User.third.id, title: 'EXCERCISE' },
+  { user_id: User.third.id, title: 'FOOD' },
+  { user_id: User.third.id, title: 'FAMILY' },
+  { user_id: User.third.id, title: 'PLAY' },
+  { user_id: User.third.id, title: 'BEAUTY' },
+  { user_id: User.third.id, title: 'LOVE' }
 ]
 
 reminder_seed.each do |reminder|
@@ -202,26 +206,26 @@ end
 ################ TAG SEED ################
 
 tag_seed = [
-  { title: 'cat' },
-  { title: 'food' },
-  { title: 'culture' },
-  { title: 'love' },
-  { title: 'love' },
-  { title: 'wildlife' },
-  { title: 'adventure' },
-  { title: 'beer' },
-  { title: 'school' },
-  { title: 'friends' },
-  { title: 'fashion' },
-  { title: 'family' },
-  { title: 'play' },
-  { title: 'beauty' },
-  { title: 'career' },
-  { title: 'flowers' },
-  { title: 'ocean' },
-  { title: 'fitness' },
-  { title: 'boys' },
-  { title: 'nature' }
+  { title: 'CAT' },
+  { title: 'FOOD' },
+  { title: 'CULTURE' },
+  { title: 'LOVE' },
+  { title: 'FOOTBALL' },
+  { title: 'WILDFIRE' },
+  { title: 'ADVENTURE' },
+  { title: 'BEER' },
+  { title: 'SCHOOL' },
+  { title: 'FRIENDS' },
+  { title: 'FASHION' },
+  { title: 'FAMILY' },
+  { title: 'VIDEO-GAMES' },
+  { title: 'BEAUTY' },
+  { title: 'CAREER' },
+  { title: 'FLOWERS' },
+  { title: 'OCEAN' },
+  { title: 'FITNESS' },
+  { title: 'BOYS' },
+  { title: 'NATURE' }
 ]
 
 tag_seed.each do |tag|
