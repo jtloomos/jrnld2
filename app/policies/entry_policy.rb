@@ -14,7 +14,15 @@ class EntryPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    @record.user == @user
+  end
+
+  def edit?
+    @record.user == @user
+  end
+
+  def update?
+    @record.user == @user
   end
 
   def map?
