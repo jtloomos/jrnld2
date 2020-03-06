@@ -1,4 +1,5 @@
  <div class="entry-page-body mt-5 p-3">
+
   <div class="individual-entry-container mb-4">
     <br>
     <h2 class="text-center mt-4 pb-2" style="color:#891B00">My Journal</h2>
@@ -30,7 +31,8 @@
         <span><em><%= @entry.content %></em></span>
       </div>
       <div class="row justify-content-center mt-3">
-        <span class="entries-return btn-solid"><%= link_to "Return to all entries", :back %></span>
+        <span class="entries-return btn-solid"><%= link_to "Edit this entry", edit_entry_path(@entry) %></span>
+        <span class="entries-return btn-solid"><%= link_to "Return to all entries", entries_path %></span>
       </div>
     </div>
   </div>
