@@ -1,0 +1,16 @@
+<br>
+
+<div class="container p-3 mt-5" id="edit-entry">
+  <!-- <div class="row row-cols-1 row-cols-lg-2"> -->
+    <div>
+      <%= simple_form_for [@entry] do |f| %>
+        <%= f.association :tags, collection: current_user.tags.uniq, input_html: { class: 'select2', multiple: "multiple", id: 'entry-tags-div' } %> <!--NEED TO FILTER for current user -->
+        <%= f.input :title, input_html: { class: 'form-control' } %>
+        <%= f.input :content, input_html: { class: 'form-control', rows: 5 } %>
+        <%= f.input :location, input_html: { class: 'form-control auto-address' } %>
+        <%= f.button :submit, class: "btn btn-solid" %>
+        <%= link_to "Cancel", entry_path(@entry), class: 'btn btn-solid' %>
+      <% end %>
+    </div>
+  <!-- </div> -->
+</div>
