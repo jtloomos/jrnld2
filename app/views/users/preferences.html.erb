@@ -6,7 +6,7 @@
     </div>
 
   <form action="/preferences" method= "post">
-    <div class="default-reminders d-flex flex-wrap justify-content-around align-items-center">
+    <div class="default-reminders row flex-wrap justify-content-center align-items-center">
       <% i = 0 %>
       <% if current_user.reminders.empty? %>
         <% @default_reminders.each do |reminder| %>
