@@ -3,13 +3,8 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new(reminder_params)
     @reminder.user = current_user
     @reminder.title.upcase!
-    @reminder.save
     authorize @reminder
-
-    respond_to do |format|
-      format.html {redirect_to preferences_path}
-      format.js
-    end
+    @reminder.save
   end
 
   def update

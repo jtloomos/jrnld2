@@ -21,9 +21,6 @@ class ApplicationController < ActionController::Base
     dashboard_path
   end
 
-
-
-
   private
 
   def skip_pundit?
