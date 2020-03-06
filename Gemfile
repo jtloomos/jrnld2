@@ -9,6 +9,10 @@ gem 'puma'
 gem 'pundit'
 gem 'rails', '5.2.4.1'
 gem 'redis'
+# gem 'paralleldots', '~> 3.2.9'
+gem 'rest-client', '~> 2.0.2'
+
+gem 'words_counted'
 
 gem 'faker'
 gem 'geocoder'
