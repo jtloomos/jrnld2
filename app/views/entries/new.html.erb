@@ -16,7 +16,7 @@
         <%= f.input :content, input_html: { class: 'form-control' } %>
         <%= f.hidden_field :start_entry %>
         <%= f.input :emoji, collection: ["Happy", "Neutral", "Sad", "Angry"] %>
-        <%= f.input :location, input_html: { class: 'form-control' } %>
+        <%= f.input :location, input_html: { class: 'form-control auto-address' } %>
         <%= f.button :submit, class: "btn btn-solid" %>
       <% end %>
     </div>
