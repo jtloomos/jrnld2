@@ -10,6 +10,7 @@ require 'faker'
 
 puts "Destroy old seeds"
 EntryTag.destroy_all
+Analytic.destroy_all
 Entry.destroy_all
 Reminder.destroy_all
 Tag.destroy_all
@@ -82,19 +83,22 @@ entry_seed = [
     created_at: Date.new(2012,04,11),
     location: "Chicago, United States",
     title: 'Spring in Mexico: a Heated Experience',
-    content:  'A week of incredible heat has been the setting for Mandy and her cats Mexican orientation.  We have seen the hottest temperatures since we have moved here(over 35 degrees) and it did not rain for 1 month!  That dry spell was broken with rain over the last couple of days and a return to a more comfortable temperature range of 29-33 degrees celsius (+30 almost seems chilly by comparison).  The cats having been loving their new friends and their new location so the interaction between the five cats and the 16 turtles has been priceless.  All the cats have been getting along and that is good because we have been out of the house a lot.  We have been finding apartments with Mandy, introducing her to our friends and preparing for more friends to visit as well as our eventual departure.  We are enjoying our remaining time here as much as possible by diving and taking advantage of  the local food, drink and cheer. It is still hard to believe that we will be returning soon but we are looking forward to another amazing road trip, and our reunion with friends and family.  After all our adventures and with all our amazing friends my roots have been firmly anchored here in Cozumel.  There will always be more adventures in the future but my heart will  reside in this island paradise.' },
+    content:  'A week of incredible heat has been the setting for Mandy and her cats Mexican orientation.  We have seen the hottest temperatures since we have moved here(over 35 degrees) and it did not rain for 1 month!  That dry spell was broken with rain over the last couple of days and a return to a more comfortable temperature range of 29-33 degrees celsius (+30 almost seems chilly by comparison).  The cats having been loving their new friends and their new location so the interaction between the five cats and the 16 turtles has been priceless.  All the cats have been getting along and that is good because we have been out of the house a lot.  We have been finding apartments with Mandy, introducing her to our friends and preparing for more friends to visit as well as our eventual departure.  We are enjoying our remaining time here as much as possible by diving and taking advantage of  the local food, drink and cheer. It is still hard to believe that we will be returning soon but we are looking forward to another amazing road trip, and our reunion with friends and family.  After all our adventures and with all our amazing friends my roots have been firmly anchored here in Cozumel.  There will always be more adventures in the future but my heart will  reside in this island paradise.',
+    emoji: "Happy", },
   { user_id: User.first.id,
     created_at: Date.new(2012,04,03),
     location: "Rome, Italy",
     title: 'Five Cats and a Birthday.',
-    content:  'After arriving last night, Loretta, Mandy and her three cats are waking up to a Mexican sunrise.  For Homer, Froggy, and Mini Mew the sights, sounds, and stress of a 12 hour travel day has melted away and now they are left with tropical paradise to explore.  So far all is well between all five of the cats!  We introduced them last night and there was not much drama at all. The were lucky enough to arrive on Liz’s birthday so after unloading at our place, we had some island cheer and closed down El Moro.  This birthday dinner was the summation of a full day of diving and having birthday fun.  Even though the day was long we still celebrated late and the staff at El Moro was more than accommodating by keeping the restaurant open an extra hour just for us.  Today we will allow our guests to settle in somewhat and the we will have to prepare for Liz’s birthday party tonight.  We have been very busy the last week planning for Liz’s birthday, preparing for Mandy’s arrival, planning our return, finishing our taxes, turning on our services at home, servicing the car, etc.  In between the work we have been visiting friends and diving when we can.  Now that most of the work is done we can enjoy our last month here and spend time with our last few visitors before having to face the frigid spring temperatures in the North once again.' },
+    content:  'After arriving last night, Loretta, Mandy and her three cats are waking up to a Mexican sunrise.  For Homer, Froggy, and Mini Mew the sights, sounds, and stress of a 12 hour travel day has melted away and now they are left with tropical paradise to explore.  So far all is well between all five of the cats!  We introduced them last night and there was not much drama at all. The were lucky enough to arrive on Liz’s birthday so after unloading at our place, we had some island cheer and closed down El Moro.  This birthday dinner was the summation of a full day of diving and having birthday fun.  Even though the day was long we still celebrated late and the staff at El Moro was more than accommodating by keeping the restaurant open an extra hour just for us.  Today we will allow our guests to settle in somewhat and the we will have to prepare for Liz’s birthday party tonight.  We have been very busy the last week planning for Liz’s birthday, preparing for Mandy’s arrival, planning our return, finishing our taxes, turning on our services at home, servicing the car, etc.  In between the work we have been visiting friends and diving when we can.  Now that most of the work is done we can enjoy our last month here and spend time with our last few visitors before having to face the frigid spring temperatures in the North once again.',
+    emoji: "Neutral" },
   { user_id: User.first.id,
     created_at: Date.new(2012,03,23),
     title: 'Hasta Luego Amigos!',
     content:  'It has been a bit quiet the last couple days.  Daryl and Nakita are back in Canada, and probably already back at work.  We had lots of great times their last week here including going to the ruins, a few great dives, fun at cantinas, and goodbye parties.
     On the 17th, we went with Wilberth, Nakita and Daryl on  two boat dives.  It would be there last two dives from a boat so we decided to do reef that we had not yet done.  The first dive was on San Francisco Wall.  The wall starts at around 50 feet of depth, and carries on over 1000 feet to the bottom of the ocean.  We followed Wilberth down, and went to a max depth of 150 feet!  The currents have been a bit odd the last few days which led to cold water from the deep to come into shallower water.  The current changed during the dive, so we ascended a bit and drifted with the current.  It worked out great because we saw some really cool things we would have otherwise missed.  There was a rare sea cucumber that rolls (slowly) away if it feels threatened.  Also we saw another Flying Gunard!  We were lucky this time Daryl and Nakita were able to get pictures and video.  The second dive we went to Yucab Reef.  When descending, we could see the point in the water where the cold and warm water mixes.  The water here is normally about 79F, but on this dive it was a frigid 75F.  Might not sound like a huge difference, but when your deep under water it is like a wall of ice!  The reef loves the cold currents that carry nutrients to them and both reefs were bursting with life.  We still were able to see lobster, eel, lion fish and a splendid toadfish as well as hundreds of various other species.  For Nakita and Daryls last dive, we did a shore dive off of Del Mar and went to the plane wreck.  There is lots of fish life, and since it is spawning season there are little fish everywhere.
     Daryl, Nakita, Larry, Charlotte, Tim and I all went to the San Gervasio Ruins one day.  It was hot, and always seems to be hotter in the jungle.  We got a tour guide this trip, and while they don’t take you to all the ruins, they are full of great information.  After the tour was over Tim, Nakita, Daryl and I walked out to the large ruin in the back.  We went back to the area Tim had found on our first trip there to look around.  We took some pictures, and headed for a beer to cool off.
-    On the 20th everyone got together at El Piques for the going away party.  Lots of people made it out and we all ate, drank and had a great time!  After we headed back to our place for a few more drinks.  It was a great night with friends!  The next day, we made it to Primas for breakfast before dropping Daryl and Nakita off at the ferry.  See you guys in Edmonton soon!' },
+    On the 20th everyone got together at El Piques for the going away party.  Lots of people made it out and we all ate, drank and had a great time!  After we headed back to our place for a few more drinks.  It was a great night with friends!  The next day, we made it to Primas for breakfast before dropping Daryl and Nakita off at the ferry.  See you guys in Edmonton soon!',
+    emoji: "Sad" },
   { user_id: User.second.id,
     created_at: Date.new(2016,03,03),
     location: "Buenos Aires, Argentina",
@@ -105,7 +109,8 @@ entry_seed = [
     This is just what I need! My parents are getting on my case about doing more extracurricular activities, I have a huge paper due for AP English soon, and I can’t understand a thing in advanced Spanish! The last thing I need is for my best friend to think I hate her and barely text me back anymore.
     Uggh! I can’t concentrate on anything right now because of it. I hope she gets over it!!!
     Love,
-    Kate' },
+    Kate',
+    emoji: "Happy" },
   { user_id: User.second.id,
     created_at: Date.new(2016,03,04),
     location: "Paris, France",
@@ -117,7 +122,8 @@ entry_seed = [
     ::Sigh:: Oh well. I’m not her mom, and I can’t force her to feel anything. It just frustrates me because I don’t want things to change between us...
     We’ll see what happens. I have to get some math homework done now!
     Night!
-    Kate' },
+    Kate',
+    emoji: "Neutral" },
   { user_id: User.second.id,
     created_at: Date.new(2016,03,06),
     location: "Tokyo, Japan",
@@ -133,20 +139,23 @@ entry_seed = [
     created_at: Date.new(2018,11,27),
     location: "London, England",
     title: 'What About MY Good Times?',
-    content: 'I KNOW that Daisy is ALWAYS saying that I RUIN her Good Times.  But from MY point of view... She NEVER wants to have any FUN with me.  That ruins MY Good Times!' },
+    content: 'I KNOW that Daisy is ALWAYS saying that I RUIN her Good Times.  But from MY point of view... She NEVER wants to have any FUN with me.  That ruins MY Good Times!',
+    emoji: "Angry" },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,26),
     location: "Santiago, Chile",
     title: 'Proof That I\'m a Genius!',
     content: 'My Mommeh always says that I am very, very smart (of course she\'s proud of me). Here is a little bit of proof that I might be a genius! I was playing around in the bathtub while she was changing the litter box...
     And I came right up to the faucet. Now I should tell you that this shower/tub has never been used except to keep the litter box in an out-of-the-way place. I have never seen any water come out of this faucet.
-    But I came right up to it and tried to drink from it!' },
+    But I came right up to it and tried to drink from it!',
+    emoji: "Happy" },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,22),
     location: "Johannesburg, South Africa",
     title: 'The REAL Mac Daddy',
     content: 'You know Harley thought he was the big Mac Daddy in his Halloween costume last month. But I have news for him...
-    I can wear that stylish hat much better than Harley. See? I even have the fur coat.' },
+    I can wear that stylish hat much better than Harley. See? I even have the fur coat.',
+    emoji: "Neutral" },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,21),
     location: "Athens, Greece",
@@ -156,14 +165,16 @@ entry_seed = [
     WHEEEEEEE! This is a great WORKOUT!
     When I get the BIRD in my JAWS, I have LEARNED to SPREAD my legs and PULL! This is a GOOD trick.
     I will NEVER let GO!
-    I\'ve GOT you in my GRASP now, BIRD!' },
+    I\'ve GOT you in my GRASP now, BIRD!',
+    emoji: "Happy" },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,19),
     location: "Sydney, Australia",
     title: 'I\'m Curious!',
     content: 'One thing about me that you might or might not know is that I am a very curious cat.  I must be a part of everything, especially when I see the camera (because treats could be involved!)
     If you pay attention, there are still many interesting and exciting things to see and do and experience!
-    As Voltaire said, "Judge a cat by her questions rather than by her answers" (or something like that).' },
+    As Voltaire said, "Judge a cat by her questions rather than by her answers" (or something like that).',
+    emoji: "Neutral" },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,15),
     location: "Cairo, Egypt",
@@ -171,14 +182,16 @@ entry_seed = [
     content: 'Isn\'t  this suit a pretty color? I never knew blue could look so nice! I especially like the matching satin bow that shows off my waistline.
     Here, let me lift my arm so you can see it better. Oh, and the sea-quinns, too!
     It was close to suppertime when I was modeling, so those treats tasted extra-delicious. My Mommeh thought it would be funny to get a close-up of my drool face.
-    Hey! How did this silly picture get here?' },
+    Hey! How did this silly picture get here?',
+    emoji: "Happy" },
   { user_id: User.third.id,
     created_at: Date.new(2018,11,12),
     location: "Dublin, Ireland",
     title: 'Sheet monster!',
     content: 'You MIGHT not realize it but I am VERY, VERY BRAVE! See, MONSTERS live actually INSIDE the sheets. I don\'t mean to SCARE you, but it is the TRUTH. I am on the ALERT at ALL TIMES. In fact, I hear one NOW!!!!!
     GOTCHA!!!
-    Are you IMPRESSED?' }
+    Are you IMPRESSED?',
+    emoji: "Happy" }
 ]
 
 entry_seed.each do |entry|

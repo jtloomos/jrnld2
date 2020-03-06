@@ -1,6 +1,6 @@
 class Entry < ApplicationRecord
   belongs_to :user
-  belongs_to :analytic
+  has_one :analytic
   has_many :entry_tags
   has_many :tags, through: :entry_tags
 
