@@ -22,8 +22,8 @@
 
 .edit-content {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .profile-reminders {
@@ -40,10 +40,48 @@
   background-color: white;
   text-align: left;
   padding-top: 30px;
+  padding-bottom: 20px;
   color: $primary-color;
-  padding-left: 16px;
+}
+
+.reminders-list {
+  padding: 0px;
+}
+
+.edit-content {
+  padding-left: 15px;
+  width: 90%;
 }
 
 .reminders-list .btn-solid:hover {
   opacity: 1;
+}
+
+.profile-container form {
+  width: 90%;
+}
+
+.form-control input {
+  background-color: white;
+}
+
+.profile-link {
+  color: black;
+  opacity: 0.7;
+  &:hover {
+    color: black;
+    opacity: 1;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.profile-container .form-control {
+  border: 1px solid $secondary-color;
+  background-image: none;
+  &:focus {
+  outline: none;
+  border: 2px solid $secondary-color;
+  box-shadow: none;
+  }
 }

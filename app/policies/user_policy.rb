@@ -21,11 +21,16 @@ class UserPolicy < ApplicationPolicy
     @user == record
   end
 
+<<<<<<< HEAD
   def preferences?
     true
   end
 
   def new_preferences?
     true
+=======
+  def destroy?
+    @user == record
+>>>>>>> master
   end
 end

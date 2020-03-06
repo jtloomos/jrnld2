@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
 
-  root to: 'pages#home'
+  unauthenticated :user do
+    root to: "pages#home"
+  end
+
+  authenticated :user do
+    root "users#dashboard"
+  end
+
   get 'contact', to: 'pages#contact'
 
-  resources :users, only: [:show, :update]
+  resources :users, only: [:show, :update, :destroy]
   get 'dashboard', to: 'users#dashboard', as: 'dashboard'
   get 'preferences', to: 'users#preferences', as: 'preferences'
   post 'preferences', to: 'users#new_preferences'

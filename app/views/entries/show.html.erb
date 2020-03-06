@@ -1,0 +1,37 @@
+ <div class="entry-page-body mt-5 p-3">
+  <div class="individual-entry-container mb-4">
+    <br>
+    <h2 class="text-center mt-4 pb-2" style="color:#891B00">My Journal</h2>
+    <div class="large-card bg-white mt-2 pt-4 px-5">
+      <div class="row justify-content-between mb-3 flex-wrap">
+        <div class="p-3 d-flex flex-column justify-content-start">
+          <h4 class="mb-2"><i class="far fa-calendar-check" style="font-size: 30px;"></i> <%= @entry.created_at.strftime("%B %d, %Y") %></h4>
+          <div class="d-flex justify-content-end align-items-center flex-wrap mb-4">
+            <% @entry.entry_tags.each do |entry_tag| %>
+              <div class="tag px-2 mr-1 mt-1">
+                <span><%= Tag.find(entry_tag.tag_id).title %></span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="pr-3 col-lg-6 col-xs-12" style="width: 100%; height: 150px">
+          <div id="map" class="col-12 px-0 rounded shadow" style="width: 100%; height: 100%;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+          </div>
+          <div class="m-3 entry-location d-flex justify-content-center">
+            <span><i class="fas fa-thumbtack"></i> <%= @entry.location %></span>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="entry-title mt-3">
+            <h1 class="pt-0"><%= @entry.title %></h1>
+          </div>
+      <div class="entry-text mt-1">
+        <span><em><%= @entry.content %></em></span>
+      </div>
+      <div class="row justify-content-center mt-3">
+        <span class="entries-return btn-solid"><%= link_to "Return to all entries", :back %></span>
+      </div>
+    </div>
+  </div>
+</div>
