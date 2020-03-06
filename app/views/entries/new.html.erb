@@ -14,7 +14,7 @@
         <%= f.association :tags, collection: current_user.tags.uniq, input_html: { class: 'select2', multiple: "multiple", id: 'entry-tags-div' } %> <!--NEED TO FILTER for current user -->
         <%= f.input :title, input_html: { class: 'form-control' } %>
         <%= f.input :content, input_html: { class: 'form-control', rows: 5 } %>
-        <%= f.input :location, input_html: { class: 'form-control' } %>
+        <%= f.input :location, input_html: { class: 'form-control auto-address' } %>
         <%= f.button :submit, class: "btn btn-solid" %>
       <% end %>
     </div>
