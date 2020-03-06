@@ -14,6 +14,8 @@
         <%= f.association :tags, collection: current_user.tags.uniq, input_html: { class: 'select2', multiple: "multiple", id: 'entry-tags-div' } %> <!--NEED TO FILTER for current user -->
         <%= f.input :title, input_html: { class: 'form-control' } %>
         <%= f.input :content, input_html: { class: 'form-control' } %>
+        <%= f.hidden_field :start_entry %>
+        <%= f.input :emoji, collection: ["Happy", "sad", "angry"] %>
         <%= f.input :location, input_html: { class: 'form-control' } %>
         <%= f.button :submit, class: "btn btn-solid" %>
       <% end %>
