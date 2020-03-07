@@ -5,7 +5,8 @@
   &:hover {
     transform: scale(1.1)
   }
-  margin: 10px 15px
+  margin: 10px 15px;
+  padding: 0;
 }
 
 .reminder-check {
@@ -77,6 +78,8 @@
   }
 }
 
-.default_reminders {
-  align-items: center;
+.reminder-label {
+  line-height: 50px;
+  margin: 0px;
+  padding: 8px 24px;
 }
