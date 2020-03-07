@@ -5,7 +5,7 @@
   &:hover {
     transform: scale(1.1)
   }
-  margin: 10px 5px
+  margin: 10px 15px
 }
 
 .reminder-check {
@@ -18,8 +18,10 @@
 
 #plus-reminder {
   color: #891B00;
-  width: 32px;
-  height: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: center;
   font-size: 1.1em;
   &:hover {
     transform: scale(1.1)
@@ -37,7 +39,7 @@
   border: 0;
   resize: none;
   overflow: hidden;
-  margin: 5px;
+  margin: 0px;
   padding: 0px;
   background-color: transparent;
   text-align: center;
@@ -51,6 +53,13 @@
     color: black;
   }
 }
+
+@media (min-width: 990px) {
+  #new-reminder {
+    &::placeholder {line-height: 104px}
+  }
+}
+
 
 #plus-button {
   background-color: transparent;
@@ -66,4 +75,8 @@
   #new-reminder, #plus-reminder {
     font-size: 0.8em;
   }
+}
+
+.default_reminders {
+  align-items: center;
 }
