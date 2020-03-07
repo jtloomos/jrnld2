@@ -1,7 +1,7 @@
 const plus = document.querySelector("#plus-reminder")
 const repo = document.querySelector(".default-reminders")
 
-const HTML = (title) => {return `<input id="reminder-check-${title}" class ="reminder-check" name="reminder-${title}" type="checkbox" value=${title.toUpperCase()} checked><div class="btn-ghost reminder active"><label for="reminder-${title}" class="reminder-label">${title.toUpperCase()}</label></div>`}
+const HTML = (title) => {return `<input id="reminder-check-${title}" class ="reminder-check" name="reminder-${title}" type="checkbox" value=${title.toUpperCase()} checked><div class="btn-ghost reminder"><label for="reminder-${title}" class="reminder-label">${title.toUpperCase()}</label></div>`}
 
 if (plus) {
   plus.addEventListener("click", (event) => {

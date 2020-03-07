@@ -1,7 +1,7 @@
 <div class="container d-flex flex-column justify-content-center mt-5 p-5">
 
     <div class="row justify-content-center" id="reminder-title">
-      <input class="col-8"type="text" label= false id="new-reminder" placeholder="What do you want to journal about?" autocomplete="off">
+      <textarea rows="2" class="col-9 row" label= false id="new-reminder" placeholder="What do you want to journal about?" autocomplete="off"></textarea>
       <i class="fas fa-plus-circle" id="plus-reminder" data-form="<%=  %>"></i>
     </div>
 
@@ -15,9 +15,9 @@
           <% i += 1 %>
         <% end %>
       <% end %>
-        <% @user_reminders.each do |reminder| %>
+      <% @user_reminders.each do |reminder| %>
         <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %> checked>
-        <div class="btn-ghost reminder active"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
+        <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
         <% i += 1 %>
       <% end %>
     </div>
