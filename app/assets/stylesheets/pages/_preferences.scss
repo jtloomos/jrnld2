@@ -5,6 +5,7 @@
   &:hover {
     transform: scale(1.1)
   }
+  margin: 10px 5px
 }
 
 .reminder-check {
@@ -33,12 +34,11 @@
 
 #new-reminder {
   border: 0;
-  width: 650px;
-  height: 40px;
+  // width: 650px;
+  // height: 40px;
   margin: 5px;
   padding: 5px;
   background-color: transparent;
-  font-size: 1.1em;
   text-align: center;
   &:focus {
     outline: none;
@@ -49,4 +49,20 @@
 #plus-button {
   background-color: transparent;
   border: 0;
+}
+
+@media (max-width: 960px) {
+  #new-reminder {
+    font-size: 1.1em
+  }
+}
+@media (max-width: 760px) {
+  #new-reminder {
+    font-size: 0.7em
+  }
+}
+@media (max-width: 576px) {
+  #new-reminder {
+    font-size: 0.5em;
+  }
 }
