@@ -15,8 +15,77 @@
         <%= f.input :title, placeholder: 'Title...', label: false, input_html: { class: 'form-control' } %>
         <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control', rows: 5 } %>
         <%= f.hidden_field :start_entry %>
-        <%= f.input :emoji, label: false, collection: ["Happy", "Neutral", "Sad", "Angry"] %>
         <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address' } %>
+        <ul class="feedback" id="emoji-list">
+          <li class="angry">
+          <div>
+            <svg class="eye left">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+              </svg>
+            </svg>
+            <svg class="eye right">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+              </svg>                    </svg>
+              <svg class="mouth">
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
+                  <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
+                </svg>                    </svg>
+              </div>
+            </li>
+            <li class="sad">
+              <div>
+                <svg class="eye left">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                    <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                  </svg>                    </svg>
+                  <svg class="eye right">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                      <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                    </svg>                    </svg>
+                    <svg class="mouth">
+
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
+                        <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
+                      </svg>                    </svg>
+                    </div>
+                  </li>
+                  <li class="ok active">
+                    <div></div>
+                  </li>
+                  <li class="good">
+                    <div>
+                      <svg class="eye left">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                          <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                        </svg>                    </svg>
+                        <svg class="eye right">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                            <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                          </svg>                    </svg>
+                          <svg class="mouth">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
+                              <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
+                            </svg>                    </svg>
+                          </div>
+                        </li>
+                        <li class="happy">
+                          <div>
+                            <svg class="eye left">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                                <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                              </svg>                    </svg>
+                              <svg class="eye right">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                                  <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                                </svg>                    </svg>
+                              </div>
+                            </li>
+        </ul>
+        <%= f.hidden_field :emoji, value: "ok", id: "emoji-value"%>
         <%= f.button :submit, class: "btn btn-solid" %>
       <% end %>
     </div>
