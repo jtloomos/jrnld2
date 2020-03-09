@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   def mood_average(mood)
     array_of_mood = self.analytics.map do |analytic|
-      analytic.emotions.select { |emotion| emotion.emotion == mood }.first
+      analytic.emotions.select { |emotion| emotion.emotion == mood.downcase }.first
     end
     sum = 0
     array_of_mood.each do |emotion|
