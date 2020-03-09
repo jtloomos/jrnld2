@@ -4,7 +4,7 @@ class Entry < ApplicationRecord
   has_many :entry_tags
   has_many :tags, through: :entry_tags
 
-  validates_presence_of :title, :content, :user
+  validates_presence_of :title, :content, :user, :location
   validates :emoji, inclusion: { in: %w[angry sad ok good happy]}
 
   geocoded_by :location
@@ -27,6 +27,6 @@ class Entry < ApplicationRecord
   private
 
   def async_update
-    AnalyticJob.perform_later(self.id)
+    AnalyticJob.perform_later<(self.id)
   end
 end
