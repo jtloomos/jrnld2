@@ -20,9 +20,13 @@
           <div class="">
             <span class="text-center mt-2"><i class="fas fa-clock" aria-hidden="true"></i> <%= @entry.analytic.time_spent.to_f.ceil %> min | <i class="fas fa-hashtag" aria-hidden="true"></i> <%= @entry.analytic.word_count %> words | <i class="fas fa-temperature-high" aria-hidden="true"></i> <%= @entry.analytic.temperature %>°F (<%= @entry.analytic.weather.capitalize %>)</span>
             <br>
-            <span class="text-center mt-2"><i class="fas fa-map-marker-alt"></i> <%= @entry.analytic.location %> | <i class="fas fa-male"></i> : <% @entry.analytic.name_frequencies.each do |name| %>
-              <%= name.name %>
+            <span class="text-center mt-2"><i class="fas fa-map-marker-alt"></i> <%= @entry.analytic.location %> | <i class="fas fa-male"></i> : <% @entry.analytic.name_frequencies.each_with_index do |name, index| %>
+              <% if index == @entry.analytic.name_frequencies.length - 1 %>
+                <%= name.name %>
+              <% else %>
+                <%= name.name %>,
               <% end %>
+            <% end %>
             </span>
           </div>
         </div>
