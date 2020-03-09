@@ -1,67 +1,65 @@
-<div class="entry-page-body mt-5 p-3">
+<div class="entry-page-body mt-5 p-3 bg-white">
 
-  <div class="container-fluid d-flex flex-row large-card bg-white p-0">
-    <div class="analytics-container col-lg-3 d-flex flex-column justify-content-start p-3">
-      <h4 class="text-center">Analytics</h4>
-      <span class="text-center mt-2"><i class="fas fa-clock"></i> <%= @entry.analytic.time_spent %> min | <i class="fas fa-hashtag"></i> <%= @entry.analytic.word_count %> words</span>
-      <div class="d-flex flex-column justify-content-center mt-4">
-        <div class="d-flex flex-row justify-content-center">
-          <%= pie_chart @entry.emotions_hash %>
-        </div>
-        <br>
-        <div class="d-flex flex-row justify-content-center">
-          <span><i class="fas fa-male"></i> :
-            <% Entry.last.analytic.name_frequencies.each do |name| %>
-              <%= name.name %>
-              <% end %>
-          </span>
-        </div>
-        <br>
-        <div class="d-flex flex-column justify-content-center">
-          <span>Most Used Words</span>
-          <%= bar_chart @entry.words_hash, colors: ['#891B00'] %>
-        </div>
-        <br>
-        <div class="d-flex flex-row justify-content-center">
-          <span><%= @entry.analytic.temperature %>°F | <%= @entry.analytic.weather %></span>
-        </div>
-      </div>
-    </div>
+<div class="container mt-4 card">
+  <div class="row">
 
-    <div class="col-lg-9 p-3">
-      <div class="row justify-content-between mb-3 flex-wrap">
-        <div class="p-3 d-flex flex-column justify-content-start">
-          <div class="d-flex justify-content-start align-items-center">
+    <div class="col-md-12 col-lg-8 bg-white py-5 px-5">
+      <div class="row">
+        <div class="col-md-7 col-sm-12 mb-3">
+          <div class="d-flex">
             <h4 class="mb-2 mr-3"><i class="far fa-calendar-check" style="font-size: 30px;"></i> <%= @entry.created_at.strftime("%B %d, %Y") %></h4>
             <%= render "shared/emoji", entry: @entry, margin_bottom: 2 %>
           </div>
-          <div class="d-flex justify-content-end align-items-center flex-wrap mb-4">
+          <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
             <% @entry.entry_tags.each do |entry_tag| %>
               <div class="tag px-2 mr-1 mt-1">
-                <span><%= Tag.find(entry_tag.tag_id).title %></span>
+              <span><%= Tag.find(entry_tag.tag_id).title %></span>
               </div>
             <% end %>
           </div>
-        </div>
-        <div class="pr-3 col-lg-6 col-xs-12" style="width: 100%; height: 150px">
-          <div id="map" class="col-12 px-0 rounded shadow" style="width: 100%; height: 100%;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+          <div class="">
+            <span class="text-center mt-2"><i class="fas fa-clock" aria-hidden="true"></i> <%= @entry.analytic.time_spent.to_f.ceil %> min | <i class="fas fa-hashtag" aria-hidden="true"></i> <%= @entry.analytic.word_count %> words | <i class="fas fa-temperature-high" aria-hidden="true"></i> <%= @entry.analytic.temperature %>°F (<%= @entry.analytic.weather.capitalize %>)</span>
+            <br>
+            <span class="text-center mt-2"><i class="fas fa-map-marker-alt"></i> <%= @entry.analytic.location %> | <i class="fas fa-male"></i> : <% @entry.analytic.name_frequencies.each do |name| %>
+              <%= name.name %>
+              <% end %>
+            </span>
           </div>
-          <div class="m-3 entry-location d-flex justify-content-center">
-            <span><i class="fas fa-thumbtack"></i> <%= @entry.location %></span>
+        </div>
+
+        <div class="col-md-5 col-sm-12">
+          <div class="d-flex flex-column">
+            <span class="entries-return btn-solid m-0 text-center"><%= link_to "Edit this entry", edit_entry_path(@entry) %></span>
+            <span class="entries-return btn-solid mt-1 text-center"><%= link_to "Return to all entries", entries_path %></span>
           </div>
         </div>
+      </div>
+
+
+
+      <h1 class="pt-0 mt-4"><%= @entry.title %></h1>
+      <p><em><%= @entry.content %></em></p>
+      <div id="map" class="rounded shadow" style="width: 100%; height: 200px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+
+
+    <div class="analytics-container col-md-12 col-lg-4 py-5 px-4">
+      <h2>Analytics</h2>
+      <br>
+      <div class="mt-4">
+        <h6 class="text-center"><b>Emotions</b></h6>
+        <%= pie_chart @entry.emotions_hash %>
       </div>
       <br>
-      <div class="entry-title mt-3">
-            <h1 class="pt-0"><%= @entry.title %></h1>
-          </div>
-      <div class="entry-text mt-1">
-        <span><em><%= @entry.content %></em></span>
-      </div>
-      <div class="row d-flex justify-content-between mt-3 p-3">
-        <span class="entries-return btn-solid"><%= link_to "Edit this entry", edit_entry_path(@entry) %></span>
-        <span class="entries-return btn-solid"><%= link_to "Return to all entries", entries_path %></span>
+      <br>
+      <div class="mt-4">
+        <h6 class="text-center"><b>Most Used Words</b></h6>
+        <%= bar_chart @entry.words_hash, colors: ['#891B00'] %>
       </div>
     </div>
-    </div>
+
+
   </div>
+</div>
+</div>
