@@ -21,7 +21,6 @@ module EntryHelper
     response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "74RQDEfsE5rnrI7XNUMX620PmBemLIszVe3ywjnAfmk", text: text }
     data = JSON.parse( response )
     names_array = []
-    p data
     data["entities"].each do | names_hash |
       if (names_hash["category"] == "name") && (names_hash["confidence_score"] >= 0.60)
         names_array << names_hash["name"]

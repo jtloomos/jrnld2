@@ -5,6 +5,8 @@ class UsersController < ApplicationController
     @user = current_user
     authorize @user
     @notifications = ["Daily", "Once a week", "Once a month", "Never"]
+    @user_reminders = Reminder.where(user: current_user)
+    @default_reminders = Reminder.where(user: nil)
   end
 
   def update

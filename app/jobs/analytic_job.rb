@@ -33,7 +33,6 @@ class AnalyticJob < ApplicationJob
       WordFrequency.create(word: pair[0], frequency: pair[1], analytic: @analytic)
     end
 
-    p data[:people]
     data[:people].each do |word|
       NameFrequency.create(name: word, analytic: @analytic)
     end

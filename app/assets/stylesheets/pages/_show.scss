@@ -1,5 +1,5 @@
 .profile-container {
-  background-color: $secondary-color;
+  background-color: white;
   h2 {
     color: $primary-color;
     padding-top: 32px;
@@ -8,11 +8,7 @@
 }
 
 .profile-information {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
   display: flex;
-  margin: auto;
-  background: white;
   padding: 0px;
 }
 
@@ -27,38 +23,25 @@
 }
 
 .profile-reminders {
+  border-radius: 2px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
   display: flex;
-  margin: auto;
+  flex-direction: column;
+  margin: auto 16px;
   background: white;
-  padding: 0px;
 }
 
 .profile-header {
   width: 100%;
   background-color: white;
   text-align: left;
-  padding-top: 30px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   color: $primary-color;
-}
-
-.reminders-list {
-  padding: 0px;
-}
-
-.edit-content {
-  padding-left: 15px;
-  width: 90%;
 }
 
 .reminders-list .btn-solid:hover {
   opacity: 1;
-}
-
-.profile-container form {
-  width: 90%;
 }
 
 .form-control input {

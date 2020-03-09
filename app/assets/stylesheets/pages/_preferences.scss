@@ -1,51 +1,45 @@
 .reminder {
   text-decoration: none;
   transition: all .2s ease-in-out;
-  text-align: center;
+  text-align: left;
   &:hover {
     transform: scale(1.1)
   }
-  margin: 10px 15px;
+  margin: 10px 10px;
   padding: 0;
 }
 
 .reminder-check {
   display: none;
   &:checked + .reminder {
-    background-color: #891B00 !important;
+    background-color: $primary-color !important;
     color: white !important;
   }
 }
 
 #plus-reminder {
-  color: #891B00;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  vertical-align: center;
-  font-size: 1.1em;
-  &:hover {
-    transform: scale(1.1)
-  }
+  flex-grow: 0;
+  margin: auto 8px;
 }
 
 #reminder-title {
   font-size: 2em;
   border: 0;
-  width: 100%;
   text-align: center;
 }
 
 #new-reminder {
-  border: 0;
+  border: 1px solid $secondary-color;
+  flex-grow: 1;
+  border-radius: 5px;
+  font-size: 16px;
   resize: none;
-  overflow: hidden;
   outline: none;
   margin: 0px;
-  padding: 0px;
-  background-color: transparent;
-  text-align: center;
-  font-size: 1.1em;
+  padding: 8px;
+  background-color: white;
+  text-align: left;
+  font-size: 16px;
   &:focus {
     outline: none;
   }
@@ -56,15 +50,6 @@
   }
 }
 
-@media (min-width: 990px) {
-  #new-reminder {
-    &::placeholder {line-height: 104px}
-  }
-  #new-reminder {
-    height: 104px;
-    line-height: 104px;
-  }
-}
 
 
 #plus-button {
@@ -72,19 +57,9 @@
   border: 0;
 }
 
-@media (max-width: 760px) {
-  #new-reminder, #plus-reminder {
-    font-size: 0.9em
-  }
-}
-@media (max-width: 576px) {
-  #new-reminder, #plus-reminder {
-    font-size: 0.8em;
-  }
-}
-
 .reminder-label {
-  line-height: 50px;
+  line-height: 20px;
   margin: 0px;
-  padding: 0px 24px;
+  padding: 0px 16px;
+  font-size: 12px;
 }
