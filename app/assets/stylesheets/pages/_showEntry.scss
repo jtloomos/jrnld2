@@ -17,3 +17,15 @@
 .entry-location span {
   color: $primary-color;
 }
+
+.analytics-container {
+  border-right: 2px $secondary-color solid;
+}
+
+
+.pie-chart {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: gray;
+}
