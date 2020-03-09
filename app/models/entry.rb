@@ -5,6 +5,7 @@ class Entry < ApplicationRecord
   has_many :tags, through: :entry_tags
 
   validates_presence_of :title, :content, :user
+  validates :emoji, inclusion: { in: %w[angry sad ok good happy]}
 
   geocoded_by :location
   after_validation :geocode
