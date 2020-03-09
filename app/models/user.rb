@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates_presence_of :username, :first_name, :last_name, :birthday, :gender
   validates :username, uniqueness: true
 
+  has_one_attached :photo
   def tags
     self.entry_tags.map do |entry_tag|
       entry_tag.tag
