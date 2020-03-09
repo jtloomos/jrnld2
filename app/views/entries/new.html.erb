@@ -11,13 +11,13 @@
 
     <div class="col-lg-9 order-1 order-lg-2">
       <%= simple_form_for [@entry] do |f| %>
-        <%= f.association :tags, placeholder: 'Entry tags...', label: false, collection: current_user.tags.uniq.sort_by { |t| t.title }, input_html: { class: 'select2 no-border', multiple: "multiple", id: 'entry-tags-div', placeholder: '' } %>
+        <%= f.association :tags, placeholder: 'Entry tags...', label: false, collection: current_user.tags.uniq.sort_by { |t| t.title }, input_html: { class: 'select2 no-border', multiple: "multiple", placeholder: '' } %>
         <%= f.input :title, placeholder: 'Title', label: false, input_html: { class: 'form-control no-border' } %>
         <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control no-border', rows: 5 } %>
         <%= f.hidden_field :start_entry %>
         <div class="row row-cols-1 row-cols-md-2">
         <div class="col pb-2">
-          <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border', id: "input-entry-page" }, wrapper_html: { style: 'display: inline; text-indent: 1em;' }%>
+          <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border', id: "input-entry-page"  }, wrapper_html: { style: 'display: inline; text-indent: 1em;', id: "input-entry-page-icons" }%>
         </div>
         <div class="col pb-2">
         <ul class="feedback d-flex justify-content-start justify-content-md-end pl-2" id="emoji-list">
