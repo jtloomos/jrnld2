@@ -149,7 +149,6 @@ STOPWORDS = ["i",
     response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "aaLdmuiYsfEz4SmRmF334ikgml52ndxUSPJR83pAxDQ", text: text }
     data = JSON.parse( response )
     names_array = []
-    p data
     data["entities"].each do | names_hash |
       if (names_hash["category"] == "name") && (names_hash["confidence_score"] >= 0.60)
         names_array << names_hash["name"]

@@ -56,7 +56,7 @@ end
 reminder_seed = [
   { title: 'SPORTS' },
   { title: 'FAMILY' },
-  { title: 'SPECIAL ONE' },
+  { title: 'LOVE' },
   { title: 'WORK' },
   { title: 'HOME' },
   { user_id: User.first.id, title: 'FOOD' },
