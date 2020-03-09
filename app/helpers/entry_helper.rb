@@ -12,20 +12,22 @@ module EntryHelper
   end
 
   def self.emotion(text)
-    response = RestClient.post "https://apis.paralleldots.com/v4/emotion", { api_key: "Sn1y3EVI3MbKSYhPfkEWmmA2h9J8FCfHdABcX9hsKRo", text: text }
+    response = RestClient.post "https://apis.paralleldots.com/v4/emotion", { api_key: "74RQDEfsE5rnrI7XNUMX620PmBemLIszVe3ywjnAfmk", text: text }
     data = JSON.parse( response )
+    data["emotion"]
   end
 
   def self.names(text)
-    response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "Sn1y3EVI3MbKSYhPfkEWmmA2h9J8FCfHdABcX9hsKRo", text: text }
+    response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "74RQDEfsE5rnrI7XNUMX620PmBemLIszVe3ywjnAfmk", text: text }
     data = JSON.parse( response )
     names_array = []
+    p data
     data["entities"].each do | names_hash |
       if (names_hash["category"] == "name") && (names_hash["confidence_score"] >= 0.60)
         names_array << names_hash["name"]
       end
     end
-    names_array
+    names_array.uniq
   end
 
   def self.counter(text)

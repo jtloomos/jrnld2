@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_06_173024) do
+ActiveRecord::Schema.define(version: 2020_03_09_131912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,18 +18,25 @@ ActiveRecord::Schema.define(version: 2020_03_06_173024) do
   create_table "analytics", force: :cascade do |t|
     t.integer "word_count"
     t.string "time_spent"
-    t.string "emotion"
     t.string "emoji"
     t.string "location"
     t.string "created_day"
     t.string "created_time"
     t.string "weather"
-    t.string "people"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "temperature"
     t.bigint "entry_id"
     t.index ["entry_id"], name: "index_analytics_on_entry_id"
+  end
+
+  create_table "emotions", force: :cascade do |t|
+    t.string "emotion"
+    t.integer "level"
+    t.bigint "analytic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["analytic_id"], name: "index_emotions_on_analytic_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -53,6 +60,14 @@ ActiveRecord::Schema.define(version: 2020_03_06_173024) do
     t.bigint "tag_id"
     t.index ["entry_id"], name: "index_entry_tags_on_entry_id"
     t.index ["tag_id"], name: "index_entry_tags_on_tag_id"
+  end
+
+  create_table "name_frequencies", force: :cascade do |t|
+    t.string "name"
+    t.bigint "analytic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["analytic_id"], name: "index_name_frequencies_on_analytic_id"
   end
 
   create_table "reminders", force: :cascade do |t|
@@ -102,9 +117,11 @@ ActiveRecord::Schema.define(version: 2020_03_06_173024) do
   end
 
   add_foreign_key "analytics", "entries"
+  add_foreign_key "emotions", "analytics"
   add_foreign_key "entries", "users"
   add_foreign_key "entry_tags", "entries"
   add_foreign_key "entry_tags", "tags"
+  add_foreign_key "name_frequencies", "analytics"
   add_foreign_key "reminders", "users"
   add_foreign_key "word_frequencies", "analytics"
 end
