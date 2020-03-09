@@ -22,3 +22,9 @@
 .ap-icon-clear {
   right: 8px;
 }
+
+#input-entry-page {
+  &::placeholder {
+    padding-left: 24px;
+  }
+}
