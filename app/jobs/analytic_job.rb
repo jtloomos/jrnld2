@@ -39,7 +39,7 @@ class AnalyticJob < ApplicationJob
     end
 
     data[:emotion].each do |pair|
-      Emotion.create(emotion: pair[0], level: pair[1]*100, analytic: @analytic)
+      Emotion.create(emotion: pair[0].downcase, level: pair[1]*100, analytic: @analytic)
     end
 
   end
