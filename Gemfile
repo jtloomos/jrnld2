@@ -17,6 +17,7 @@ gem 'rest-client', '~> 2.0.2'
 
 gem 'words_counted'
 
+gem "chartkick"
 
 gem 'faker'
 gem 'geocoder'
