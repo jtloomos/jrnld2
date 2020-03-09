@@ -9,17 +9,17 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
+
   </head>
   <body class="d-flex flex-column h-100">
+
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
+    <%= javascript_pack_tag 'chartkick' %>
     <%= yield %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
     <%= render 'shared/footer' %>
-
-
-    <!-- <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %> -->
-
+    ≈
   </body>
 </html>

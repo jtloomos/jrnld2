@@ -3,15 +3,29 @@
   <div class="container-fluid d-flex flex-row large-card bg-white p-0">
     <div class="analytics-container col-lg-3 d-flex flex-column justify-content-start p-3">
       <h4 class="text-center">Analytics</h4>
-      <span class="text-center mt-2"><i class="fas fa-clock"></i> 25:03 min. | <i class="fas fa-hashtag"></i> 2,1400 words</span>
+      <span class="text-center mt-2"><i class="fas fa-clock"></i> <%= @entry.analytic.time_spent %> min | <i class="fas fa-hashtag"></i> <%= @entry.analytic.word_count %> words</span>
       <div class="d-flex flex-column justify-content-center mt-4">
         <div class="d-flex flex-row justify-content-center">
-          <%= pie_chart ({"Blue is pretty!"=>4,
- "What a day"=>2,
- "The REAL Mac Daddy"=>1 }) %>
+          <%= pie_chart @entry.emotions_hash %>
+        </div>
+        <br>
+        <div class="d-flex flex-row justify-content-center">
+          <span><i class="fas fa-male"></i> :
+            <% Entry.last.analytic.name_frequencies.each do |name| %>
+              <%= name.name %>
+              <% end %>
+          </span>
+        </div>
+        <br>
+        <div class="d-flex flex-column justify-content-center">
+          <span>Most Used Words</span>
+          <%= bar_chart @entry.words_hash, colors: ['#891B00'] %>
+        </div>
+        <br>
+        <div class="d-flex flex-row justify-content-center">
+          <span><%= @entry.analytic.temperature %>°F | <%= @entry.analytic.weather %></span>
         </div>
       </div>
-
     </div>
 
     <div class="col-lg-9 p-3">
@@ -50,16 +64,4 @@
       </div>
     </div>
     </div>
-
   </div>
-
-
-
-
-
-  <div class="individual-entry-container mb-4">
-    <br>
-    <h2 class="text-center mt-4 pb-2" style="color:#891B00">My Journal</h2>
-
-  </div>
-</div>
