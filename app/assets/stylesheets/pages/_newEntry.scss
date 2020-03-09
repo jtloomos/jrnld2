@@ -1,10 +1,10 @@
-#new-entry {
+#new-edit-entry {
   background-color: white;
 }
 
-.no-border {
-  border: 0px;
-}
+// .no-border {
+//   border: 0px;
+// }
 
 [class^='select2'] {
   border: 0px !important;
@@ -40,14 +40,28 @@
   padding-left: 0.5em !important;
 }
 
-.form-control:focus {
-  box-shadow: 0 0 0 0;
+.form-control {
+  &.title {
+    font-size: 24px;
+  }
+  &:focus {
+    box-shadow: 0 0 0 0;
+  }
+  &:valid {
+    border: 0;
+  }  &:valid:focus {
+    box-shadow: 0 0 0 0;
+  }
 }
 
 #input-entry-page {
   &::placeholder {
     padding-left: 24px;
   }
+}
+
+#input-entry-page-edit {
+  padding-left: 8px;
 }
 
 #input-entry-page-icons {
@@ -64,9 +78,9 @@
   .reminder-divider {
     border-top: 0;
     border-right: 2px solid $primary-color;
+  }
 
-    p {
-      padding-top: 0px;
-    }
+  p {
+    padding-top: 0px;
   }
 }
