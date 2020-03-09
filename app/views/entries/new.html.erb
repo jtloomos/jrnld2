@@ -16,11 +16,11 @@
         <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control no-border', rows: 5 } %>
         <%= f.hidden_field :start_entry %>
         <div class="row row-cols-1 row-cols-md-2">
-        <div class="col">
+        <div class="col pb-2">
           <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border' }, wrapper_html: { style: 'display: inline; text-indent: 1em;' } %>
         </div>
-        <div class="col">
-        <ul class="feedback" id="emoji-list">
+        <div class="col pb-2">
+        <ul class="feedback d-flex justify-content-start justify-content-md-end pl-2" id="emoji-list">
           <li class="angry">
             <div>
               <svg class="eye left">
@@ -99,7 +99,9 @@
         </div>
         </div>
         <%= f.hidden_field :emoji, value: "ok", id: "emoji-value"%>
-        <%= f.button :submit, class: "btn btn-solid" %>
+        <div class="d-flex justify-content-start justify-content-md-end">
+          <%= f.button :submit, class: "btn btn-solid" %>
+        </div>
       <% end %>
     </div>
   </div>
