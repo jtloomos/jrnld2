@@ -1,7 +1,7 @@
 <br>
 
 <div class="container pt-5 pb-4">
-  <div class="row row-cols-1 row-cols-lg-2 border rounded-sm px-4 pt-5 pb-4" id="new-entry">
+  <div class="row row-cols-1 row-cols-lg-2 px-4 pt-5 pb-5" id="new-edit-entry">
     <div class="col-lg-3 order-2 order-lg-1 reminder-divider">
       <p style="margin-bottom: 5px;">Reminders:</p>
       <% @reminders.each do |reminder| %>
@@ -14,12 +14,12 @@
 
     <div class="col-lg-9 order-1 order-lg-2">
       <%= simple_form_for [@entry] do |f| %>
-        <%= f.input :title, placeholder: 'Title', label: false, input_html: { class: 'form-control no-border' } %>
+        <%= f.input :title, placeholder: 'Title', label: false, input_html: { class: 'form-control title no-border' } %>
         <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control no-border', rows: 5 } %>
         <%= f.hidden_field :start_entry %>
         <div class="row row-cols-1 row-cols-md-2">
         <div class="col pb-2">
-          <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border', id: "input-entry-page"  }, wrapper_html: { style: 'display: inline; text-indent: 1em;', id: "input-entry-page-icons" }%>
+          <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border', id: "input-entry-page"  }, wrapper_html: { style: 'display: inline; text-indent: 1em;', id: "input-entry-page-icons" } %>
         </div>
         <div class="col pb-2">
         <ul class="feedback d-flex justify-content-start justify-content-md-end pl-2" id="emoji-list">
