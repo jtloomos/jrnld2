@@ -8,16 +8,15 @@ class AnalyticJob < ApplicationJob
     created_time = entry.created_at.hour
     time_spent = ((entry.created_at - entry.start_entry) / 60).to_s
     emoji = entry.emoji
-    # data = EntryHelper::analyze(entry)
-    data = {
-            word_count: 100,
-            words: {"hello" => 5, "Emilie" => 3, "Sebas" => 10},
-            emotion: "happy",
-            weather: "sunny",
-            temperature: "22",
-            people: ["Anna", "James", "Kevin"]
-           }
-
+    data = EntryHelper::analyze(entry)
+    # data = {
+    #         word_count: 100,
+    #         words: {"hello" => 5, "Emilie" => 3, "Sebas" => 10},
+    #         emotion: "happy",
+    #         weather: "sunny",
+    #         temperature: "22",
+    #         people: ["Anna", "James", "Kevin"]
+    #        }
     @analytic = Analytic.create(
       time_spent: time_spent,
       created_day: created_day,
@@ -25,15 +24,23 @@ class AnalyticJob < ApplicationJob
       emoji: emoji,
       location: location,
       word_count: data[:word_count],
-      emotion: data[:emotion],
       weather: data[:weather],
-      people: data[:people],
       temperature: data[:temperature],
       entry_id: entry_id
     )
 
-    data[:words].each do |word, count|
-      WordFrequency.create(word: word, frequency: count, analytic: @analytic)
+    data[:words].each do |pair|
+      WordFrequency.create(word: pair[0], frequency: pair[1], analytic: @analytic)
     end
+
+    p data[:people]
+    data[:people].each do |word|
+      NameFrequency.create(name: word, analytic: @analytic)
+    end
+
+    data[:emotion].each do |pair|
+      Emotion.create(emotion: pair[0], level: pair[1]*100, analytic: @analytic)
+    end
+
   end
 end
