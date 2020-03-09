@@ -1,11 +1,11 @@
 <br>
 
 <div class="container pt-5 pb-4">
-  <div class="row row-cols-1 row-cols-lg-2 border rounded-sm p-3 pt-5" id="new-entry">
-    <div class="col-lg-3 order-2 order-lg-1">
+  <div class="row row-cols-1 row-cols-lg-2 border rounded-sm px-4 pt-5 pb-4" id="new-entry">
+    <div class="col-lg-3 order-2 order-lg-1 reminder-divider">
       <p style="margin-bottom: 5px;">Reminders:</p>
       <% @reminders.each do |reminder| %>
-          <button type="button" data-content="<%= JSON.generate({ id: reminder.id, title: reminder.title }) %>" class="btn btn-ghost btn-sm mb-2" id="btn-reminder-<%= reminder.id %>" style="opacity: 0.8;"><%= reminder.title %></button>
+          <button type="button" data-content="<%= JSON.generate({ id: reminder.id, title: reminder.title }) %>" class="btn btn-ghost btn-sm mb-2" id="btn-reminder-<%= reminder.id %>" style="opacity: 0.7;"><%= reminder.title %></button>
       <% end %>
     </div>
 

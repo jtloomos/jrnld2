@@ -1,6 +1,5 @@
 #new-entry {
   background-color: white;
-  border-radius: $rounded;
 }
 
 .no-border {
@@ -9,6 +8,14 @@
 
 [class^='select2'] {
   border: 0px !important;
+}
+
+.reminder-divider {
+  border-top: 2px solid $primary-color;
+
+  p {
+    padding-top: 20px;
+  }
 }
 
 .select2-results__options {
@@ -20,7 +27,8 @@
 .select2-selection__choice {
   background-color: $primary-color !important;
   color: white;
-  // font-size: 0.9em;
+  font-size: 0.9em;
+  padding: 0.25rem 0.5rem !important;
 
   .select2-selection__choice__remove {
     color: white !important;
@@ -49,5 +57,16 @@
 
   .ap-icon-clear {
     right: 8px;
+  }
+}
+
+@media (min-width: 992px) {
+  .reminder-divider {
+    border-top: 0;
+    border-right: 2px solid $primary-color;
+
+    p {
+      padding-top: 0px;
+    }
   }
 }
