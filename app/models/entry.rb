@@ -27,6 +27,6 @@ class Entry < ApplicationRecord
   private
 
   def async_update
-    AnalyticJob.perform_later<(self.id)
+    AnalyticJob.perform_later(self.id)
   end
 end
