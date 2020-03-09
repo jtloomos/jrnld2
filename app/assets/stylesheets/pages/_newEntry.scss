@@ -20,9 +20,10 @@
 .select2-selection__choice {
   background-color: $primary-color !important;
   color: white;
+  // font-size: 0.9em;
 
   .select2-selection__choice__remove {
-    color: white;
+    color: white !important;
   }
 
 }
