@@ -9,7 +9,7 @@
         <% if @user.photo.attached? %>
         <%= cl_image_tag @user.photo.key, height: 500, width: 400, crop: :fill, class: "avatar-large mt-2" %>
       <% else %>
-        <%= image_tag 'default-avatar.svg', class: "avatar-large mt-2" %>
+        <%= image_tag 'default-avatar.png', class: "avatar-large mt-2" %>
       <% end %>
       </div>
       <%= simple_form_for(@user) do |f| %>

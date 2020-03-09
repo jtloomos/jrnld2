@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     authorize @user
     @notifications = ["Daily", "Once a week", "Once a month", "Never"]
     if params[:user]["old_password"].nil? && params[:user]["password"].nil?
@@ -53,13 +53,6 @@ class UsersController < ApplicationController
   def analytics
   end
 
-  private
-
-  def authorize_user
-    @user = current_user
-    authorize @user
-  end
-
   def destroy
     @user = User.find(params[:id])
     authorize @user
@@ -67,7 +60,15 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  private
+
+  def authorize_user
+    @user = current_user
+    authorize @user
+  end
+
+
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :birthday, :gender, :photo, :notifications)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :birthday, :gender, :photo, :notifications)
   end
 end

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
 
   has_one_attached :photo
+
   def tags
     self.entry_tags.map do |entry_tag|
       entry_tag.tag
