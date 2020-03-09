@@ -1,23 +1,25 @@
 <br>
 
-<div class="container p-3 mt-5">
-  <div class="row row-cols-1 row-cols-lg-2 border rounded-sm p-3" id="new-entry">
-    <div class="col-lg-3 order-2 order-lg-1">
-      <p>Reminders:</p>
+<div class="container pt-5 pb-4">
+  <div class="row row-cols-1 row-cols-lg-2 border rounded-sm px-4 pt-5 pb-4" id="new-entry">
+    <div class="col-lg-3 order-2 order-lg-1 reminder-divider">
+      <p style="margin-bottom: 5px;">Reminders:</p>
       <% @reminders.each do |reminder| %>
-          <button type="button" data-content="<%= JSON.generate({ id: reminder.id, title: reminder.title }) %>" class="btn btn-ghost btn-sm mb-2" id="btn-reminder-<%= reminder.id %>"><%= reminder.title %></button>
+          <button type="button" data-content="<%= JSON.generate({ id: reminder.id, title: reminder.title }) %>" class="btn btn-ghost btn-sm mb-2" id="btn-reminder-<%= reminder.id %>" style="opacity: 0.7;"><%= reminder.title %></button>
       <% end %>
     </div>
 
+<!--     <div class="border-left d-none d-lg-block" style="width: 0px;"></div>
+    <hr class="d-block d-lg-none"> -->
+
     <div class="col-lg-9 order-1 order-lg-2">
       <%= simple_form_for [@entry] do |f| %>
-        <%= f.association :tags, placeholder: 'Entry tags...', label: false, collection: current_user.tags.uniq.sort_by { |t| t.title }, input_html: { class: 'select2 no-border', multiple: "multiple", id: 'entry-tags-div', placeholder: '' } %>
         <%= f.input :title, placeholder: 'Title', label: false, input_html: { class: 'form-control no-border' } %>
         <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control no-border', rows: 5 } %>
         <%= f.hidden_field :start_entry %>
         <div class="row row-cols-1 row-cols-md-2">
         <div class="col pb-2">
-          <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border', id: "input-entry-page" }, wrapper_html: { style: 'display: inline; text-indent: 1em;' }%>
+          <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border', id: "input-entry-page"  }, wrapper_html: { style: 'display: inline; text-indent: 1em;', id: "input-entry-page-icons" }%>
         </div>
         <div class="col pb-2">
         <ul class="feedback d-flex justify-content-start justify-content-md-end pl-2" id="emoji-list">
@@ -99,8 +101,9 @@
         </div>
         </div>
         <%= f.hidden_field :emoji, value: "good", id: "emoji-value"%>
+        <%= f.association :tags, placeholder: 'Entry tags...', label: false, collection: current_user.tags.uniq.sort_by { |t| t.title }, input_html: { class: 'select2 no-border', multiple: "multiple", placeholder: '' } %>
         <div class="d-flex justify-content-start justify-content-md-end">
-          <%= f.button :submit, class: "btn btn-solid" %>
+          <%= f.button :submit, class: "btn btn-solid mb-4" %>
         </div>
       <% end %>
     </div>
