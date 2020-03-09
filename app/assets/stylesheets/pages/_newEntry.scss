@@ -2,3 +2,23 @@
   background-color: white;
   border-radius: $rounded;
 }
+
+.no-border {
+  border: 0px;
+}
+
+[class^='select2'] {
+  border: 0px !important;
+}
+
+.select2-search__field {
+  padding-left: 0.5em !important;
+}
+
+.ap-icon-pin {
+  left: 16px;
+}
+
+.ap-icon-clear {
+  right: 8px;
+}
