@@ -18,14 +18,32 @@
   color: $primary-color;
 }
 
-.analytics-container {
-  border-right: 2px $secondary-color solid;
-}
-
-
 .pie-chart {
   height: 200px;
   width: 200px;
   border-radius: 50%;
   background-color: gray;
+}
+
+.entry-container{
+  border-right: 3px $primary-color solid;
+}
+
+.analytics-container {
+  background-color: $secondary-color;
+  color: $primary-color;
+}
+
+
+
+@media (min-width: 1600px) {
+  .container {
+      max-width: 1500px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+      max-width: 1300px;
+  }
 }
