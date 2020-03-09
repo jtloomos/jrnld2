@@ -92,7 +92,7 @@ entry_seed = [
     location: "Chicago, United States",
     title: 'Spring in Mexico: a Heated Experience',
     content:  'A week of incredible heat has been the setting for Mandy and her cats Mexican orientation.  We have seen the hottest temperatures since we have moved here(over 35 degrees) and it did not rain for 1 month!  That dry spell was broken with rain over the last couple of days and a return to a more comfortable temperature range of 29-33 degrees celsius (+30 almost seems chilly by comparison).  The cats having been loving their new friends and their new location so the interaction between the five cats and the 16 turtles has been priceless.  All the cats have been getting along and that is good because we have been out of the house a lot.  We have been finding apartments with Mandy, introducing her to our friends and preparing for more friends to visit as well as our eventual departure.  We are enjoying our remaining time here as much as possible by diving and taking advantage of  the local food, drink and cheer. It is still hard to believe that we will be returning soon but we are looking forward to another amazing road trip, and our reunion with friends and family.  After all our adventures and with all our amazing friends my roots have been firmly anchored here in Cozumel.  There will always be more adventures in the future but my heart will  reside in this island paradise.',
-    emoji: "Happy" }
+    emoji: "happy" }
   # { user_id: User.first.id,
   #   start_entry: DateTime.new(2019,6,5,18,44,45),
   #   created_at: DateTime.new(2019,6,5,18,45,45),
