@@ -59,10 +59,10 @@
               </svg>
             </div>
           </li>
-          <li class="ok active">
+          <li class="ok">
             <div></div>
           </li>
-          <li class="good">
+          <li class="good active">
             <div>
               <svg class="eye left">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
@@ -98,7 +98,7 @@
         </ul>
         </div>
         </div>
-        <%= f.hidden_field :emoji, value: "ok", id: "emoji-value"%>
+        <%= f.hidden_field :emoji, value: "good", id: "emoji-value"%>
         <div class="d-flex justify-content-start justify-content-md-end">
           <%= f.button :submit, class: "btn btn-solid" %>
         </div>
