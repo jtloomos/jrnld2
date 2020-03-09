@@ -1,69 +1,73 @@
-<div class="entry-page-body mt-5 p-3 bg-white">
+<% if !@entry.analytic %>
+  <%= render "shared/loadingPage" %>
+<% else %>
+  <div class="entry-page-body mt-5 p-3 bg-white">
 
-<div class="container mt-4 card">
-  <div class="row">
+  <div class="container mt-4 card">
+    <div class="row">
 
-    <div class="col-md-12 col-lg-8 bg-white py-5 px-5">
-      <div class="row">
-        <div class="col-md-7 col-sm-12 mb-3">
-          <div class="d-flex">
-            <h4 class="mb-2 mr-3"><i class="far fa-calendar-check" style="font-size: 30px;"></i> <%= @entry.created_at.strftime("%B %d, %Y") %></h4>
-            <%= render "shared/emoji", entry: @entry, margin_bottom: 2 %>
-          </div>
-          <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-            <% @entry.entry_tags.each do |entry_tag| %>
-              <div class="tag px-2 mr-1 mt-1">
-              <span><%= Tag.find(entry_tag.tag_id).title %></span>
-              </div>
-            <% end %>
-          </div>
-          <div class="">
-            <span class="text-center mt-2"><i class="fas fa-clock" aria-hidden="true"></i> <%= @entry.analytic.time_spent.to_f.ceil %> min | <i class="fas fa-hashtag" aria-hidden="true"></i> <%= @entry.analytic.word_count %> words | <i class="fas fa-temperature-high" aria-hidden="true"></i> <%= @entry.analytic.temperature %>°F (<%= @entry.analytic.weather.capitalize %>)</span>
-            <br>
-            <span class="text-center mt-2"><i class="fas fa-map-marker-alt"></i> <%= @entry.analytic.location %> | <i class="fas fa-male"></i> : <% @entry.analytic.name_frequencies.each_with_index do |name, index| %>
-              <% if index == @entry.analytic.name_frequencies.length - 1 %>
-                <%= name.name %>
-              <% else %>
-                <%= name.name %>,
+      <div class="col-md-12 col-lg-8 bg-white py-5 px-5">
+        <div class="row">
+          <div class="col-md-7 col-sm-12 mb-3">
+            <div class="d-flex">
+              <h4 class="mb-2 mr-3"><i class="far fa-calendar-check" style="font-size: 30px;"></i> <%= @entry.created_at.strftime("%B %d, %Y") %></h4>
+              <%= render "shared/emoji", entry: @entry, margin_bottom: 2 %>
+            </div>
+            <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+              <% @entry.entry_tags.each do |entry_tag| %>
+                <div class="tag px-2 mr-1 mt-1">
+                <span><%= Tag.find(entry_tag.tag_id).title %></span>
+                </div>
               <% end %>
-            <% end %>
-            </span>
+            </div>
+            <div class="">
+              <span class="text-center mt-2"><i class="fas fa-clock" aria-hidden="true"></i> <%= @entry.analytic.time_spent.to_f.ceil %> min | <i class="fas fa-hashtag" aria-hidden="true"></i> <%= @entry.analytic.word_count %> words | <i class="fas fa-temperature-high" aria-hidden="true"></i> <%= @entry.analytic.temperature %>°F (<%= @entry.analytic.weather.capitalize %>)</span>
+              <br>
+              <span class="text-center mt-2"><i class="fas fa-map-marker-alt"></i> <%= @entry.analytic.location %> | <i class="fas fa-male"></i> : <% @entry.analytic.name_frequencies.each_with_index do |name, index| %>
+                <% if index == @entry.analytic.name_frequencies.length - 1 %>
+                  <%= name.name %>
+                <% else %>
+                  <%= name.name %>,
+                <% end %>
+              <% end %>
+              </span>
+            </div>
+          </div>
+
+          <div class="col-md-5 col-sm-12">
+            <div class="d-flex flex-column">
+              <span class="entries-return btn-solid m-0 text-center"><%= link_to "Edit this entry", edit_entry_path(@entry) %></span>
+              <span class="entries-return btn-solid mt-1 text-center"><%= link_to "Return to all entries", entries_path %></span>
+            </div>
           </div>
         </div>
 
-        <div class="col-md-5 col-sm-12">
-          <div class="d-flex flex-column">
-            <span class="entries-return btn-solid m-0 text-center"><%= link_to "Edit this entry", edit_entry_path(@entry) %></span>
-            <span class="entries-return btn-solid mt-1 text-center"><%= link_to "Return to all entries", entries_path %></span>
-          </div>
+
+
+        <h1 class="pt-0 mt-4"><%= @entry.title %></h1>
+        <p><em><%= @entry.content %></em></p>
+        <div id="map" class="rounded shadow" style="width: 100%; height: 200px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
 
 
-
-      <h1 class="pt-0 mt-4"><%= @entry.title %></h1>
-      <p><em><%= @entry.content %></em></p>
-      <div id="map" class="rounded shadow" style="width: 100%; height: 200px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div class="analytics-container col-md-12 col-lg-4 py-5 px-4">
+        <h2>Analytics</h2>
+        <br>
+        <div class="mt-4">
+          <h6 class="text-center"><b>Emotions</b></h6>
+          <%= pie_chart @entry.emotions_hash %>
+        </div>
+        <br>
+        <br>
+        <div class="mt-4">
+          <h6 class="text-center"><b>Most Used Words</b></h6>
+          <%= bar_chart @entry.words_hash, colors: ['#891B00'] %>
+        </div>
       </div>
+
+
     </div>
-
-
-    <div class="analytics-container col-md-12 col-lg-4 py-5 px-4">
-      <h2>Analytics</h2>
-      <br>
-      <div class="mt-4">
-        <h6 class="text-center"><b>Emotions</b></h6>
-        <%= pie_chart @entry.emotions_hash %>
-      </div>
-      <br>
-      <br>
-      <div class="mt-4">
-        <h6 class="text-center"><b>Most Used Words</b></h6>
-        <%= bar_chart @entry.words_hash, colors: ['#891B00'] %>
-      </div>
-    </div>
-
-
   </div>
-</div>
-</div>
+  </div>
+<% end %>
