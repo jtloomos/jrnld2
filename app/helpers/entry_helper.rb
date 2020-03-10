@@ -187,8 +187,8 @@ STOPWORDS = ["i",
     temperature = data["daily"]["data"].first["temperatureHigh"]
     {description: description, temperature: temperature}
     rescue RestClient::BadRequest => e
-      EMPTY_VALUE
+      {description: EMPTY_VALUE, temperature: EMPTY_VALUE}
     rescue RestClient::Forbidden => e
-      EMPTY_VALUE
+      {description: EMPTY_VALUE, temperature: EMPTY_VALUE}
   end
 end
