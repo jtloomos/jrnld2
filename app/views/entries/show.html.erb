@@ -48,18 +48,22 @@
 
 
     <div class="analytics-container col-md-12 col-lg-4 py-5 px-4">
-      <h2>Analytics</h2>
-      <br>
-      <div class="mt-4">
-        <h6 class="text-center"><b>Emotions</b></h6>
-        <%= pie_chart @entry.emotions_hash %>
-      </div>
-      <br>
-      <br>
-      <div class="mt-4">
-        <h6 class="text-center"><b>Most Used Words</b></h6>
-        <%= bar_chart @entry.words_hash, colors: ['#891B00'] %>
-      </div>
+      <% if @entry.analytic %>
+          <h2>Analytics</h2>
+          <br>
+          <div class="mt-4">
+            <h6 class="text-center"><b>Emotions</b></h6>
+            <%= pie_chart @entry.emotions_hash %>
+          </div>
+          <br>
+          <br>
+          <div class="mt-4">
+            <h6 class="text-center"><b>Most Used Words</b></h6>
+            <%= bar_chart @entry.words_hash, colors: ['#891B00'] %>
+          </div>
+      <% else %>
+        <p>Sorry! Your analytics are still processing. Please try again.</p>
+      <% end %>
     </div>
   </div>
 </div>
