@@ -47,6 +47,8 @@ class EntriesController < ApplicationController
         lng: @entry.longitude
         # image_url: helpers.asset_path("map-marker.svg")
       }]
+
+    @data = @entry.analytic.word_frequencies.map {|element| { 'x': element.word, 'value': element.frequency } }
   end
 
   def new

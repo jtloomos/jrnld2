@@ -8,12 +8,13 @@
 
       <div class="col-lg-3 col-md-12 order-2 order-lg-1 reminder-divider">
         <div class="row">
-
           <div class="d-flex flex-row reminders-container pb-3 h-50 order-2 order-lg-1 col-12">
             <span class="text-center mr-2" style="color:#891B00">REMINDERS</span>
-            <div class="d-flex flex-row flex-wrap justify-content-center">
+            <div class="d-flex flex-row flex-wrap justify-content-left">
               <% @reminders.each do |reminder| %>
-                <button type="button" data-content="<%= JSON.generate({ id: reminder.id, title: reminder.title }) %>" class="btn btn-ghost btn-sm mb-2 mr-2 flex-grow-1" id="btn-reminder-<%= reminder.id %>" style="opacity: 0.7;"><%= reminder.title %></button>
+                <div>
+                  <button type="button" data-content="<%= JSON.generate({ id: reminder.id, title: reminder.title }) %>" class="btn btn-ghost btn-sm mb-2 mr-2 flex-grow-1" id="btn-reminder-<%= reminder.id %>" style="opacity: 0.7;"><%= reminder.title %></button>
+                </div>
               <% end %>
             </div>
           </div>
