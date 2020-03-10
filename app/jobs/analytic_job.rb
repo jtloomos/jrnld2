@@ -24,8 +24,8 @@ class AnalyticJob < ApplicationJob
     @analytic.emoji = emoji,
     @analytic.location = location,
     @analytic.word_count = data[:word_count],
-    @analytic.weather = data[:weather],
-    @analytic.temperature = data[:temperature],
+    @analytic.weather = data[:weather][:description],
+    @analytic.temperature = data[:weather][:temperature],
     @analytic.entry_id = entry_id
     @analytic.save!
 

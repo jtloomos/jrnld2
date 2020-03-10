@@ -29,9 +29,9 @@ class EntriesController < ApplicationController
     @markers = @entries.map do |entry|
       {
         lat: entry.latitude,
-        lng: entry.longitude
+        lng: entry.longitude,
         # image_url: helpers.asset_path("map-marker.svg"),
-        infoWindow: render_to_string(partial: "info_window", locals: { entry: entry }),
+        infoWindow: render_to_string(partial: "info_window", locals: { entry: entry })
       }
     end
   end
