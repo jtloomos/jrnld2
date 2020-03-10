@@ -12,3 +12,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+.is-valid {
+  background-size: 0px !important;
+}

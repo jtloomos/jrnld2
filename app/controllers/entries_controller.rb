@@ -47,6 +47,8 @@ class EntriesController < ApplicationController
         lng: @entry.longitude
         # image_url: helpers.asset_path("map-marker.svg")
       }]
+
+    @data = @entry.analytic.word_frequencies.map {|element| { 'x': element.word, 'value': element.frequency } }
   end
 
   def new
@@ -69,6 +71,7 @@ class EntriesController < ApplicationController
   def edit
     @entry = Entry.find(params[:id])
     authorize @entry
+    @reminders = Reminder.where(user_id: current_user.id)
   end
 
   def update
@@ -90,6 +93,7 @@ class EntriesController < ApplicationController
   end
 
   def create_entry_tags
+    @entry.entry_tags.destroy_all
     params[:entry][:tag_ids].each do |id|
       if id.match?(/\A\d+\z/) && @entry.tags.pluck("id").include?(id.to_i)
         # if tag is already associated with this entry, do nothing
