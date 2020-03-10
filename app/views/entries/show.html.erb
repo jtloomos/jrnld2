@@ -25,7 +25,9 @@
             </div>
             <div class="entry-information mt-2">
               <% unless @entry.analytic.time_spent.empty? %>
-              <span class="text-center mt-2"><i class="fas fa-clock" aria-hidden="true"></i> <%= @entry.analytic.time_spent.to_f.ceil %> min | <i class="fas fa-hashtag" aria-hidden="true"></i> <%= @entry.analytic.word_count %> words | <i class="fas fa-temperature-high" aria-hidden="true"></i> <%= @entry.analytic.temperature %>°F (<%= @entry.analytic.weather.capitalize %>)</span>
+              <span class="text-center mt-2"><i class="fas fa-clock" aria-hidden="true"></i> <%= @entry.analytic.time_spent.to_f.ceil %> min | <i class="fas fa-hashtag" aria-hidden="true"></i> <%= @entry.analytic.word_count %> words | <i class="fas fa-temperature-high" aria-hidden="true"></i>
+                <%= @entry.analytic.temperature %>°F (<%= @entry.analytic.weather.capitalize %>)
+              </span>
               <% end %>
               <br>
               <% unless @entry.analytic.location.empty? %>
@@ -33,7 +35,9 @@
                 <% end %>
                 <br>
                 <% unless @entry.analytic.name_frequencies.empty? %>
-                <span class="text-center mt-2"><i class="fas fa-male"></i> <% @entry.analytic.name_frequencies.each_with_index do |name, index| %>
+                <span class="text-center mt-2">
+                  <i class="fas fa-male"></i>
+                  <% @entry.analytic.name_frequencies.each_with_index do |name, index| %>
                   <% if index == @entry.analytic.name_frequencies.length - 1 %>
                   <%= name.name %>
                   <% else %>
@@ -43,17 +47,22 @@
                 </span>
                 <% end %>
               </div>
-            </div>
 
-
-            <h1 class="pt-0 my-4 entry-header"><%= @entry.title %></h1>
-            <p class="entry-content"><em><%= @entry.content %></em></p>
-            <div id="map" class="rounded shadow mt-4" style="width: 100%; height: 200px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+              <h1 class="pt-0 my-4 entry-header"><%= @entry.title %></h1>
+              <p class="entry-content"><em><%= @entry.content %></em></p>
+              <% if @entry.photos.attached? %>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#entry-pictures">
+                See pictures
+              </button>
+              <%= render "entry_pictures", entry: @entry %>
+              <% else %>
+              <p>No pictures</p>
+              <% end %>
+              <div id="map" class="rounded shadow mt-4" style="width: 100%; height: 200px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+              </div>
             </div>
           </div>
         </div>
-
-
         <div class="analytics-container col-md-12 col-lg-4 px-4">
           <div class="mt-2">
             <h4 class="entry-header">Emotions</h4>
@@ -66,8 +75,6 @@
             <%= bar_chart @entry.words_hash, colors: ['#EBE7E6'], dataset: { borderWidth: 0 } %>
           </div>
         </div>
-
-
       </div>
     </div>
   </div>
