@@ -17,29 +17,33 @@ class AnalyticJob < ApplicationJob
     #         temperature: "22",
     #         people: ["Anna", "James", "Kevin"]
     #        }
-    @analytic = Analytic.create(
-      time_spent: time_spent,
-      created_day: created_day,
-      created_time: created_time,
-      emoji: emoji,
-      location: location,
-      word_count: data[:word_count],
-      weather: data[:weather],
-      temperature: data[:temperature],
-      entry_id: entry_id
-    )
+    @analytic = Analytic.find_or_initialize_by(entry_id: entry_id)
+    @analytic.time_spent = time_spent,
+    @analytic.created_day = created_day,
+    @analytic.created_time = created_time,
+    @analytic.emoji = emoji,
+    @analytic.location = location,
+    @analytic.word_count = data[:word_count],
+    @analytic.weather = data[:weather][:description],
+    @analytic.temperature = data[:weather][:temperature],
+    @analytic.entry_id = entry_id
+    @analytic.save!
 
     data[:words].each do |pair|
-      WordFrequency.create(word: pair[0], frequency: pair[1], analytic: @analytic)
+      @word_freq = WordFrequency.find_or_initialize_by(analytic: @analytic, word: pair[0])
+      @word_freq.frequency = pair[1]
+      @word_freq.save!
     end
 
     data[:people].each do |word|
-      NameFrequency.create(name: word, analytic: @analytic)
+      @name_freq = NameFrequency.find_or_initialize_by(analytic: @analytic, name: word)
+      @name_freq.save!
     end
 
     data[:emotion].each do |pair|
-      Emotion.create(emotion: pair[0].downcase, level: pair[1]*100, analytic: @analytic)
+      @emotion = Emotion.find_or_initialize_by(analytic: @analytic, emotion: pair[0].downcase)
+      @emotion.level = pair[1]*100
+      @emotion.save!
     end
-
   end
 end

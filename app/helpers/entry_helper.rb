@@ -1,5 +1,7 @@
 module EntryHelper
 
+EMPTY_VALUE = "N/A"
+
 STOPWORDS = ["i",
  "me",
  "my",
@@ -141,7 +143,6 @@ STOPWORDS = ["i",
       words: self.frequency(entry.content),
       emotion: self.emotion(entry.content),
       weather: self.weather(entry.created_at, entry.latitude, entry.longitude),
-      temperature: self.temperature(entry.created_at, entry.latitude, entry.longitude),
       people: self.names(entry.content)
     }
   end
@@ -149,12 +150,14 @@ STOPWORDS = ["i",
   def self.emotion(text)
     response = RestClient.post "https://apis.paralleldots.com/v4/emotion", { api_key: "aaLdmuiYsfEz4SmRmF334ikgml52ndxUSPJR83pAxDQ", text: text }
     data = JSON.parse( response )
+    return EMPTY_VALUE if data["code"] == 400
     data["emotion"]
   end
 
   def self.names(text)
     response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "aaLdmuiYsfEz4SmRmF334ikgml52ndxUSPJR83pAxDQ", text: text }
     data = JSON.parse( response )
+    return EMPTY_VALUE if data["code"] == 400
     names_array = []
     data["entities"].each do | names_hash |
       if (names_hash["category"] == "name") && (names_hash["confidence_score"] >= 0.60)
@@ -178,14 +181,14 @@ STOPWORDS = ["i",
   end
 
   def self.weather(date, latitude, longitude)
-    response = RestClient.get "https://api.darksky.net/forecast/f9f27a4fe0552c816b83982f83238af6/#{latitude},#{longitude},#{date.to_time.to_i}?exclude=currently,flags"
+    response = RestClient.get "https://api.darksky.net/forecast/fe0831cdbe63483548a3ed76d5c67742/#{latitude},#{longitude},#{date.to_time.to_i}?exclude=currently,flags"
     data = JSON.parse( response )
-    weather = data["daily"]["data"].first["icon"]
-  end
-
-  def self.temperature(date, latitude, longitude)
-    response = RestClient.get "https://api.darksky.net/forecast/f9f27a4fe0552c816b83982f83238af6/#{latitude},#{longitude},#{date.to_time.to_i}?exclude=currently,flags"
-    data = JSON.parse( response )
+    description = data["daily"]["data"].first["icon"]
     temperature = data["daily"]["data"].first["temperatureHigh"]
+    {description: description, temperature: temperature}
+    rescue RestClient::BadRequest => e
+      EMPTY_VALUE
+    rescue RestClient::Forbidden => e
+      EMPTY_VALUE
   end
 end
