@@ -39,6 +39,7 @@
   opacity: 0.7;
   &:hover {
     opacity: 1;
+    cursor: pointer;
   }
 }
 
@@ -53,6 +54,17 @@
   color: $tertiary-color;
 }
 
+.entry-picture {
+  width: 50%;
+}
+
+.anychart-credits {
+  display: none;
+}
+
+#word-graph {
+  height: 50vh;
+}
 
 @media (min-width: 1600px) {
   .container {

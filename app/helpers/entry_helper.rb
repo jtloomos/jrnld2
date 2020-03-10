@@ -148,14 +148,14 @@ module EntryHelper
   end
 
   def self.emotion(text)
-    response = RestClient.post "https://apis.paralleldots.com/v4/emotion", { api_key: "aaLdmuiYsfEz4SmRmF334ikgml52ndxUSPJR83pAxDQ", text: text }
+    response = RestClient.post "https://apis.paralleldots.com/v4/emotion", { api_key: "74RQDEfsE5rnrI7XNUMX620PmBemLIszVe3ywjnAfmk", text: text }
     data = JSON.parse( response )
     return EMPTY_VALUE if data["code"] == 400
     data["emotion"]
   end
 
   def self.names(text)
-    response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "aaLdmuiYsfEz4SmRmF334ikgml52ndxUSPJR83pAxDQ", text: text }
+    response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "74RQDEfsE5rnrI7XNUMX620PmBemLIszVe3ywjnAfmk", text: text }
     data = JSON.parse( response )
     return EMPTY_VALUE if data["code"] == 400
     names_array = []
@@ -177,7 +177,7 @@ module EntryHelper
     cleaned_array = dirty_array.reject {|term| (STOPWORDS.include? term) || (term.length < 3)}
     text = cleaned_array.join(" ")
     counter = WordsCounted.count(text)
-    counter.token_frequency.first(10)
+    counter.token_frequency.first(30)
   end
 
   def self.weather(date, latitude, longitude)

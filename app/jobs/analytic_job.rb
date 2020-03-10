@@ -6,7 +6,11 @@ class AnalyticJob < ApplicationJob
     location = entry.location
     created_day = entry.created_at
     created_time = entry.created_at.hour
-    time_spent = ((entry.created_at - entry.start_entry) / 60).to_s
+    if entry.start_entry.nil?
+      time_spent = 0
+    else
+      time_spent = ((entry.created_at - entry.start_entry) / 60).to_s
+    end
     emoji = entry.emoji
     data = EntryHelper::analyze(entry)
     # data = {
