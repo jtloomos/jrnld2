@@ -58,12 +58,12 @@
   width: 50%;
 }
 
-#ac_layer_e, #ac_layer_f, #ac_layer_i, #ac_path_c, #ac_path_f {
+.anychart-credits {
   display: none;
 }
 
-.anychart-credits {
-  display: none;
+#word-graph {
+  height: 50vh;
 }
 
 @media (min-width: 1600px) {
