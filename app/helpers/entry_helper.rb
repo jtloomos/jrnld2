@@ -126,7 +126,14 @@ STOPWORDS = ["i",
  "should",
  "now",
   "ll",
-  "wasn"]
+  "wasn",
+"-",
+"_",
+".",
+"?",
+"!",
+"'",
+":"]
 
   def self.analyze(entry)
     {
