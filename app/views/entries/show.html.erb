@@ -63,23 +63,23 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="analytics-container col-md-12 col-lg-4 px-4">
-          <% if @entry.analytic %>
-            <div class="mt-2">
-              <h4 class="entry-header">Emotions</h4>
-              <%= pie_chart @entry.emotions_hash, colors: ['#BBB5B3', '#96837D', '#D89A8C', '#C56E5A', '#F2E5E2'] %>
-            </div>
-            <br>
-            <br>
-            <div class="mt-4">
-              <h4 class="entry-header">Most Used Words</h4>
-              <div id="word-graph" data-words=<%= @data.to_json %>></div>
-            </div>
-          <% else %>
-            <p>Sorry! Your analytics are still processing. Try again!</p>
-          <% end %>
-        </div>
+      <div class="analytics-container col-md-12 col-lg-4 pl-4">
+        <% if @entry.analytic %>
+          <div class="mt-4">
+            <h4 class="entry-header">Most Used Words</h4>
+            <div id="word-graph" data-words=<%= @data.to_json %>></div>
+          </div>
+          <div class="mt-2">
+            <h4 class="entry-header">Emotions</h4>
+            <%= pie_chart @entry.emotions_hash, colors: ['#BBB5B3', '#96837D', '#D89A8C', '#C56E5A', '#F2E5E2'] %>
+          </div>
+          <br>
+          <br>
+        <% else %>
+          <p>Sorry! Your analytics are still processing. Try again!</p>
+        <% end %>
       </div>
     </div>
   </div>

@@ -25,6 +25,10 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+   def analytics?
+    true
+  end
+
   def new_preferences?
     true
   end
