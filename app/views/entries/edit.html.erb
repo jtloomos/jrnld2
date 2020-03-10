@@ -3,7 +3,10 @@
 <div class="container my-5 px-5 pt-5 pb-5" id="new-edit-entry">
   <div>
     <%= simple_form_for [@entry] do |f| %>
-      <%= f.input :title, label: false, input_html: { class: 'form-control title' } %>
+      <div class="d-flex">
+        <%= f.input :title, label: false, input_html: { class: 'form-control title flex-grow-1' } %>
+        <%= link_to '<i class="far fa-trash-alt p-2"></i>'.html_safe, entries_path %>
+      </div>
       <%= f.input :content, label: false, input_html: { class: 'form-control', rows: 5 } %>
       <div class="row row-cols-1 row-cols-md-2">
         <div class="col pb-2">
@@ -91,8 +94,8 @@
         <%= f.hidden_field :emoji, value: "good", id: "emoji-value"%>
         <%= f.association :tags, label: false, collection: current_user.tags.uniq, input_html: { class: 'select2', multiple: "multiple", id: 'entry-tags-div' } %> <!--NEED TO FILTER for current user -->
       <div class="d-flex justify-content-end">
-        <%= f.button :submit, class: "btn btn-solid" %>
         <%= link_to "Cancel", entry_path(@entry), class: 'btn btn-ghost ml-2' %>
+        <%= f.button :submit, class: "btn btn-solid" %>
       </div>
     <% end %>
   </div>

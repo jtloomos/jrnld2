@@ -14,7 +14,10 @@
 
     <div class="col-lg-9 order-1 order-lg-2">
       <%= simple_form_for [@entry] do |f| %>
-        <%= f.input :title, placeholder: 'Title', label: false, input_html: { class: 'form-control title no-border' } %>
+        <div class="d-flex justify-content-between">
+          <%= f.input :title, placeholder: 'Title', label: false, input_html: { class: 'form-control title no-border flex-grow-1' } %>
+          <%= link_to '<i class="far fa-trash-alt p-2"></i>'.html_safe, entries_path %>
+        </div>
         <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control no-border', rows: 5 } %>
         <%= f.hidden_field :start_entry %>
         <div class="row row-cols-1 row-cols-md-2">
