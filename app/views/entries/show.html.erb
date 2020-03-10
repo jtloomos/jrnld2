@@ -26,49 +26,87 @@
             </div>
             <div class="entry-information mt-2">
               <% unless @entry.analytic.time_spent.empty? %>
-              <span class="text-center mt-2"><i class="fas fa-clock" aria-hidden="true"></i> <%= @entry.analytic.time_spent.to_f.ceil %> min | <i class="fas fa-hashtag" aria-hidden="true"></i> <%= @entry.analytic.word_count %> words | <i class="fas fa-temperature-high" aria-hidden="true"></i> <%= @entry.analytic.temperature %>°F (<%= @entry.analytic.weather.capitalize %>)</span>
+              <span class="text-center mt-2"><i class="fas fa-clock" aria-hidden="true"></i> <%= @entry.analytic.time_spent.to_f.ceil %> min | <i class="fas fa-hashtag" aria-hidden="true"></i> <%= @entry.analytic.word_count %> words | <i class="fas fa-temperature-high" aria-hidden="true"></i>
+                <%= @entry.analytic.temperature %>°F (<%= @entry.analytic.weather.capitalize %>)
+              </span>
               <% end %>
               <br>
               <% unless @entry.analytic.location.empty? %>
-              <span class="text-center mt-2"><i class="fas fa-map-marker-alt"></i> <%= @entry.analytic.location %>
+              <span class="text-center mt-2"><i class="fas fa-map-marker-alt"></i> <%= @entry.analytic.location %></span>
+              <% end %>
+              <br>
+              <% unless @entry.analytic.name_frequencies.empty? %>
+              <span class="text-center mt-2">
+                <i class="fas fa-male"></i>
+                <% @entry.analytic.name_frequencies.each_with_index do |name, index| %>
+                <% if index == @entry.analytic.name_frequencies.length - 1 %>
+                <%= name.name %>
+                <% else %>
+                <%= name.name %>,
                 <% end %>
-                <br>
-                <% unless @entry.analytic.name_frequencies.empty? %>
-                <span class="text-center mt-2"><i class="fas fa-male"></i> <% @entry.analytic.name_frequencies.each_with_index do |name, index| %>
-                  <% if index == @entry.analytic.name_frequencies.length - 1 %>
-                  <%= name.name %>
-                  <% else %>
-                  <%= name.name %>,
-                  <% end %>
-                  <% end %>
-                </span>
                 <% end %>
-              </div>
+              </span>
+              <% end %>
             </div>
-
 
             <h1 class="pt-0 my-4 entry-header"><%= @entry.title %></h1>
             <p class="entry-content"><em><%= @entry.content %></em></p>
+            <% if @entry.photos.attached? %>
+            <button type="button" class="btn btn-solid" data-toggle="modal" data-target="#entry-pictures">
+              See pictures
+            </button>
+            <%= render "entry_pictures", entry: @entry %>
+            <% else %>
+            <p>No pictures</p>
+            <% end %>
             <div id="map" class="rounded shadow mt-4" style="width: 100%; height: 200px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
             </div>
           </div>
         </div>
-
-
-        <div class="analytics-container col-md-12 col-lg-4 px-4">
-          <div class="mt-2">
-            <h4 class="entry-header">Emotions</h4>
-            <%= pie_chart @entry.emotions_hash, colors: ['#BBB5B3', '#96837D', '#D89A8C', '#C56E5A', '#F2E5E2'] %>
-          </div>
-          <br>
-          <br>
-          <div class="mt-4">
-            <h4 class="entry-header">Most Used Words</h4>
-            <%= bar_chart @entry.words_hash, colors: ['#EBE7E6'], dataset: { borderWidth: 0 } %>
-          </div>
+      </div>
+      <div class="analytics-container col-md-12 col-lg-4 px-4">
+        <div class="mt-2">
+          <h4 class="entry-header">Emotions</h4>
+          <%= pie_chart @entry.emotions_hash, colors: ['#BBB5B3', '#96837D', '#D89A8C', '#C56E5A', '#F2E5E2'] %>
         </div>
-
-
+        <br>
+        <br>
+        <div class="mt-4">
+          <h4 class="entry-header">Most Used Words</h4>
+          <div id="word-graph" data-words=<%= @data.to_json %>></div>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+
+
+<script>
+  anychart.onDocumentReady(function() {
+    var data = JSON.parse(document.querySelector('#word-graph').dataset["words"]);
+
+   // create a tag (word) cloud chart
+   var chart = anychart.tagCloud(data);
+
+    // set an array of angles at which the words will be laid out
+    chart.angles([0, -30, 30])
+    // enable a color range
+    var customColorScale = anychart.scales.linearColor();
+    customColorScale.colors(["#A29B9A", "#891B00"]);
+
+    // set the color scale as the color scale of the chart
+    chart.colorScale(customColorScale);
+
+    // add a color range
+    chart.colorRange().enabled(false);
+
+    chart.listen("pointClick", function(e){
+      var url = "/entries?utf8=✓&search%5Bquery%5D=" + e.point.get("x");
+      window.open(url, "_blank");
+    });
+    // display the word cloud chart
+    chart.container("word-graph");
+    chart.draw();
+  });
+</script>
