@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-md-12 col-lg-8 bg-white px-5">
         <div class="row">
-          <div class="col-12 mb-3">
+          <div class="col-12 mb-3 p-0">
             <div class="d-flex justify-content-between">
               <h4 class="mb-2 mr-3 entry-header"><i class="far fa-calendar-check" style="font-size: 30px;"></i> <%= @entry.created_at.strftime("%B %d, %Y") %></h4>
               <div class="entry-emoji"><%= render "shared/emoji", entry: @entry, margin_bottom: 2 %></div>
@@ -47,7 +47,7 @@
 
 
             <h1 class="pt-0 my-4 entry-header"><%= @entry.title %></h1>
-            <p><em><%= @entry.content %></em></p>
+            <p class="entry-content"><em><%= @entry.content %></em></p>
             <div id="map" class="rounded shadow mt-4" style="width: 100%; height: 200px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
             </div>
           </div>
@@ -57,7 +57,7 @@
         <div class="analytics-container col-md-12 col-lg-4 px-4">
           <div class="mt-2">
             <h4 class="entry-header">Emotions</h4>
-            <%= pie_chart @entry.emotions_hash, colors: ['#EECAC1', '#D4A69B', '#D89A8C', '#C56E5A', '#F2E5E2'] %>
+            <%= pie_chart @entry.emotions_hash, colors: ['#BBB5B3', '#96837D', '#D89A8C', '#C56E5A', '#F2E5E2'] %>
           </div>
           <br>
           <br>
