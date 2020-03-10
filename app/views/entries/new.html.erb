@@ -1,13 +1,13 @@
 <br>
 <div class="container pt-2 my-5">
-  <%= simple_form_for [@entry], html: { class: "bg-white px-3" } do |f| %>
-    <div class="d-flex flex-row flex-wrap py-3 w-100">
+  <%= simple_form_for [@entry], html: { class: "bg-white px-3 new-entry-card" } do |f| %>
+    <div class="d-flex flex-row flex-wrap py-3 w-100 pr-4">
 
       <div class="col-lg-3 col-md-12 order-2 order-lg-1 reminder-divider">
         <div class="row">
 
           <div class="d-flex flex-row reminders-container pb-3 h-50 order-2 order-lg-1 col-12">
-            <span class="text-center mr-2" style="color:#D3D3D3">REMINDERS</span>
+            <span class="text-center mr-2" style="color:#891B00">REMINDERS</span>
             <div class="d-flex flex-row flex-wrap justify-content-center">
               <% @reminders.each do |reminder| %>
                 <button type="button" data-content="<%= JSON.generate({ id: reminder.id, title: reminder.title }) %>" class="btn btn-ghost btn-sm mb-2 mr-2 flex-grow-1" id="btn-reminder-<%= reminder.id %>" style="opacity: 0.7;"><%= reminder.title %></button>
@@ -16,17 +16,17 @@
           </div>
 
           <div class="d-flex flex-row tags-container pb-3 pt-3 h-50 order-1 order-lg-2 col-12">
-            <span class="text-center tag-label" style="margin-bottom: 10px; color:#D3D3D3">TAGS</span>
+            <span class="text-center tag-label" style="margin-bottom: 10px; color:#891B00">TAGS</span>
             <%= f.association :tags, placeholder: 'Entry tags...', label: false, collection: current_user.tags.uniq.sort_by { |t| t.title }, input_html: { class: 'select2', multiple: "multiple"} %>
           </div>
 
         </div>
       </div>
 
-      <div class="col-lg-9 col-md-12 order-1 order-lg-2 entry-form">
+      <div class="col-lg-9 col-md-12 order-1 order-lg-2 entry-form pl-4">
         <%= f.input :title, placeholder: 'Title', label: false, input_html: { class: 'form-control title-place borderless', autocomplete:"off" } %>
         <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border location-form borderless', id: "input-entry-page"  }, wrapper_html: { style: 'display: inline', id: "input-entry-page-icons" }%>
-        <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control borderless', rows: 10 } %>
+        <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control borderless mt-4 content-box', rows: 10 } %>
         <%= f.hidden_field :start_entry %>
 
       <div class="d-flex flex-wrap justify-content-between">
@@ -120,7 +120,7 @@
             </div>
             </div>
           <%= f.hidden_field :emoji, value: "good", id: "emoji-value"%>
-          <%= f.button :submit, class: "btn btn-solid mb-2 col-sm-12 col-md-3" %>
+          <%= f.button :submit, class: "btn btn-solid mb-4 col-sm-12 col-md-3" %>
 
       </div>
     </div>
