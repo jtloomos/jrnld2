@@ -4,7 +4,7 @@
 
   <div class="profile-information p-3 col-11 row justify-content-center">
 
-    <div class="col-lg-6 col-sm-12 col-12 py-4 px-5">
+    <div class="col-lg-6 col-sm-12 col-12 py-4 px-5 flex-wrap">
       <div class="profile-picture d-flex justify-content-center justify-items-center p-3">
         <% if @user.photo.attached? %>
         <%= cl_image_tag @user.photo.key, height: 500, width: 400, crop: :fill, class: "avatar-large mt-2" %>
