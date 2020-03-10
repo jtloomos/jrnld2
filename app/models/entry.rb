@@ -4,6 +4,8 @@ class Entry < ApplicationRecord
   has_many :entry_tags
   has_many :tags, through: :entry_tags
 
+  has_many_attached :photos
+
   validates_presence_of :title, :content, :user, :location
   validates :emoji, inclusion: { in: %w[angry sad ok good happy]}
 

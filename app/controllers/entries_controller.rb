@@ -86,7 +86,7 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:title, :content, :location, :start_entry, :emoji)
+    params.require(:entry).permit(:title, :content, :location, :start_entry, :emoji, photos: [])
   end
 
   def create_entry_tags

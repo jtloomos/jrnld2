@@ -1,111 +1,132 @@
 <br>
-
-<div class="container pt-5 pb-4">
-  <div class="row row-cols-1 row-cols-lg-2 px-4 pt-5 pb-5" id="new-edit-entry">
-    <div class="col-lg-3 order-2 order-lg-1 reminder-divider">
-      <p style="margin-bottom: 5px;">Reminders:</p>
-      <% @reminders.each do |reminder| %>
-          <button type="button" data-content="<%= JSON.generate({ id: reminder.id, title: reminder.title }) %>" class="btn btn-ghost btn-sm mb-2" id="btn-reminder-<%= reminder.id %>" style="opacity: 0.7;"><%= reminder.title %></button>
-      <% end %>
-    </div>
-
-<!--     <div class="border-left d-none d-lg-block" style="width: 0px;"></div>
-    <hr class="d-block d-lg-none"> -->
-
-    <div class="col-lg-9 order-1 order-lg-2">
-      <%= simple_form_for [@entry] do |f| %>
-        <%= f.input :title, placeholder: 'Title', label: false, input_html: { class: 'form-control title no-border' } %>
-        <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control no-border', rows: 5 } %>
-        <%= f.hidden_field :start_entry %>
-        <div class="row row-cols-1 row-cols-md-2">
-        <div class="col pb-2">
-          <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border', id: "input-entry-page"  }, wrapper_html: { style: 'display: inline; text-indent: 1em;', id: "input-entry-page-icons" } %>
-        </div>
-        <div class="col pb-2">
-        <ul class="feedback d-flex justify-content-start justify-content-md-end pl-2" id="emoji-list">
-          <li class="angry">
-            <div>
-              <svg class="eye left">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
-                  <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
-                </svg>
-              </svg>
-              <svg class="eye right">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
-                  <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
-                </svg>
-              </svg>
-              <svg class="mouth">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
-                  <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
-                </svg>
-              </svg>
-            </div>
-          </li>
-          <li class="sad">
-            <div>
-              <svg class="eye left">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
-                  <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
-                </svg>
-              </svg>
-              <svg class="eye right">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
-                  <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
-                </svg>
-              </svg>
-              <svg class="mouth">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
-                  <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
-                </svg>
-              </svg>
-            </div>
-          </li>
-          <li class="ok">
-            <div></div>
-          </li>
-          <li class="good active">
-            <div>
-              <svg class="eye left">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
-                  <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
-                </svg>
-              </svg>
-              <svg class="eye right">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
-                  <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
-                </svg>
-              </svg>
-              <svg class="mouth">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
-                  <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
-                </svg>
-              </svg>
-            </div>
-          </li>
-          <li class="happy">
-            <div>
-              <svg class="eye left">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
-                  <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
-                </svg>
-              </svg>
-              <svg class="eye right">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
-                  <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
-                </svg>
-              </svg>
-            </div>
-          </li>
-        </ul>
-        </div>
-        </div>
-        <%= f.hidden_field :emoji, value: "good", id: "emoji-value"%>
-        <%= f.association :tags, placeholder: 'Entry tags...', label: false, collection: current_user.tags.uniq.sort_by { |t| t.title }, input_html: { class: 'select2 no-border', multiple: "multiple", placeholder: '' } %>
-        <div class="d-flex justify-content-start justify-content-md-end">
-          <%= f.button :submit, class: "btn btn-solid mb-4" %>
-        </div>
-      <% end %>
-    </div>
+<div class="container pt-2 my-5">
+  <div class="page-controller mb-2 d-flex justify-content-between align-items-center">
+    <div class="back"><%= link_to '<i class="fas fa-arrow-left pl-3" id="entry-back"></i>'.html_safe, entries_path %></div>
   </div>
+  <%= simple_form_for [@entry], html: { class: "bg-white px-3 new-entry-card" } do |f| %>
+    <div class="d-flex flex-row flex-wrap py-3 w-100 pr-4">
+
+      <div class="col-lg-3 col-md-12 order-2 order-lg-1 reminder-divider">
+        <div class="row">
+
+          <div class="d-flex flex-row reminders-container pb-3 h-50 order-2 order-lg-1 col-12">
+            <span class="text-center mr-2" style="color:#891B00">REMINDERS</span>
+            <div class="d-flex flex-row flex-wrap justify-content-center">
+              <% @reminders.each do |reminder| %>
+                <button type="button" data-content="<%= JSON.generate({ id: reminder.id, title: reminder.title }) %>" class="btn btn-ghost btn-sm mb-2 mr-2 flex-grow-1" id="btn-reminder-<%= reminder.id %>" style="opacity: 0.7;"><%= reminder.title %></button>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="d-flex flex-row tags-container pb-3 pt-3 h-50 order-1 order-lg-2 col-12">
+            <span class="text-center tag-label" style="margin-bottom: 10px; color:#891B00">TAGS</span>
+            <%= f.association :tags, placeholder: 'Entry tags...', label: false, collection: current_user.tags.uniq.sort_by { |t| t.title }, input_html: { class: 'select2', multiple: "multiple"} %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-9 col-md-12 order-1 order-lg-2 entry-form pl-4">
+        <%= f.input :title, placeholder: 'Title', label: false, input_html: { class: 'form-control title-place borderless', autocomplete:"off" } %>
+        <%= f.input :location, placeholder: 'Current location', label: false, input_html: { class: 'form-control auto-address no-border location-form borderless', id: "input-entry-page"  }, wrapper_html: { style: 'display: inline', id: "input-entry-page-icons" }%>
+        <%= f.input :content, placeholder: 'What\'s on your mind?', label: false, input_html: { class: 'form-control borderless mt-4 content-box', rows: 10 } %>
+        <%= f.hidden_field :start_entry %>
+
+      <div class="d-flex flex-wrap justify-content-between">
+
+
+
+        <div class="col-sm-12 col-md-9 p-0 mb-2">
+          <div class="flex-row d-flex">
+            <label class="camera">
+              <i class="fas fa-camera"></i> |
+              <span style="display:none;">
+                <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+              </span>
+            </label>
+            <ul class="feedback d-flex justify-content-start pl-2 align-items-center" id="emoji-list">
+                <li class="angry">
+                  <div>
+                    <svg class="eye left">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                      </svg>
+                    </svg>
+                    <svg class="eye right">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                      </svg>
+                    </svg>
+                    <svg class="mouth">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
+                        <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
+                      </svg>
+                    </svg>
+                  </div>
+                </li>
+                <li class="sad">
+                  <div>
+                    <svg class="eye left">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                      </svg>
+                    </svg>
+                    <svg class="eye right">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                      </svg>
+                    </svg>
+                    <svg class="mouth">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
+                        <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
+                      </svg>
+                    </svg>
+                  </div>
+                </li>
+                <li class="ok">
+                  <div></div>
+                </li>
+                <li class="good active">
+                  <div>
+                    <svg class="eye left">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                      </svg>
+                    </svg>
+                    <svg class="eye right">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                      </svg>
+                    </svg>
+                    <svg class="mouth">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
+                        <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
+                      </svg>
+                    </svg>
+                  </div>
+                </li>
+                <li class="happy">
+                  <div>
+                    <svg class="eye left">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                      </svg>
+                    </svg>
+                    <svg class="eye right">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                      </svg>
+                    </svg>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            </div>
+          <%= f.hidden_field :emoji, value: "good", id: "emoji-value"%>
+          <%= f.button :submit, class: "btn btn-solid mb-4 col-sm-12 col-md-3" %>
+
+      </div>
+    </div>
+
+  </div>
+  <% end %>
 </div>

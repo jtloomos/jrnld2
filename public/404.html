@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>The page you are looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
+  /*.rails-default-error-page {
     background-color: #EFEFEF;
     color: #2E2F30;
     text-align: center;
@@ -50,18 +50,83 @@
     border-top-color: #DADADA;
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+    }*/
+
+  body {
+    background-color: #ebe7e6;
   }
+
+  .card {
+    width: 500px;
+    margin: 50px auto;
+    background-color: white;
+    border-radius: 3px;
+  }
+
+  .card-body {
+    padding: 0px 30px 40px 30px;
+  }
+
+  .card-img {
+    width: 100%;
+  }
+
+  h1, p, a {
+    font-family: arial, sans-serif;
+    color: #333333;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 14px;
+    padding-bottom: 20px;
+  }
+
+  a {
+    padding: 0.85em 1.8em;
+    background-color: #891B00;
+    border-radius: 3px;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover{
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 600px) {
+    .card {
+      width: 80%;
+    }
+  }
+
   </style>
+
 </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
+<!-- <body class="rails-default-error-page">
   <div class="dialog">
     <div>
       <h1>The page you were looking for doesn't exist.</h1>
       <p>You may have mistyped the address or the page may have moved.</p>
     </div>
     <p>If you are the application owner check the logs for more information.</p>
+  </div>
+</body> -->
+
+<body>
+  <div class="card">
+    <img class="card-img" src="lost.jpg" alt="hand lost in the field">
+    <div class="card-body">
+      <h1>404 ERROR</h1>
+      <p>The page you're looking for could not be found... <br><br>Are you lost? <br>You should try JRNLD. <br><br>You just might find yourself.</p>
+      <a href="http://www.jrnld.co">Go to JRNLD</a>
+    </div>
   </div>
 </body>
 </html>

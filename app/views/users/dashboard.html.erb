@@ -1,46 +1,55 @@
 <div class="tasks-section mt-5 d-flex flex-column justify-content-center height-100">
   <div class="tasks-container-header pt-5">
+    <h5><%= Date.today.strftime('%A %B %d') %></h5>
     <h1>Welcome, <%= current_user.first_name %>!</h1>
   </div>
   <div class="task-container">
     <div class="tasks-list row justify-content-center">
       <% if current_user.entries.empty? %>
         <div class="task-container col-11">
-          <div class="task-card">
-            <figure>
-              <i class="fas fa-edit"></i>
-            </figure>
-             <h3 class="task-title"><%= link_to "Start new entry", new_entry_path %></h3>
-             <p class="task-description">Capture daily thoughts, emotions and images.</p>
-          </div>
+          <%= link_to new_entry_path, class: 'dashboard-task-card' do %>
+            <div class="task-card">
+              <figure>
+                <i class="fas fa-edit"></i>
+              </figure>
+               <h3 class="task-title">Start new entry</h3>
+               <p class="task-description">Capture daily thoughts, emotions and images.</p>
+            </div>
+          <% end %>
         </div>
       <% else %>
         <div class="task-container col-lg-4 col-sm-7 col-11">
-          <div class="task-card">
-            <figure>
-              <i class="fas fa-edit"></i>
-            </figure>
-             <h3 class="task-title"><%= link_to "Start new entry", new_entry_path %></h3>
-             <p class="task-description">Capture daily thoughts, emotions and images.</p>
-          </div>
+          <%= link_to new_entry_path, class: 'dashboard-task-card' do %>
+            <div class="task-card">
+              <figure>
+                <i class="fas fa-edit"></i>
+              </figure>
+              <h3 class="task-title">Start new entry</h3>
+              <p class="task-description">Capture daily thoughts, emotions and images.</p>
+            </div>
+          <% end %>
         </div>
         <div class="task-container col-lg-4 col-sm-7 col-11">
-          <div class="task-card">
-            <figure>
-              <i class="fas fa-list"></i>
-            </figure>
-            <h3 class="task-title"><%= link_to "View all entries", entries_path %></h3>
-            <p class="task-description">View or search for journal entries.</p>
-          </div>
+          <%= link_to entries_path, class: 'dashboard-task-card' do %>
+            <div class="task-card">
+              <figure>
+                <i class="fas fa-list"></i>
+              </figure>
+              <h3 class="task-title">View all entries</h3>
+              <p class="task-description">View or search for journal entries.</p>
+            </div>
+          <% end %>
         </div>
         <div class="task-container col-lg-4 col-sm-7 col-11">
-          <div class="task-card">
-            <figure>
-              <i class="fas fa-chart-bar"></i>
-            </figure>
-            <h3 class="task-title"><%= link_to "My analytics", analytics_path(current_user) %></h3>
-            <p class="task-description">Get insights from JRNLD analytics.</p>
-          </div>
+          <%= link_to analytics_path(current_user), class: 'dashboard-task-card' do %>
+            <div class="task-card">
+              <figure>
+                <i class="fas fa-chart-bar"></i>
+              </figure>
+              <h3 class="task-title">My analytics</h3>
+              <p class="task-description">Get insights from JRNLD analytics.</p>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
