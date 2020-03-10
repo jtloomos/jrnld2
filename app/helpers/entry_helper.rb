@@ -171,13 +171,13 @@ STOPWORDS = ["i",
   end
 
   def self.weather(date, latitude, longitude)
-    response = RestClient.get "https://api.darksky.net/forecast/f9f27a4fe0552c816b83982f83238af6/#{latitude},#{longitude},#{date.to_time.to_i}?exclude=currently,flags"
+    response = RestClient.get "https://api.darksky.net/forecast/fe0831cdbe63483548a3ed76d5c67742/#{latitude},#{longitude},#{date.to_time.to_i}?exclude=currently,flags"
     data = JSON.parse( response )
     weather = data["daily"]["data"].first["icon"]
   end
 
   def self.temperature(date, latitude, longitude)
-    response = RestClient.get "https://api.darksky.net/forecast/f9f27a4fe0552c816b83982f83238af6/#{latitude},#{longitude},#{date.to_time.to_i}?exclude=currently,flags"
+    response = RestClient.get "https://api.darksky.net/forecast/fe0831cdbe63483548a3ed76d5c67742/#{latitude},#{longitude},#{date.to_time.to_i}?exclude=currently,flags"
     data = JSON.parse( response )
     temperature = data["daily"]["data"].first["temperatureHigh"]
   end

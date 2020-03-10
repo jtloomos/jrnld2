@@ -29,7 +29,8 @@ class EntriesController < ApplicationController
     @markers = @entries.map do |entry|
       {
         lat: entry.latitude,
-        lng: entry.longitude,
+        lng: entry.longitude
+        # image_url: helpers.asset_path("map-marker.svg"),
         infoWindow: render_to_string(partial: "info_window", locals: { entry: entry }),
       }
     end
@@ -38,12 +39,13 @@ class EntriesController < ApplicationController
   def show
     @entry = Entry.find(params[:id])
     authorize @entry
-    @analytic = Analytic.find_by_entry_id(params[:entry_id])
+    @analytic = @entry.analytic
 
     @markers =[
       {
         lat: @entry.latitude,
         lng: @entry.longitude
+        # image_url: helpers.asset_path("map-marker.svg")
       }]
   end
 
