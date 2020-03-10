@@ -51,7 +51,42 @@ class UsersController < ApplicationController
   end
 
   def analytics
+    @user = current_user
+    authorize @user
 
+
+
+    all_entries = []
+    @user.entries.map do |entry|
+      entry_array = []
+      entry_array << entry.country
+      entry_array << entry.analytic.word_count
+      all_entries << entry_array
+    end
+    entries_hash = all_entries.each_with_object(Hash.new(0)) do |(key, value), hash|
+      hash[key] += value
+    end
+
+    @region = [['Country', 'Words']]
+    entries_hash.each do |key,value|
+      entry_pair = []
+      entry_pair << key
+      entry_pair << value
+      @region << entry_pair
+    end
+
+    @region.to_json
+
+
+    # @region = [
+    #       ['Country', 'Words'],
+    #       ['Germany', 200],
+    #       ['United States', 300],
+    #       ['Brazil', 400],
+    #       ['Canada', 500],
+    #       ['France', 600],
+    #       ['RU', 700]
+    #     ].to_json
   end
 
   def destroy

@@ -12,7 +12,12 @@ class Entry < ApplicationRecord
   geocoded_by :location
   after_validation :geocode
 
-  after_commit :async_update # Run on create & update
+  after_commit :async_update, on: [:create, :update] # Run on create & update
+
+  def country
+    coordinates = self.geocode
+    Geocoder.search(coordinates).first.country
+  end
 
   def emotions_hash
     analytic.emotions.each_with_object({}) { | emotion, result |
