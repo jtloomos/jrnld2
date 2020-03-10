@@ -69,6 +69,7 @@ class EntriesController < ApplicationController
   def edit
     @entry = Entry.find(params[:id])
     authorize @entry
+    @reminders = Reminder.where(user_id: current_user.id)
   end
 
   def update
