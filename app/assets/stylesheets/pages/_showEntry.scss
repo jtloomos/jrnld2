@@ -58,6 +58,14 @@
   width: 50%;
 }
 
+#ac_layer_e, #ac_layer_f, #ac_layer_i, #ac_path_c, #ac_path_f {
+  display: none;
+}
+
+.anychart-credits {
+  display: none;
+}
+
 @media (min-width: 1600px) {
   .container {
     max-width: 1500px;

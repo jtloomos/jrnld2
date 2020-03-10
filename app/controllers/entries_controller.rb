@@ -45,6 +45,8 @@ class EntriesController < ApplicationController
         lat: @entry.latitude,
         lng: @entry.longitude
       }]
+
+    @data = @entry.analytic.word_frequencies.map {|element| { 'x': element.word, 'value': element.frequency } }
   end
 
   def new
