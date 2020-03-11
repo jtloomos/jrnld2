@@ -142,7 +142,7 @@ module EntryHelper
       word_count: self.counter(entry.content),
       words: self.frequency(entry.content),
       emotion: self.emotion(entry.content),
-      weather: self.weather(entry.created_at, entry.latitude, entry.longitude),
+      weather: self.weather(entry.latitude, entry.longitude),
       people: self.names(entry.content)
     }
   end
@@ -180,11 +180,11 @@ module EntryHelper
     counter.token_frequency.first(30)
   end
 
-  def self.weather(date, latitude, longitude)
-    response = RestClient.get "https://api.darksky.net/forecast/fe0831cdbe63483548a3ed76d5c67742/#{latitude},#{longitude},#{date.to_time.to_i}?exclude=currently,flags"
+  def self.weather(latitude, longitude)
+    response = RestClient.get "api.openweathermap.org/data/2.5/weather?lat=#{latitude}&lon=#{longitude}&units=imperial&appid=94fa99376d961a3cec23c781e7cc1fe2"
     data = JSON.parse( response )
-    description = data["daily"]["data"].first["icon"]
-    temperature = data["daily"]["data"].first["temperatureHigh"]
+    description = data["weather"].first["main"]
+    temperature = data["main"]["temp"]
     {description: description, temperature: temperature}
     rescue RestClient::BadRequest => e
       {description: EMPTY_VALUE, temperature: EMPTY_VALUE}

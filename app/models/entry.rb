@@ -1,7 +1,7 @@
 class Entry < ApplicationRecord
   belongs_to :user
-  has_one :analytic
-  has_many :entry_tags
+  has_one :analytic, dependent: :destroy
+  has_many :entry_tags, dependent: :destroy
   has_many :tags, through: :entry_tags
 
   has_many_attached :photos
@@ -12,7 +12,7 @@ class Entry < ApplicationRecord
   geocoded_by :location
   after_validation :geocode
 
-  after_commit :async_update # Run on create & update
+  after_commit :async_update, on: [:create, :update] # Run on create & update
 
   def emotions_hash
     analytic.emotions.each_with_object({}) { | emotion, result |

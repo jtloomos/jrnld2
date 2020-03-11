@@ -28,4 +28,8 @@ class EntryPolicy < ApplicationPolicy
   def map?
     true
   end
+
+  def destroy?
+    @user == @record.user
+  end
 end

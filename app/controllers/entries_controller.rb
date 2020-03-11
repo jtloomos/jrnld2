@@ -84,6 +84,11 @@ class EntriesController < ApplicationController
   end
 
   def destroy
+    @entry = Entry.find(params[:id])
+    authorize @entry
+    @entry.destroy
+
+    redirect_to entries_path
   end
 
   private
