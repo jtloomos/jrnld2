@@ -1,8 +1,25 @@
 .new-entry-picture {
   border-radius: 5px;
-  box-shadow: 2px 2px 2px $secondary-color;
+  box-shadow: 3px 3px 3px gray;
   margin-top: -200px;
 }
+
+@media (max-width: 525px) {
+  .new-entry-picture {
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px gray;
+  margin-top: -100px;
+  }
+}
+
+@media (max-width: 370px) {
+  .new-entry-picture {
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px gray;
+  margin-top: -50px;
+  }
+}
+
 
 span.meet-jrnld {
   color: gray;
@@ -56,7 +73,9 @@ span.meet-jrnld {
 .features-section {
   background-color: white;
   padding-bottom: 100px;
-  padding-top: 100px
+  padding-top: 100px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .features-container-header {
@@ -78,7 +97,7 @@ span.meet-jrnld {
 .features-list {
   display: flex;
   justify-content: space-between;
-  margin: 16px;
+
 }
 
 .feature-card {
@@ -129,7 +148,7 @@ span.meet-jrnld {
 .map-section {
   background-color: #891b0040;
   padding-top: 100px;
-  padding-bottom: 100px;
+  padding-bottom: 60px;
   color: white;
 }
 
@@ -157,7 +176,9 @@ span.meet-jrnld {
 .analytics-section {
   background-color: white;
   padding-top: 100px;
-  padding-bottom: 100px;
+  padding-bottom: 60px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .other-image {
