@@ -1,5 +1,6 @@
 import "bootstrap";
 import "../entries/new";
+import "../entries/index";
 import "../preferences/add";
 import { loadDynamicBannerText } from '../plugins/typed';
 import 'mapbox-gl/dist/mapbox-gl.css'; // <-- you need to uncomment the stylesheet_pack_tag in the layout!
