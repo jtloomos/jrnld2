@@ -12,7 +12,6 @@ gem 'rails', '5.2.4.1'
 gem 'redis'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
-gem 'gsl'
 
 # gem 'paralleldots', '~> 3.2.9'
 gem 'rest-client', '~> 2.0.2'
