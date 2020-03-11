@@ -55,7 +55,8 @@ span.meet-jrnld {
 // Features-specific CSS
 .features-section {
   background-color: white;
-  padding-bottom: 30px;
+  padding-bottom: 100px;
+  padding-top: 100px
 }
 
 .features-container-header {
@@ -125,8 +126,11 @@ span.meet-jrnld {
 }
 
 //Map section CSS
-.maps-section {
-  background-color: #891b006b;
+.map-section {
+  background-color: #891b0040;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  color: white;
 }
 
 .maps-container {
@@ -152,6 +156,8 @@ span.meet-jrnld {
 }
 .analytics-section {
   background-color: white;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .other-image {
@@ -183,5 +189,26 @@ span.meet-jrnld {
     display: inline;
   }
 }
+}
+
+.additional-section {
+  background-color: #891b0040;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  color: white;
+}
+
+.additional-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 16px;
+  margin: 16px;
+  color: black;
+}
+
+.contact-section {
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 

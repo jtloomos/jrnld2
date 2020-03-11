@@ -5,7 +5,7 @@
         <span id="banner-typed-text"></span>
       </h3>
     </div>
-    <a class="btn btn-ghost align-self-center" href="/users/sign_up">Start for free</a>
+    <a class="btn btn-ghost align-self-center px-5" href="/users/sign_up">Start for free</a>
     <p>Already a member?</p>
     <p class="log-in"><%= link_to "Log-in to your account", "/users/sign_in" %></p>
   </div>
@@ -13,11 +13,11 @@
 
 <div class="d-flex justify-content-center bg-white">
   <div class="col-md-9">
-    <%= image_tag 'NewEntry.jpg', class: 'w-100 new-entry-picture' %>
+    <%= video_tag 'new-entry-clip.mp4', class: 'w-100 new-entry-picture', muted: 'muted', autoplay: "autoplay", loop: "loop" %>
   </div>
 </div>
 
-<div class="features-section pt-5">
+<div class="features-section">
   <div class="features-container-header">
     <span class="meet-jrnld">MEET JRNLD</span>
     <h4 class="pt-3">Simple. Smart. Secure. </h4>
@@ -55,7 +55,7 @@
   </div>
 </div>
 
-<div class="map-section pt-5">
+<div class="map-section">
   <div class="maps-container">
     <div class="maps-list row justify-content-center">
       <div class="maps-container d-flex flex-column justify-content-start col-lg-4 px-3">
@@ -64,7 +64,7 @@
           <h3 class="mb-0">Maps</h3>
         </div>
         <span class="pt-4 text-justify">JRNLD let's you easily track the location of your journal entries around the world. Our map is flexible and robust, allowing you to better understand your mobility habits, while also giving you the ability to view journals by city, country, or region. </span>
-        <a class="btn btn-solid align-self-start ml-0" href="/users/sign_up">Get Started</a>
+        <a class="btn btn-ghost align-self-start ml-0" href="/users/sign_up">Get Started</a>
       </div>
       <div class="maps-container col-lg-6">
         <%= image_tag 'My Map.jpg', class: 'w-100 map-image align-self-start' %>
@@ -73,7 +73,7 @@
   </div>
 </div>
 
-<div class="analytics-section pt-5">
+<div class="analytics-section">
   <div class="maps-container">
     <div class="maps-list row justify-content-center">
       <div class="maps-container col-md-11 col-lg-7">
@@ -91,9 +91,9 @@
   </div>
 </div>
 
-<div class="map-section pt-3">
+<div class="additional-section">
   <h3 class="mb-0 mt-4 text-center">A variety of additional features...</h3>
-  <div class="maps-container d-flex flex-wrap justify-content-around">
+  <div class="additional-container d-flex flex-wrap justify-content-around">
     <div class="maps-container col-lg-5 col-sm-12 d-flex flex-column other-image bg-white pt-4">
       <div class="d-flex justify-content-center pb-2">
         <i class="fas fa-bell pr-2"></i>
@@ -102,7 +102,7 @@
       <h6 class="text-center pb-1">never forget to journal.</h6>
       <%= image_tag 'frequency.png', class: 'w-100' %>
     </div>
-    <div class="maps-container col-lg-5 col-sm-12 d-flex flex-column other-image bg-white pt-4">
+    <div class="additional-container col-lg-5 col-sm-12 d-flex flex-column other-image bg-white pt-4">
       <div class="d-flex justify-content-center pb-2">
         <i class="fas fa-sticky-note pr-2"></i>
         <h3 class="mb-0">Reminders</h3>
@@ -113,7 +113,7 @@
   </div>
 </div>
 
-<div class="contact-section py-5">
+<div class="contact-section">
   <h3 class="mb-5 mt-2 text-center">A Global Presence</h3>
   <div class="locations-container d-flex flex-wrap justify-content-around mt-3">
     <%= render "contact_item", {location: "Buenos Aires, Argentina", phone: " +54 9 11 5571 9154", photo:"Argentina.png" } %>
