@@ -1,29 +1,33 @@
 <div class="banner mt-5 py-5">
-  <div class="banner-content d-flex flex-column justify-content-center" style="height: 500px;">
-    <h3>A journal made for the modern world</h3>
-    <a class="btn btn-ghost w-25 align-self-center" href="/users/sign_up">Start for free</a>
+  <div class="banner-content d-flex flex-column justify-content-start" style="height: 500px;">
+    <div>
+      <h3 class="text-center">
+        <span id="banner-typed-text"></span>
+      </h3>
+    </div>
+    <a class="btn btn-ghost align-self-center" href="/users/sign_up">Start for free</a>
     <p>Already a member?</p>
     <p class="log-in"><%= link_to "Log-in to your account", "/users/sign_in" %></p>
   </div>
 </div>
 
-<!-- <div class="video-container">
-  <div class="video-card">
-    <p>Here will be a video</p>
+<div class="d-flex justify-content-center bg-white">
+  <div class="col-md-9">
+    <%= image_tag 'NewEntry.jpg', class: 'w-100 new-entry-picture' %>
   </div>
 </div>
- -->
-<div class="features-section">
-  <div class="features-container-header">
-    <h4>Simple. Smart. Secure. </h4>
-  </div>
 
+<div class="features-section pt-5">
+  <div class="features-container-header">
+    <span class="meet-jrnld">MEET JRNLD</span>
+    <h4 class="pt-3">Simple. Smart. Secure. </h4>
+  </div>
   <div class="feature-container">
     <div class="features-list row justify-content-center">
       <div class="feature-container col-lg-4 col-sm-7 col-11">
         <div class="feature-card">
           <figure>
-            <i class="fas fa-edit"></i>
+            <i class="fas fa-pencil-alt"></i>
           </figure>
           <h3 class="feature-title">Simple</h3>
           <p class="feature-description">Capture your daily thoughts, emotions and images in our simple and easy-to-use format.</p>
@@ -51,80 +55,72 @@
   </div>
 </div>
 
-<div class="benefits-section">
-  <div class="benefits row justify-content-center">
-    <div class="benefits-container col-lg-7 col-md-7 col-12">
-      <div class="benefits-container-header">
-        <h4>Benefits of journaling</h4>
+<div class="map-section pt-5">
+  <div class="maps-container">
+    <div class="maps-list row justify-content-center">
+      <div class="maps-container d-flex flex-column justify-content-start col-lg-4 px-3">
+        <div class="d-flex">
+          <i class="fas fa-map-marked-alt pr-2"></i>
+          <h3 class="mb-0">Maps</h3>
+        </div>
+        <span class="pt-4 text-justify">JRNLD let's you easily track the location of your journal entries around the world. Our map is flexible and robust, allowing you to better understand your mobility habits, while also giving you the ability to view journals by city, country, or region. </span>
+        <a class="btn btn-solid align-self-start ml-0" href="/users/sign_up">Get Started</a>
       </div>
-      <div class="benefits-list">
-        <div class="benefit-card">
-          <figure>
-            <i class="fas fa-lightbulb"></i>
-          </figure>
-          <span class="benefit-content">Capture ideas on the go</span>
-        </div>
-        <div class="benefit-card">
-          <figure>
-            <i class="fas fa-brain"></i>
-          </figure>
-          <span class="benefit-content">Self-reflect and improve emotional intelligence</span>
-        </div>
-        <div class="benefit-card">
-          <figure>
-            <i class="fas fa-tasks"></i>
-          </figure>
-          <span class="benefit-content">Set and achieve your goals</span>
-        </div>
-        <div class="benefit-card">
-          <figure>
-            <i class="fas fa-music"></i>
-          </figure>
-          <span class="benefit-content">Spark your inner creativity</span>
-        </div>
-        <div class="benefit-card">
-          <figure>
-            <i class="far fa-comment-dots"></i>
-          </figure>
-          <span class="benefit-content">Boost your memory and comprehension</span>
-        </div>
-        <div class="benefit-card">
-          <figure>
-            <i class="fas fa-spa"></i>
-          </figure>
-          <span class="benefit-content">Relieve stress and invoke mindfulness</span>
-        </div>
-      </div>
-    </div>
-    <div class="benefits-pic-container col-lg-5 col-md-5 col-12">
-      <img src="https://images.unsplash.com/photo-1531487488304-2ec4bd9788f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="Journaling">
-    </div>
-  </div>
-</div>
-
-<div class="reviews-section">
-  <div class="reviews-container-header">
-    <h4>What our users say</h4>
-  </div>
-
-  <div class="reviews-list row justify-content-center">
-    <div class="review-container col-11">
-      <div class="review-card">
-        <p class="review-content">JRNLD helps me to learn from the past and to reflect on the most significant moments in life.</p>
-        <p class="review-name">Laura Demeysonnet</p>
-      </div>
-    </div>
-    <div class="review-container col-11">
-      <div class="review-card">
-        <p class="review-content">I've never been good with keeping up with journals, but with JRNLD I haven't missed a day!</p>
-        <p class="review-name">Tom Jefferson</p>
-      </div>
-    </div>
-    <div class="review-container col-11">
-      <div class="review-card">
-        <p class="review-content">JRNLD has made me improve my daily life - best app I've downloaded!</p>
-        <p class="review-name">Karim Mud</p>
+      <div class="maps-container col-lg-6">
+        <%= image_tag 'My Map.jpg', class: 'w-100 map-image align-self-start' %>
       </div>
     </div>
   </div>
 </div>
+
+<div class="analytics-section pt-5">
+  <div class="maps-container">
+    <div class="maps-list row justify-content-center">
+      <div class="maps-container col-md-11 col-lg-7">
+        <%= image_tag 'allemotions.png', class: 'w-100 analytics-image align-self-start' %>
+      </div>
+      <div class="maps-container d-flex flex-column justify-content-start col-md-11 col-lg-4 px-3">
+        <div class="d-flex justify-content-end">
+          <i class="fas fa-chart-bar pr-2"></i>
+          <h3 class="mb-0">Analytics</h3>
+        </div>
+        <span class="pt-4 text-justify">JRNLD's analytics module incorporates world-class natural language processing and algorithimic APIs to help you make the most of your daily journal. From interpretting semantics to interpreting the emotional undertones of your writing, you will now be able to better understand yourself, your thoughts, and your habits. JRNLD also tracks weather patterns, the people you write about, and the places you visit to help you understand trends and feel better.</span>
+        <a class="btn btn-solid align-self-end ml-0" href="/users/sign_up">Get Started</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="map-section pt-3">
+  <h3 class="mb-0 mt-4 text-center">A variety of additional features...</h3>
+  <div class="maps-container d-flex flex-wrap justify-content-around">
+    <div class="maps-container col-lg-5 col-sm-12 d-flex flex-column other-image bg-white pt-4">
+      <div class="d-flex justify-content-center pb-2">
+        <i class="fas fa-bell pr-2"></i>
+        <h3 class="mb-0">Notifications</h3>
+      </div>
+      <h6 class="text-center pb-1">never forget to journal.</h6>
+      <%= image_tag 'frequency.png', class: 'w-100' %>
+    </div>
+    <div class="maps-container col-lg-5 col-sm-12 d-flex flex-column other-image bg-white pt-4">
+      <div class="d-flex justify-content-center pb-2">
+        <i class="fas fa-sticky-note pr-2"></i>
+        <h3 class="mb-0">Reminders</h3>
+      </div>
+      <h6 class="text-center pb-1">journal about what matters.</h6>
+      <%= image_tag 'reminders1.png', class: 'w-100' %>
+    </div>
+  </div>
+</div>
+
+<div class="contact-section py-5">
+  <h3 class="mb-5 mt-2 text-center">A Global Presence</h3>
+  <div class="locations-container d-flex flex-wrap justify-content-around mt-3">
+    <%= render "contact_item", {location: "Buenos Aires, Argentina", phone: " +54 9 11 5571 9154", photo:"Argentina.png" } %>
+    <%= render "contact_item", {location: "Chicago, United States", phone: " +1 224 875 0500", photo:"USA.png" } %>
+    <%= render "contact_item", {location: "Hong Kong, Hong Kong", phone: " +1 647 285 8516", photo:"Hong Kong.png" } %>
+    <%= render "contact_item", {location: "Paris, France", phone: " +49 1516 461 2270", photo:"France.png" } %>
+  </div>
+</div>
+
+

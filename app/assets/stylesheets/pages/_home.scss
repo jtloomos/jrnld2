@@ -1,4 +1,13 @@
-// Banner-specific CSS
+.new-entry-picture {
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px $secondary-color;
+  margin-top: -200px;
+}
+
+span.meet-jrnld {
+  color: gray;
+}
+
 .banner {
   display: flex;
   align-items: center;
@@ -6,7 +15,7 @@
   text-align: center;
   flex-direction: column;
   background-color: $primary-color;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   // background-image: url(background.png);
   // background-repeat: repeat;
@@ -34,6 +43,7 @@
   }
 }
 
+// Banner-specific CSS
 .banner p {
   margin-bottom: 4px;
 }
@@ -41,26 +51,6 @@
 .banner .btn-ghost {
   margin: 52px 0px;
 }
-
-
-// Video-specific CSS
-.video-container {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  background-color: white;
-  height: 60vh;
-}
-
-.video-card {
-  border: 1px solid $primary-color;
-  border-radius: 5px;
-  width: 70%;
-  height: 90%;
-  margin: auto;
-  box-shadow: 2px 2px 2px $primary-color;
-}
-
 
 // Features-specific CSS
 .features-section {
@@ -127,113 +117,71 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: black;
 }
 
 .feature-card figure .fas {
   font-size: 35px;
 }
-// Benefits-specific CSS
-.benefits-section {
-  background-color: $secondary-color;
+
+//Map section CSS
+.maps-section {
+  background-color: #891b006b;
 }
 
-.benefits-container-header {
-  width: 100%;
-  background-color: $secondary-color;
-  text-align: left;
-  padding-top: 30px;
-  color: $primary-color;
-  padding-left: 16px;
-}
-
-.benefits {
-  display: flex;
-  justify-content: space-between;
-}
-
-.benefits-container {
-  padding-left: 30px;
-}
-
-.benefits-pic-container img {
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  position: sticky;
-  height: 100%;
-  object-fit: cover;
-}
-
-.benefit-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-}
-
-.benefits-list figure {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  flex-grow: 0;
-  background-color: $secondary-color;
-  border: 1px solid black;
-  margin: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.benefits-list .benefit-content {
-  width: 85%;
-}
-
-// Review-specific CSS
-.reviews-section {
-  background-color: white;
-}
-
-.reviews-container-header {
-  width: 100%;
-  background-color: white;
-  text-align: center;
-  padding-top: 30px;
-  color: $primary-color;
-}
-
-.reviews-list {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 30px;
-}
-
-.review-container {
+.maps-container {
   display: flex;
   justify-content: center;
   align-content: center;
   padding-bottom: 16px;
-  width: 100%;
+  margin: 16px;
 }
 
-.review-card {
-  background-color: white;
-  opacity: 0.8;
-  border: 1px solid $secondary-color;
+.maps-container .fas {
+  font-size: 28px;
+}
+
+.map-image {
   border-radius: 2px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  margin: 20px;
+  box-shadow: 2px 2px 2px gray;
+}
+
+.analytics-image {
+  border-radius: 2px;
   box-shadow: 2px 2px 2px $secondary-color;
-  height: 100%;
-  align-content: flex-start;
-  width: 100%;
-  p {
-    padding: 0px 16px;
+}
+.analytics-section {
+  background-color: white;
+}
+
+.other-image {
+  box-shadow: 2px 2px 2px gray;
+  border-radius: 2px;
+}
+
+.contact-section {
+  background-color: white;
+}
+
+.contact-card {
+  a {
+  text-decoration: none;
+  color: black;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+  img {
+    display: none;
   }
 }
 
-.review-card .review-content {
-  font-style: italic;
+@media (min-width: 768px) {
+  .contact-card {
+  img {
+    height: 100px;
+    display: inline;
+  }
 }
+}
+
