@@ -14,6 +14,8 @@ class Entry < ApplicationRecord
 
   after_commit :async_update, on: [:create, :update] # Run on create & update
 
+  default_scope { order(created_at: :desc) }
+
   def emotions_hash
     analytic.emotions.each_with_object({}) { | emotion, result |
       result[emotion.emotion] = emotion.level if emotion.level > 0
