@@ -142,7 +142,7 @@ module EntryHelper
       word_count: self.counter(entry.content),
       words: self.frequency(entry.content),
       emotion: self.emotion(entry.content),
-      weather: self.weather(entry.created_at, entry.latitude, entry.longitude),
+      weather: self.weather(entry.latitude, entry.longitude),
       people: self.names(entry.content)
     }
   end
@@ -150,14 +150,14 @@ module EntryHelper
   def self.emotion(text)
     response = RestClient.post "https://apis.paralleldots.com/v4/emotion", { api_key: "74RQDEfsE5rnrI7XNUMX620PmBemLIszVe3ywjnAfmk", text: text }
     data = JSON.parse( response )
-    return EMPTY_VALUE if data["code"] == 400
+    return EMPTY_VALUE if ["400", "403"].include? data["code"]
     data["emotion"]
   end
 
   def self.names(text)
     response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "74RQDEfsE5rnrI7XNUMX620PmBemLIszVe3ywjnAfmk", text: text }
     data = JSON.parse( response )
-    return EMPTY_VALUE if data["code"] == 400
+    return EMPTY_VALUE if ["400", "403"].include? data["code"]
     names_array = []
     data["entities"].each do | names_hash |
       if (names_hash["category"] == "name") && (names_hash["confidence_score"] >= 0.60)
@@ -180,11 +180,11 @@ module EntryHelper
     counter.token_frequency.first(30)
   end
 
-  def self.weather(date, latitude, longitude)
-    response = RestClient.get "https://api.darksky.net/forecast/fe0831cdbe63483548a3ed76d5c67742/#{latitude},#{longitude},#{date.to_time.to_i}?exclude=currently,flags"
+  def self.weather(latitude, longitude)
+    response = RestClient.get "api.openweathermap.org/data/2.5/weather?lat=#{latitude}&lon=#{longitude}&units=imperial&appid=94fa99376d961a3cec23c781e7cc1fe2"
     data = JSON.parse( response )
-    description = data["daily"]["data"].first["icon"]
-    temperature = data["daily"]["data"].first["temperatureHigh"]
+    description = data["weather"].first["main"]
+    temperature = data["main"]["temp"]
     {description: description, temperature: temperature}
     rescue RestClient::BadRequest => e
       {description: EMPTY_VALUE, temperature: EMPTY_VALUE}

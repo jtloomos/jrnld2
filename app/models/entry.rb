@@ -1,7 +1,7 @@
 class Entry < ApplicationRecord
   belongs_to :user
-  has_one :analytic
-  has_many :entry_tags
+  has_one :analytic, dependent: :destroy
+  has_many :entry_tags, dependent: :destroy
   has_many :tags, through: :entry_tags
 
   has_many_attached :photos

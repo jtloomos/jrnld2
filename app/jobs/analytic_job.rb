@@ -22,14 +22,14 @@ class AnalyticJob < ApplicationJob
     #         people: ["Anna", "James", "Kevin"]
     #        }
     @analytic = Analytic.find_or_initialize_by(entry_id: entry_id)
-    @analytic.time_spent = time_spent,
-    @analytic.created_day = created_day,
-    @analytic.created_time = created_time,
-    @analytic.emoji = emoji,
-    @analytic.location = location,
-    @analytic.word_count = data[:word_count],
-    @analytic.weather = data[:weather][:description],
-    @analytic.temperature = data[:weather][:temperature],
+    @analytic.time_spent = time_spent
+    @analytic.created_day = created_day
+    @analytic.created_time = created_time
+    @analytic.emoji = emoji
+    @analytic.location = location
+    @analytic.word_count = data[:word_count]
+    @analytic.weather = data[:weather][:description]
+    @analytic.temperature = data[:weather][:temperature]
     @analytic.entry_id = entry_id
     @analytic.save!
 

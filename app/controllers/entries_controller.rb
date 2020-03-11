@@ -62,6 +62,7 @@ class EntriesController < ApplicationController
     @entry = Entry.new(entry_params)
     authorize @entry
     @entry.user = current_user
+    @entry.start_entry = params["entry"]["start_entry"]
     @entry.save!
 
     create_entry_tags
@@ -84,12 +85,17 @@ class EntriesController < ApplicationController
   end
 
   def destroy
+    @entry = Entry.find(params[:id])
+    authorize @entry
+    @entry.destroy
+
+    redirect_to entries_path
   end
 
   private
 
   def entry_params
-    params.require(:entry).permit(:title, :content, :location, :start_entry, :emoji, photos: [])
+    params.require(:entry).permit(:title, :content, :location, :emoji, photos: [])
   end
 
   def create_entry_tags
