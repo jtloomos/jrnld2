@@ -1,7 +1,7 @@
 <ul class="feedback mb-<%= margin_bottom %>" id="emoji-list">
   <% case entry.emoji %>
   <% when "angry" %>
-    <li class="angry active">
+    <li class="angry active emoji-target">
             <div>
               <svg class="eye left">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
@@ -20,7 +20,7 @@
                 </div>
     </li>
   <% when "sad" %>
-    <li class="sad active">
+    <li class="sad active emoji-target">
     <div>
       <svg class="eye left">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
@@ -38,13 +38,13 @@
           </div>
     </li>
   <% when "ok" %>
-    <li class="ok active">
+    <li class="ok active emoji-target">
       <div>
 
       </div>
     </li>
   <% when "good" %>
-    <li class="good active">
+    <li class="good active emoji-target">
       <div>
          <svg class="eye left">
            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
@@ -62,7 +62,7 @@
       </div>
     </li>
   <% else %>
-    <li class="happy active">
+    <li class="happy active emoji-target">
       <div>
         <svg class="eye left">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
