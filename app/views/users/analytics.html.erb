@@ -2,9 +2,9 @@
 <div class="entry-analytics-container row justify-content-center mt-5">
   <h2 class="text-center col-12 mt-3">My Journaling Analytics</h2>
 
-  <div class="p-3 col-11 row justify-content-center">
+  <div class="p-2 pt-5 col-11 row justify-content-center">
 
-    <div class="analytics-left col-lg-8 col-sm-12 col-12 p-4">
+    <div class="analytics-left col-lg-8 col-sm-12 col-12 p-3">
       <div class="analytics-table table-wrapper-scroll-y my-customem-scrollbar">
         <h6 class="entry-header">Data and emotions</h6>
         <div class="d-flex justify-content-end align-items-end">
@@ -17,14 +17,14 @@
           <div class="text-center legend-last">FEAR</div>
           </div>
         </div>
-        <table class="table table-hover">
+        <table class="table-hover">
           <thead>
             <tr>
               <th>Emoji</th>
               <th>Number of entries</th>
               <th>Average word count</th>
-              <th>Average writing time</th>
-              <th>Emotion</th>
+              <th>Average time</th>
+              <th style="width:30%">Emotion</th>
               <th>Average temperature</th>
             </tr>
           </thead>
@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <div class="analytics-right col-lg-4 col-sm-12 col-12 p-4">
+    <div class="analytics-right col-lg-4 col-sm-12 col-12 p-3">
       <div class="word-tags">
         <h6 class="entry-header">Journaling tags</h6>
         <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
@@ -74,7 +74,7 @@
       </div>
       <div class="people mt-4">
         <h6 class="entry-header">People mentioned</h6>
-        <div class="d-flex flex-column justify-content-start align-items-center mb-4">
+        <div class="d-flex flex-column justify-content-start mb-4">
           <% @user.common_people.each do |person| %>
           <div><%= person[0] %></div>
           <% end %>
