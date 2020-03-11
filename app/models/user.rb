@@ -27,7 +27,7 @@ class User < ApplicationRecord
   end
 
   def mood_average(mood, emoji = nil)
-    first_array = emoji ? Analytic.where(user: self, emoji: emoji) : Analytic.where(user: self)
+    first_array = emoji ? self.analytics.where(emoji: emoji) : self.analytics
     array_of_mood = first_array.map do |analytic|
       analytic.emotions.select { |emotion| emotion.emotion == mood.downcase }.first
     end
