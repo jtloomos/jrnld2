@@ -1,7 +1,7 @@
 .tasks-section {
   background-color: white;
   padding-bottom: 30px;
-  min-height: 80vh;
+  min-height: calc(100% - $footer-height - 50px); // 50px is the navbar's height
 }
 
 .tasks-container-header {
