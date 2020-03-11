@@ -40,7 +40,7 @@ class AnalyticJob < ApplicationJob
     end
 
     data[:people].each do |word|
-      @name_freq = NameFrequency.find_or_initialize_by(analytic: @analytic, name: word)
+      @name_freq = NameFrequency.find_or_initialize_by(analytic: @analytic, name: word.capitalize)
       @name_freq.save!
     end
 
