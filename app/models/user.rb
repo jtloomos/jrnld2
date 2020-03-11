@@ -1,5 +1,4 @@
 require "date"
-require 'gsl'
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -94,9 +93,25 @@ class User < ApplicationRecord
     end #SAME THING THAT WITH COMMON WORDS
   end
 
-  def correlation(array1, array2)
-    GSL::Stats::correlation(
-      GSL::Vector.alloc(array1),GSL::Vector.alloc(array2)
-    )
+  def correlation(x, y) # x and y need to be 2 arrays of the same size !!
+    n = x.length
+
+    sumx = x.inject(0) { |r,i| r + i }
+    sumy = y.inject(0) { |r,i| r + i }
+
+    sumxSq = x.inject(0) { |r,i| r + i**2 }
+    sumySq = y.inject(0) { |r,i| r + i**2 }
+
+    prods = []
+
+    x.each_with_index { |this_x,i| prods << this_x*y[i] }
+
+    pSum = prods.inject(0){ |r,i| r + i }
+
+    # Calculate Pearson score
+    num = pSum - (sumx * sumy / n)
+    den=((sumxSq-(sumx ** 2) / n) * (sumySq - (sumy **2) / n)) ** 0.5
+
+    den == 0 ? 0 : num / den
   end
 end

@@ -1,7 +1,7 @@
 .tasks-section {
   background-color: white;
   padding-bottom: 30px;
-  min-height: 80vh;
+  min-height: calc(100% - $footer-height - 50px); // 50px is the navbar's height
 }
 
 .tasks-container-header {
@@ -35,6 +35,8 @@
 
 .dashboard-task-card:hover {
   text-decoration: none;
+  transform: scale(1.01);
+  color: black;
 }
 
 .task-card {
@@ -57,6 +59,10 @@
     box-shadow: 5px 5px 3px #ACA7A6;
     color: black;
     opacity: 0.8;
+    #edit-symbol-dashboard {
+      color: black;
+      opacity: 0.9
+    }
   }
 }
 
@@ -88,4 +94,9 @@
 
 .task-card figure .fas {
   font-size: 35px;
+}
+
+#edit-symbol-dashboard {
+  color: $black-text;
+  opacity: 0.8;
 }

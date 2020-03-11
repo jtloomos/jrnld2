@@ -14,6 +14,8 @@ class Entry < ApplicationRecord
 
   after_commit :async_update, on: [:create, :update] # Run on create & update
 
+  default_scope { order(created_at: :desc) }
+
   def country
     coordinates = self.geocode
     Geocoder.search(coordinates).first.country_code.upcase

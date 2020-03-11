@@ -1,4 +1,6 @@
-<div class="tasks-section mt-5 d-flex flex-column justify-content-center height-100">
+<%- title "JRNLD - dashboard" %>
+
+<div class="tasks-section mt-5 d-flex flex-column justify-content-center h-100">
   <div class="tasks-container-header pt-5">
     <h5 class="pb-2"><b><%= Date.today.strftime('%A, %B %d') %></b></h5>
     <h1>Welcome, <%= current_user.first_name %>!</h1>
@@ -22,7 +24,7 @@
           <%= link_to new_entry_path, class: 'dashboard-task-card' do %>
             <div class="task-card">
               <figure>
-                <i class="fas fa-edit"></i>
+                <i class="fas fa-edit" id="edit-symbol-dashboard"></i>
               </figure>
               <h3 class="task-title">Start new entry</h3>
               <p class="task-description">Capture daily thoughts, emotions and images.</p>

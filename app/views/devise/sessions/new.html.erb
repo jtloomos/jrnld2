@@ -1,4 +1,6 @@
-<div class="devise-body log-in-body">
+<%- title "JRNLD - log in" %>
+
+<div class="devise-body log-in-body h-100">
   <div class="container d-flex justify-content-center align-items-center mt-5 pt-3">
     <div class="devise-form mb-5 mx-5 mt-4 p-5 rounded col-xs-8 col-md-8 shadow">
       <h2>Log in</h2>
@@ -16,7 +18,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Log in", class: "btn-solid" %>
+          <%= f.button :submit, "Log in", class: "btn-solid", style: 'width: 109px' %>
         </div>
       <% end %>
 

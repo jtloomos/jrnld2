@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>JRNLD</title>
+    <meta name='description' content='A journal for the modern world. Simple journaling tools, smart analytics on your emotions and behaviour, secure encryption of your data.' />
+    <meta name='keywords' content='journal,journaling,write,writing,analytic,insight,emotion,feeling,behaviour,pattern,psychology' />
+    <title><%= content_for?(:title) ? content_for(:title) : "JRNLD - a journal made for the modern world" %></title>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
@@ -11,6 +14,15 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+
+    <!-- for Google sitemap -->
+    <meta name="google-site-verification" content="OH737ZYG0k3ocuoMyLq6wdsFq8YjslgWUd582rn9GRc" />
+
+    <!-- for Facebook -->
+    <meta property="og:url"                content="http://www.jrnld.co" />
+    <meta property="og:title"              content="JRNLD" />
+    <meta property="og:description"        content="A journal made for the modern world" />
+    <meta property="og:image"              content="<%= asset_path("og-image.png") %>" />
   </head>
   <body class="d-flex flex-column h-100">
 
