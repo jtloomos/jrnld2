@@ -178,3 +178,9 @@ input#input-entry-page {
     font-size: 24px;
     opacity: 1;
   }
+
+@media (max-width: 500px) {
+  #new-entry-camera {
+    font-size: 0.96em
+  }
+}
