@@ -68,12 +68,7 @@ class UsersController < ApplicationController
     end
 
     @region = [['Country', 'Words']]
-    entries_hash.each do |key,value|
-      entry_pair = []
-      entry_pair << key
-      entry_pair << value
-      @region << entry_pair
-    end
+    entries_hash.each { |key, value| @region << [key, value] }
 
     @region.to_json
 

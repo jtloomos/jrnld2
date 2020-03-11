@@ -36,8 +36,14 @@ google.charts.load('current', {
         var dataInformation = JSON.parse(document.querySelector("#regions_div").dataset["region"]);
         console.log(dataInformation);
         var data = google.visualization.arrayToDataTable(dataInformation);
-        var options = {};
+        var options = {
+          colorAxis: {colors: ['#F18065', '#891B00']},
+          backgroundColor: '#fff',
+          datalessRegionColor: '#F8F6F5',
+          defaultColor: '#F8F6F5',
+        };
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
         chart.draw(data, options);
       }
+
 </script>

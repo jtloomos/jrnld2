@@ -16,7 +16,7 @@ class Entry < ApplicationRecord
 
   def country
     coordinates = self.geocode
-    Geocoder.search(coordinates).first.country
+    Geocoder.search(coordinates).first.country_code.upcase
   end
 
   def emotions_hash
