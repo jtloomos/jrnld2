@@ -21,8 +21,12 @@ class User < ApplicationRecord
     end
   end
 
+  def emojies
+    self.entries.map { |entry| entry.emoji }.uniq
+  end
+
   def mood_average(mood, emoji = nil)
-    first_array = emoji ? Analytic.where(user: self, emoji: emoji) : Analytic.where(user: self)
+    first_array = emoji ? self.analytics.where(emoji: emoji) : self.analytics
     array_of_mood = first_array.map do |analytic|
       analytic.emotions.select { |emotion| emotion.emotion == mood.downcase }.first
     end
@@ -55,7 +59,7 @@ class User < ApplicationRecord
     first_array = emoji ? Entry.where(user: self, emoji: emoji) : Entry.where(user: self)
     sum = 0
     first_array.each do |entry|
-      sum += entry.analytic.time_spent
+      sum += entry.analytic.time_spent.to_f
     end
     sum.to_f / first_array.size #returns average time spent per entry
   end

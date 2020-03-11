@@ -16,6 +16,11 @@ class Entry < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  def country
+    coordinates = self.geocode
+    Geocoder.search(coordinates).first.country_code.upcase
+  end
+
   def emotions_hash
     analytic.emotions.each_with_object({}) { | emotion, result |
       result[emotion.emotion] = emotion.level if emotion.level > 0

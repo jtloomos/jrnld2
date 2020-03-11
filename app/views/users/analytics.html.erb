@@ -1,2 +1,148 @@
+
+
+<div class="entry-analytics-container row justify-content-center mt-5">
+  <h2 class="text-center col-12 mt-3">My Journaling Analytics</h2>
+
+  <div class="p-2 pt-5 col-11 row justify-content-center">
+
+    <div class="analytics-left col-lg-8 col-sm-12 col-12 p-3">
+      <div class="analytics-table table-wrapper-scroll-y my-customem-scrollbar">
+        <h6 class="entry-header">Data and emotions</h6>
+        <div class="d-flex justify-content-end align-items-end">
+          <div class="progress legend">
+            <div class="progress-bar bg-excited" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">EXCITED</div>
+            <div class="progress-bar bg-happy" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">HAPPY</div>
+            <div class="progress-bar bg-bored" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">BORED</div>
+            <div class="progress-bar bg-sad" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">SAD</div>
+            <div class="progress-bar bg-angry" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">ANGRY</div>
+          <div class="text-center legend-last">FEAR</div>
+          </div>
+        </div>
+        <table class="table-hover">
+          <thead>
+            <tr>
+              <th>Emoji</th>
+              <th>Number of entries</th>
+              <th>Average word count</th>
+              <th>Average time</th>
+              <th style="width:30%">Emotion</th>
+              <th>Average temperature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.emojies.each do |emoji| %>
+            <tr>
+              <td><%= render "shared/emoji", emoji: emoji %></td>
+              <td><%= @user.emoji_count(emoji) %></td>
+              <td><%= @user.word_average(emoji).round(0) %></td>
+              <td><%= @user.time_average(emoji).round(0) %> min</td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar position-relative bg-excited" role="progressbar" style="width: <%= @user.mood_average("excited", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("excited", emoji) %>%</span></div>
+                  <div class="progress-bar position-relative bg-happy" role="progressbar" style="width: <%= @user.mood_average("happy", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("happy", emoji) %>%</span></div>
+                  <div class="progress-bar position-relative bg-bored" role="progressbar" style="width: <%= @user.mood_average("bored", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("bored", emoji) %>%</span></div>
+                  <div class="progress-bar position-relative bg-sad" role="progressbar" style="width: <%= @user.mood_average("sad", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("sad", emoji) %>%</span></div>
+                  <div class="progress-bar position-relative bg-angry" role="progressbar" style="width: <%= @user.mood_average("angry", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("angry", emoji) %>%</span></div>
+                </div>
+              </td>
+              <td><%= @user.temp_average(emoji).round(0) %>°F</td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-5">
+        <h6 class="entry-header">Your entries around the world</h6>
+        <div class="mt-5" id="regions_div" data-region="<%= @region %>">
+        </div>
+      </div>
+    </div>
+
+    <div class="analytics-right col-lg-4 col-sm-12 col-12 p-3">
+      <div class="word-tags">
+        <h6 class="entry-header">Journaling tags</h6>
+        <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+          <% @user.tags.each do |tag| %>
+          <div class="tag px-2 mr-1 mt-1">
+            <span><%= tag.title %></span>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="word-cloud mt-4">
+        <h6 class="entry-header">Most Used Words</h6>
+        <div id="word-graph" data-words=<%= @data.to_json %>></div>
+      </div>
+      <div class="people mt-4">
+        <h6 class="entry-header">People mentioned</h6>
+        <div class="d-flex flex-column justify-content-start mb-4">
+          <% @user.common_people.each do |person| %>
+          <div><%= person[0] %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+  google.charts.load('current', {
+    'packages':['geochart'],
+    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+  });
+  google.charts.setOnLoadCallback(drawRegionsMap);
+
+  function drawRegionsMap() {
+    var dataInformation = JSON.parse(document.querySelector("#regions_div").dataset["region"]);
+    console.log(dataInformation);
+    var data = google.visualization.arrayToDataTable(dataInformation);
+    var options = {
+      colorAxis: {colors: ['#D1C7C5', '#6E6360']},
+      backgroundColor: '#fff',
+      datalessRegionColor: '#F8F6F5',
+      defaultColor: '#F8F6F5',
+    };
+    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+    chart.draw(data, options);
+  }
+
+</script>
+
+<script>
+  anychart.onDocumentReady(function() {
+    var data = JSON.parse(document.querySelector('#word-graph').dataset["words"]);
+
+   // create a tag (word) cloud chart
+   var chart = anychart.tagCloud(data);
+
+    // set an array of angles at which the words will be laid out
+    chart.angles([0, -30, 30])
+    // enable a color range
+    var customColorScale = anychart.scales.linearColor();
+    customColorScale.colors(["#A29B9A", "#891B00"]);
+
+    // set the color scale as the color scale of the chart
+    chart.colorScale(customColorScale);
+
+    // add a color range
+    chart.colorRange().enabled(false);
+
+    chart.listen("pointClick", function(e){
+      var url = "/entries?utf8=✓&search%5Bquery%5D=" + e.point.get("x");
+      window.open(url, "_blank");
+    });
+    // display the word cloud chart
+    chart.container("word-graph");
+    chart.draw();
+  });
+</script>
+
+
 <%- title "JRNLD - analytics" %>
 

@@ -1,0 +1,83 @@
+.entry-analytics-container {
+  background-color: white;
+  padding: 16px;
+  h2 {
+    color: $primary-color;
+    padding-top: 32px;
+    padding-bottom: 16px;
+  }
+}
+
+.my-custom-scrollbar {
+height: 75vh;
+overflow: scroll;
+}
+
+.table-wrapper-scroll-y {
+display: block;
+}
+
+.analytics-right {
+  border-left: 2px solid $secondary-color;
+  h6 {
+    color: $primary-color;
+    font-size: 24px;
+  }
+}
+
+.analytics-table table {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.analytics-table table th, td {
+  border-bottom: 1px solid #ddd;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: center;
+}
+
+.analytics-table table td {
+  border-top: 1px solid #ddd;
+}
+
+.analytics-table .legend-last {
+  margin: auto;
+  border: none;
+}
+
+.legend {
+  width: 40%;
+  margin-top: 16px;
+  font-size: 8px;
+  div {
+    color: black;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+  }
+}
+
+.bg-excited {
+  background-color: #C56E5A;
+}
+.bg-happy {
+  background-color: #D89A8C;
+}
+.bg-bored {
+  background-color: #D5CDCB;
+}
+.bg-sad {
+  background-color: #96837D;
+}
+.bg-angry {
+  background-color: #F2E5E2;
+}
+
+@media (max-width: 991px) {
+  .analytics-right {
+    border-left: none;
+    border-top: 2px solid $secondary-color;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+}

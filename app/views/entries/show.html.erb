@@ -17,7 +17,7 @@
           <div class="col-12 mb-3 p-0">
             <div class="d-flex justify-content-between">
               <h4 class="mb-2 mr-3 entry-header"><i class="far fa-calendar-check" style="font-size: 30px;"></i> <%= @entry.created_at.strftime("%B %d, %Y") %></h4>
-              <div class="entry-emoji"><%= render "shared/emoji", entry: @entry, margin_bottom: 2 %></div>
+              <div class="entry-emoji"><%= render "shared/emoji", emoji: @entry.emoji, margin_bottom: 2 %></div>
             </div>
             <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
               <% @entry.entry_tags.each do |entry_tag| %>

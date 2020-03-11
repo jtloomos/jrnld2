@@ -21,7 +21,7 @@
             <span><%= Tag.find(entry_tag.tag_id).title %></span>
           </div>
         <% end %>
-        <%= render "shared/emoji", entry: entry, margin_bottom: 0 %>
+        <%= render "shared/emoji", emoji: entry.emoji, margin_bottom: 0 %>
       </div>
     </div>
   <% end %>
