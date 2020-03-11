@@ -57,6 +57,7 @@ class UsersController < ApplicationController
 
 
     all_entries = []
+    # Entry.select...
     @user.entries.map do |entry|
       entry_array = []
       entry_array << entry.country

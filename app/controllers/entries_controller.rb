@@ -93,6 +93,7 @@ class EntriesController < ApplicationController
   end
 
   def create_entry_tags
+    @entry.entry_tags.destroy_all
     params[:entry][:tag_ids].each do |id|
       if id.match?(/\A\d+\z/) && @entry.tags.pluck("id").include?(id.to_i)
         # if tag is already associated with this entry, do nothing

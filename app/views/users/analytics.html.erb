@@ -2,9 +2,40 @@
 <div class="entry-analytics-container row justify-content-center mt-5">
   <h2 class="text-center col-12 mt-3">My Journaling Analytics</h2>
 
-  <div class="analytics-information p-3 col-11 row justify-content-center">
-    <div class="col-lg-6 col-sm-12 col-12 py-4 px-5 flex-wrap">
+  <div class="p-3 col-11 row justify-content-center">
 
+    <div class="analytics-information col-lg-6 col-sm-12 col-12 p-4">
+      <div class="analytics-table table-wrapper-scroll-y my-customem-scrollbar">
+        <table>
+          <thead>
+            <tr>
+              <th>Emoji</th>
+              <th>Number of entries</th>
+              <th>Average word count</th>
+              <th>Average writing time</th>
+              <th>Emotion</th>
+              <th>Average temperature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.emojies.each do |emoji| %>
+            <tr>
+              <td><%= render "shared/emoji", emoji: emoji %></td>
+              <td><%= @user.emoji_count(emoji) %></td>
+              <td><%= @user.word_average(emoji) %></td>
+              <td><%= @user.time_average(emoji) %></td>
+              <td></td>
+              <td><%= @user.temp_average(emoji) %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div id="regions_div" data-region="<%= @region %>" style="width: 100%">
+      </div>
+    </div>
+
+    <div class="analytics-information col-lg-6 col-sm-12 col-12 p-4">
       <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
         <% @user.tags.each do |tag| %>
         <div class="tag px-2 mr-1 mt-1">
@@ -12,18 +43,17 @@
         </div>
         <% end %>
       </div>
-
-      <div>
-        <%= line_chart User.group_by_week(:created_at).count %>
+      <div class="word-cloud">
       </div>
-
-      <div id="regions_div" data-region="<%= @region %>" style="width: 900px; height: 500px;"></div>
     </div>
+
   </div>
 </div>
+
+
+
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-
 
 <script type="text/javascript">
 google.charts.load('current', {
@@ -47,3 +77,7 @@ google.charts.load('current', {
       }
 
 </script>
+
+     <!--  <div>
+        <%= line_chart User.group_by_week(:created_at).count %>
+      </div> -->

@@ -3,3 +3,12 @@
   padding: 16px;
   min-height: 100vh;
 }
+
+.my-custom-scrollbar {
+height: 75vh;
+overflow: scroll;
+}
+
+.table-wrapper-scroll-y {
+display: block;
+}
