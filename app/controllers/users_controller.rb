@@ -73,16 +73,7 @@ class UsersController < ApplicationController
 
     @region.to_json
 
-
-    # @region = [
-    #       ['Country', 'Words'],
-    #       ['Germany', 200],
-    #       ['United States', 300],
-    #       ['Brazil', 400],
-    #       ['Canada', 500],
-    #       ['France', 600],
-    #       ['RU', 700]
-    #     ].to_json
+    @data = @user.common_words.map {|key, value| { 'x': key, 'value': value } }
   end
 
   def destroy

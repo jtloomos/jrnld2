@@ -1,7 +1,6 @@
 .entry-analytics-container {
   background-color: white;
   padding: 16px;
-  min-height: 100vh;
 }
 
 .my-custom-scrollbar {
@@ -11,4 +10,21 @@ overflow: scroll;
 
 .table-wrapper-scroll-y {
 display: block;
+}
+
+.analytics-right {
+  border-left: 2px solid $secondary-color;
+  h6 {
+    color: $primary-color;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 991px) {
+  .analytics-right {
+    border-left: none;
+    border-top: 2px solid $secondary-color;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
 }

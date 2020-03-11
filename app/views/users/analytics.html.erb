@@ -4,7 +4,7 @@
 
   <div class="p-3 col-11 row justify-content-center">
 
-    <div class="analytics-information col-lg-6 col-sm-12 col-12 p-4">
+    <div class="analytics-left col-lg-8 col-sm-12 col-12 p-4">
       <div class="analytics-table table-wrapper-scroll-y my-customem-scrollbar">
         <table>
           <thead>
@@ -31,19 +31,24 @@
           </tbody>
         </table>
       </div>
-      <div id="regions_div" data-region="<%= @region %>" style="width: 100%">
+      <div class="mt-3" id="regions_div" data-region="<%= @region %>">
       </div>
     </div>
 
-    <div class="analytics-information col-lg-6 col-sm-12 col-12 p-4">
-      <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-        <% @user.tags.each do |tag| %>
-        <div class="tag px-2 mr-1 mt-1">
-          <span><%= tag.title %></span>
+    <div class="analytics-right col-lg-4 col-sm-12 col-12 p-4">
+      <div class="word-tags">
+        <h6 class="entry-header">Journaling tags</h6>
+        <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+            <% @user.tags.each do |tag| %>
+            <div class="tag px-2 mr-1 mt-1">
+              <span><%= tag.title %></span>
+            </div>
+            <% end %>
         </div>
-        <% end %>
       </div>
-      <div class="word-cloud">
+      <div class="word-cloud mt-4">
+        <h6 class="entry-header">Most Used Words</h6>
+        <div id="word-graph" data-words=<%= @data.to_json %>></div>
       </div>
     </div>
 
@@ -77,6 +82,36 @@ google.charts.load('current', {
       }
 
 </script>
+
+<script>
+  anychart.onDocumentReady(function() {
+    var data = JSON.parse(document.querySelector('#word-graph').dataset["words"]);
+
+   // create a tag (word) cloud chart
+   var chart = anychart.tagCloud(data);
+
+    // set an array of angles at which the words will be laid out
+    chart.angles([0, -30, 30])
+    // enable a color range
+    var customColorScale = anychart.scales.linearColor();
+    customColorScale.colors(["#A29B9A", "#891B00"]);
+
+    // set the color scale as the color scale of the chart
+    chart.colorScale(customColorScale);
+
+    // add a color range
+    chart.colorRange().enabled(false);
+
+    chart.listen("pointClick", function(e){
+      var url = "/entries?utf8=✓&search%5Bquery%5D=" + e.point.get("x");
+      window.open(url, "_blank");
+    });
+    // display the word cloud chart
+    chart.container("word-graph");
+    chart.draw();
+  });
+</script>
+
 
      <!--  <div>
         <%= line_chart User.group_by_week(:created_at).count %>

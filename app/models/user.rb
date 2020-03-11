@@ -60,7 +60,7 @@ class User < ApplicationRecord
     first_array = emoji ? Entry.where(user: self, emoji: emoji) : Entry.where(user: self)
     sum = 0
     first_array.each do |entry|
-      sum += entry.analytic.time_spent
+      sum += entry.analytic.time_spent.to_f
     end
     sum.to_f / first_array.size #returns average time spent per entry
   end
