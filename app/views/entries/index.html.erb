@@ -35,7 +35,7 @@
         <%= link_to entry_path(entry.id) do %>
         <div class="d-flex flex-column justify-content-between entry-card p-3 h-100">
           <div class="d-flex">
-            <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; height: 120px; color: white">
+            <div class="py-1 d-flex flex-column justify-content-center rounded shadow index-entry-date" style="">
               <span class="text-center"><%= Date::ABBR_MONTHNAMES[entry.created_at.month].upcase %></span>
               <h1 class="text-center m-0 pt-1"><%= entry.created_at.day %></h1>
               <span class="text-center"><%= entry.created_at.year %></span>
