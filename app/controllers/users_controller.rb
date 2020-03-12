@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     all_words = []
     @user.entries.map do |entry|
       words_array = []
-      words_array << entry.country
+      words_array << entry.country_code
       words_array << entry.analytic.word_count
       all_words << words_array
     end
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     all_times = []
     @user.entries.map do |entry|
       times_array = []
-      times_array << entry.country
+      times_array << entry.country_code
       times_array << entry.analytic.time_spent
       all_times << times_array
     end
