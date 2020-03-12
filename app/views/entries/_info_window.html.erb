@@ -1,25 +1,25 @@
-<div class="info-window">
+<div class="info-window text-left">
   <%= link_to entry_path(entry.id) do %>
-    <div class="d-flex flex-column justify-content-center map-entry-card p-3" style="background-color:white">
+    <div class="d-flex flex-column justify-content-between entry-card p-3 h-100">
       <div class="d-flex">
-        <div class="date py-1 d-flex flex-column justify-content-center rounded shadow" style="width: 20%; height: 120px; color: white">
+        <div class="py-1 d-flex flex-column justify-content-center rounded shadow index-entry-date" style="">
           <span class="text-center"><%= Date::ABBR_MONTHNAMES[entry.created_at.month].upcase %></span>
           <h1 class="text-center m-0 pt-1"><%= entry.created_at.day %></h1>
           <span class="text-center"><%= entry.created_at.year %></span>
         </div>
         <div class="d-flex flex-column justify-content-center px-3 entry-information" style="width: 80%">
-          <h4 class="mb-1 entry-header"><%= entry.title.truncate(30, omission: "...") %></h4>
-          <p class="mb-0 pl-1" style="text-align:left"><i class="fas fa-thumbtack"></i> <%= entry.location %></p>
+          <h4 class="entry-header mb-1"><%= entry.title.truncate(30, omission: "...") %></h4>
+          <p class="mb-0 pl-1"><i class="fas fa-thumbtack"></i> <%= entry.location %></p>
         </div>
       </div>
-      <div class="my-4" style="text-align:left">
+      <div class="my-4">
         <span><em>"<%= entry.content.truncate(350, omission: "...") %>"</em></span>
       </div>
       <div class="d-flex justify-content-end align-items-center flex-wrap">
         <% entry.entry_tags.each do |entry_tag| %>
-          <div class="tag px-2 mr-1 mt-1">
-            <span><%= Tag.find(entry_tag.tag_id).title %></span>
-          </div>
+        <div class="tag px-2 mr-1 mt-1">
+          <span><%= Tag.find(entry_tag.tag_id).title %></span>
+        </div>
         <% end %>
         <%= render "shared/emoji", emoji: entry.emoji, margin_bottom: 0 %>
       </div>

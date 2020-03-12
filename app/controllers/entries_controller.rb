@@ -30,8 +30,8 @@ class EntriesController < ApplicationController
       {
         lat: entry.latitude,
         lng: entry.longitude,
-        # image_url: helpers.asset_path("map-marker.svg"),
-        infoWindow: render_to_string(partial: "info_window", locals: { entry: entry })
+        infoWindow: render_to_string(partial: "info_window", locals: { entry: entry }),
+        image_url: helpers.asset_url("pin.png")
       }
     end
   end
@@ -44,8 +44,8 @@ class EntriesController < ApplicationController
     @markers =[
       {
         lat: @entry.latitude,
-        lng: @entry.longitude
-        # image_url: helpers.asset_path("map-marker.svg")
+        lng: @entry.longitude,
+        image_url: helpers.asset_url("pin.png")
       }]
 
     @data = @entry.analytic.word_frequencies.map {|element| { 'x': element.word, 'value': element.frequency } }
