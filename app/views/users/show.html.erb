@@ -1,66 +1,63 @@
 <%- title "JRNLD - profile" %>
 
 <div class="flex-grow-1">
-
   <div class="profile-container row justify-content-center mt-5 pb-3 pb-md-5">
-
     <h2 class="text-center col-12 mt-3">My Profile</h2>
-    
-    <div class="profile-information py-3 px-1 px-md-3 col-11 row justify-content-center">
 
+    <div class="profile-information py-3 px-1 px-md-3 col-11 row justify-content-center">
       <div class="col-12 col-xl-6 flex-wrap">
         <div class="profile-settings p-4 mb-3">
           <%= simple_form_for(@user) do |f| %>
-            <div class="d-flex justify-content-center pb-4">
-              <% if @user.photo.attached? %>
-                <%= cl_image_tag @user.photo.key, height: 500, width: 400, crop: :fill, class: "avatar-large mt-2" %>
-              <% else %>
-                <%= image_tag 'default-avatar.png', class: "avatar-large mt-2" %>
-              <% end %>
+          <div class="d-flex justify-content-center pb-4">
+            <% if @user.photo.attached? %>
+            <%= cl_image_tag @user.photo.key, height: 500, width: 400, crop: :fill, class: "avatar-large mt-2" %>
+            <% else %>
+            <%= image_tag 'default-avatar.png', class: "avatar-large mt-2" %>
+            <% end %>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 col-12 3 pr-5 pt-2 pb-2">First name</div>
+            <div class="col-md-8 col-12 pt-0"><%= f.input :first_name, label: false %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 col-12 3 pr-5 pt-2 pb-2">Last name</div>
+            <div class="col-md-8 col-12 pt-0"><%= f.input :last_name, label: false %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 col-12 3 pr-5 pt-2 pb-2">Gender</div>
+            <div class="col-md-8 col-12 pt-0"><%= f.input :gender, label: false, collection: %w[Male Female Other] %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 col-12 pr-5 pt-2 pb-2">Birthday</div>
+            <div class="col-md-8 col-12 pt-0"><%= f.input :birthday, label: false  %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 col-12 pr-5 pt-2 pb-2">Photo</div>
+            <div class="col-md-8 col-12 pt-0"><%= f.input :photo, as: :file, label: false  %></div>
+          </div>
+
+          <div class="row justify-content-between px-3">
+            <div>
+              <br>
+              <%= f.button :submit, "Save Changes", class: "btn btn-solid" %>
             </div>
 
-            <div class="row">
-              <div class="col-md-4 col-12 3 pr-5 pt-2 pb-2">First name</div>
-              <div class="col-md-8 col-12 pt-0"><%= f.input :first_name, label: false %></div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4 col-12 3 pr-5 pt-2 pb-2">Last name</div>
-              <div class="col-md-8 col-12 pt-0"><%= f.input :last_name, label: false %></div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4 col-12 3 pr-5 pt-2 pb-2">Gender</div>
-              <div class="col-md-8 col-12 pt-0"><%= f.input :gender, label: false, collection: %w[Male Female Other] %></div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4 col-12 pr-5 pt-2 pb-2">Birthday</div>
-              <div class="col-md-8 col-12 pt-0"><%= f.input :birthday, label: false  %></div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4 col-12 pr-5 pt-2 pb-2">Photo</div>
-              <div class="col-md-8 col-12 pt-0"><%= f.input :photo, as: :file, label: false  %></div>
-            </div>
-
-            <div class="row justify-content-between px-3">
-              <div>
-                <br>
-                <%= f.button :submit, "Save Changes", class: "btn btn-solid" %>
+            <div class="" style="text-align: right">
+              <br>
+              <div data-toggle="modal" data-target="#passwordModal" class="profile-link mt-2 d-flex justify-content-right" style="text-align: right">
+                Change password
               </div>
 
-              <div class="" style="text-align: right">
-                <br>
-                <div data-toggle="modal" data-target="#passwordModal" class="profile-link mt-2 d-flex justify-content-right" style="text-align: right">
-                  Change password
-                </div>
-
-                <div data-toggle="modal" data-target="#deleteModal" class="profile-link d-flex justify-content-right"  style="text-align: right">
-                  Delete account
-                </div>
+              <div data-toggle="modal" data-target="#deleteModal" class="profile-link d-flex justify-content-right"  style="text-align: right">
+                Delete account
               </div>
             </div>
+          </div>
           <% end %>
 
           <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -109,47 +106,45 @@
       </div>
 
       <div class="col-12 col-xl-6 d-flex flex-column justify-content-between">
-
-        <div class="profile-reminders p-4 mb-3">
+        <div class="profile-reminders p-4 mt-3">
           <h4 class="profile-header my-2">Set journaling reminders</h4>
-            <div class="d-flex justify-content-between" id="reminder-title">
-              <input label= false id="new-reminder" placeholder="New reminder" autocomplete="off"></input>
-              <button class="btn btn-ghost" id="plus-reminder" data-form="<%=  %>">Add</button>
-            </div>
+          <div class="d-flex justify-content-between" id="reminder-title">
+            <input label= false id="new-reminder" placeholder="New reminder" autocomplete="off"></input>
+            <button class="btn btn-ghost" id="plus-reminder" data-form="<%=  %>">Add</button>
+          </div>
 
           <form action="/preferences" method= "post">
             <div class="default-reminders row flex-wrap py-3 mx-0">
               <% i = 0 %>
               <% if current_user.reminders.empty? %>
-                <% @default_reminders.each do |reminder| %>
-                  <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %>>
-                  <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
-                  <% i += 1 %>
-                <% end %>
+              <% @default_reminders.each do |reminder| %>
+              <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %>>
+              <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
+              <% i += 1 %>
+              <% end %>
               <% else %>
-                <% @user_reminders.each do |reminder| %>
-                  <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %> checked>
-                  <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
-                  <% i += 1 %>
-                <% end %>
+              <% @user_reminders.each do |reminder| %>
+              <input id="reminder-check-<%= i %>" class ="reminder-check" name="reminder-<%= i %>" type="checkbox" value=<%= reminder.title %> checked>
+              <div class="btn-ghost reminder"><label for="reminder-check-<%= i %>" class="reminder-label"><%= reminder.title %></label></div>
+              <% i += 1 %>
+              <% end %>
               <% end %>
             </div>
-              <input type="hidden" name="authenticity_token" value= <%= form_authenticity_token %>>
-              <br>
-              <input type="submit" class="btn btn-solid" value="Save changes">
+            <input type="hidden" name="authenticity_token" value= <%= form_authenticity_token %>>
+            <br>
+            <input type="submit" class="btn btn-solid" value="Save changes">
           </form>
         </div>
 
-      <div class="profile-reminders p-4 mb-3">
-        <h4 class="profile-header my-2">Set notifications frequency</h4>
-        <%= simple_form_for @user do |f| %>
+        <div class="profile-reminders p-4 mb-3">
+          <h4 class="profile-header my-2">Set notifications frequency</h4>
+          <%= simple_form_for @user do |f| %>
           <%= f.input :notifications, collection: @notifications, label: false %>
           <br>
           <%= f.button :submit, "Save Changes", class: "btn btn-solid" %>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-
     </div>
   </div>
-
 </div>
