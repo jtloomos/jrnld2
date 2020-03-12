@@ -57,8 +57,9 @@ class EntriesController < ApplicationController
       @data = @entry.analytic.word_frequencies.map {|element| { 'x': element.word, 'value': element.frequency } }
     end
 
+
     def new
-      @entry = Entry.new(start_entry: Time.now)
+      @entry = Entry.new(start_entry: Time.now, created_at_day: Date.today)
       authorize @entry
 
       @reminders = Reminder.where(user_id: current_user.id)
@@ -108,9 +109,11 @@ class EntriesController < ApplicationController
 
     private
 
-    def entry_params
-      params.require(:entry).permit(:title, :content, :location, :emoji, photos: [])
-    end
+
+  def entry_params
+    params.require(:entry).permit(:title, :content, :location, :emoji, :created_at_day, photos: [])
+  end
+
 
     def create_entry_tags
       @entry.entry_tags.destroy_all

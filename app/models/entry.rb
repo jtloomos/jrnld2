@@ -16,6 +16,10 @@ class Entry < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  def date
+    self.created_at
+  end
+
   def country
     coordinates = self.geocode
     Geocoder.search(coordinates).first.country_code.upcase

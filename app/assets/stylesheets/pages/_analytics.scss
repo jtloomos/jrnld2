@@ -8,6 +8,10 @@
   }
 }
 
+.map-container h6 {
+  color: $primary-color;
+}
+
 .my-custom-scrollbar {
 height: 75vh;
 overflow: scroll;
@@ -26,7 +30,6 @@ display: block;
 }
 
 .analytics-table table {
-  width: 100%;
   margin-top: 30px;
 }
 
@@ -47,7 +50,6 @@ display: block;
 }
 
 .legend {
-  width: 40%;
   margin-top: 16px;
   font-size: 8px;
   div {
@@ -55,6 +57,10 @@ display: block;
     border-left: 1px solid white;
     border-right: 1px solid white;
   }
+}
+
+.progress {
+  border: 1px solid white;
 }
 
 .bg-excited {
@@ -71,6 +77,18 @@ display: block;
 }
 .bg-angry {
   background-color: #F2E5E2;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: $primary-color;
+  color: white;
+}
+
+.nav-link {
+  color: $primary-color;
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 @media (max-width: 991px) {
