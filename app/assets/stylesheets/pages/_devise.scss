@@ -24,3 +24,19 @@
     text-align: left;
   }
 }
+
+.social-login {
+  .divider {
+    height: 1px;
+    background-color: $primary-color;
+    text-align: center;
+  }
+
+  span {
+    background-color: white;
+    color: $primary-color;
+    position: relative;
+    top: -0.6em;
+    padding: 0 10px;
+  }
+}
