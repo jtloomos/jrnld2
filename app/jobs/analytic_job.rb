@@ -14,7 +14,7 @@ class AnalyticJob < ApplicationJob
     if entry.start_entry.nil?
       time_spent = 0
     else
-      time_spent = ((entry.created_at - entry.start_entry) / 60).to_s
+      time_spent = ((entry.created_at - entry.start_entry) / 60)
     end
     emoji = entry.emoji
     data = EntryHelper::analyze(entry)

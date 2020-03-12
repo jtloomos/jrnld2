@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2020_03_12_220641) do
 
   create_table "analytics", force: :cascade do |t|
     t.integer "word_count"
-    t.string "time_spent"
     t.string "emoji"
     t.string "location"
     t.string "created_day"
@@ -48,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_220641) do
     t.datetime "updated_at", null: false
     t.integer "temperature"
     t.bigint "entry_id"
+    t.integer "time_spent"
     t.index ["entry_id"], name: "index_analytics_on_entry_id"
   end
 
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_220641) do
     t.string "emoji"
     t.datetime "start_entry"
     t.string "country_code"
+    t.date "created_at_day"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 

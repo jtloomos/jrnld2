@@ -1,4 +1,3 @@
-
 .tag {
   color: $primary-color;
   font-size: 12px;
@@ -43,9 +42,8 @@
 }
 
 .entries-return a {
-  color: white;
+  color: white
 }
-
 .entries-return a:hover {
   color: white;
   text-decoration: none;
@@ -68,6 +66,7 @@
 }
 
 @media (min-width: 576px ) {
+
   .index-entry-date {
     width: 112px;
     height: 112px;

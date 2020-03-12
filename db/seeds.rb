@@ -9,6 +9,7 @@
 require 'faker'
 
 puts "Destroy old seeds"
+
 EntryTag.destroy_all
 WordFrequency.destroy_all
 NameFrequency.destroy_all
@@ -108,7 +109,7 @@ people = [
   "Carl",
   "Jeff",
   "Thomas"
-]
+  ]
 
 
 ((DateTime.now - 50.days)..Time.now).each do |date|

@@ -17,6 +17,10 @@ class Entry < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  def date
+    self.created_at
+  end
+
   def emotions_hash
     analytic.emotions.each_with_object({}) { | emotion, result |
       result[emotion.emotion] = emotion.level if emotion.level > 0

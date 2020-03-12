@@ -10,9 +10,14 @@
 
     <div class="row justify-content-center">
       <div class="w-100 px-3">
-        <%= simple_form_for :search, url: entries_path, method: "GET", html: { class: '' } do |f| %>
-        <div>
-          <%= f.input :query, label: false, placeholder: "Search by location, tag, or entry text...", input_html: { class: '' } %>
+        <%= simple_form_for :search, url: entries_path, method: "GET", html: { id: "filtering-index-form" } do |f| %>
+        <div class="row justify-content-start">
+          <div class="col-3">
+            <%= f.input :date_range, label:false, placeholder: "Filter by date", as: :string, input_html: { class: 'datepicker' } %>
+          </div>
+          <div class="col-9">
+            <%= f.input :query, label: false, placeholder: "Search by location, tag, or entry text...", input_html: { autocomplete: "off" } %>
+          </div>
         </div>
         <% end %>
       </div>
@@ -65,6 +70,9 @@
     <% end %>
 
     <div class="row justify-content-center">
+      <% if @query.present? %>
+        <%= link_to "Show all", entries_path, class: "btn btn-ghost" %>
+      <% end %>
     </div>
   </div>
 </div>

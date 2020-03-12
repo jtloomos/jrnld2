@@ -1,5 +1,4 @@
 function sleep(ms) {
-  console.log("bubu")
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -17,3 +16,26 @@ window.onload =  function() {
     })
   };
 };
+
+const symbol = document.getElementById("edit-on-show")
+
+if (symbol) {
+  const emoji = document.getElementById("emoji-list");
+  emoji.addEventListener("pointerenter", async (event) => {
+    emoji.children[0].classList.remove("active");
+    await sleep(10);
+    emoji.children[0].classList.add("active");
+  })
+}
+
+
+const input = document.getElementById("search_query")
+const form = document.getElementById("filtering-index-form")
+
+if (input && form) {
+  input.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      form.submit()
+    }
+  })
+}
