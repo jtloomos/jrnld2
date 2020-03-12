@@ -10,6 +10,7 @@ class EntriesController < ApplicationController
       @entries = policy_scope(Entry)
     end
 
+    @entries = @entries.includes(entry_tags: [:tag])
     @user = current_user
   end
 
@@ -64,6 +65,8 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.start_entry = params["entry"]["start_entry"]
     @entry.save!
+    AnalyticJob.perform_now(self.id)
+
 
     create_entry_tags
     redirect_to entries_path
@@ -79,6 +82,8 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     authorize @entry
     @entry.update!(entry_params)
+
+    AnalyticJob.perform_now(self.id)
 
     create_entry_tags
     redirect_to entry_path(@entry)

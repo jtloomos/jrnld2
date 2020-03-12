@@ -55,15 +55,16 @@ class UsersController < ApplicationController
     authorize @user
 
 
-
     all_entries = []
     # Entry.select...
-    @user.entries.map do |entry|
+    @user.entries.includes(:analytic).each do |entry|
       entry_array = []
-      entry_array << entry.country
+      entry_array << entry.country_code
       entry_array << entry.analytic.word_count
       all_entries << entry_array
     end
+
+
     entries_hash = all_entries.each_with_object(Hash.new(0)) do |(key, value), hash|
       hash[key] += value
     end

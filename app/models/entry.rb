@@ -1,4 +1,7 @@
 class Entry < ApplicationRecord
+  AVAILABLE_EMOJIS = %w[angry sad ok good happy]
+  AVAILABLE_EMOTIONS = %w[fear sad bored happy excited angry]
+
   belongs_to :user
   has_one :analytic, dependent: :destroy
   has_many :entry_tags, dependent: :destroy
@@ -7,19 +10,12 @@ class Entry < ApplicationRecord
   has_many_attached :photos
 
   validates_presence_of :title, :content, :user, :location
-  validates :emoji, inclusion: { in: %w[angry sad ok good happy]}
+  validates :emoji, inclusion: { in: AVAILABLE_EMOJIS}
 
   geocoded_by :location
   after_validation :geocode
 
-  after_commit :async_update, on: [:create, :update] # Run on create & update
-
   default_scope { order(created_at: :desc) }
-
-  def country
-    coordinates = self.geocode
-    Geocoder.search(coordinates).first.country_code.upcase
-  end
 
   def emotions_hash
     analytic.emotions.each_with_object({}) { | emotion, result |
@@ -31,11 +27,5 @@ class Entry < ApplicationRecord
     analytic.word_frequencies.each_with_object({}) { | word, result |
       result[word.word] = word.frequency
     }
-  end
-
-  private
-
-  def async_update
-    AnalyticJob.perform_now(self.id)
   end
 end

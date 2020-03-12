@@ -14,7 +14,6 @@ gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'groupdate'
 
-
 # gem 'paralleldots', '~> 3.2.9'
 gem 'rest-client', '~> 2.0.2'
 
@@ -35,6 +34,9 @@ gem 'webpacker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem 'rack-mini-profiler'
+  gem 'stackprof'
+  gem 'bullet'
 end
 
 group :development, :test do
