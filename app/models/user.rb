@@ -93,6 +93,10 @@ class User < ApplicationRecord
     end #SAME THING THAT WITH COMMON WORDS
   end
 
+  def day
+    created_at.strftime("%a, %d %b %Y")
+  end
+
   def correlation(x, y) # x and y need to be 2 arrays of the same size !!
     n = x.length
 

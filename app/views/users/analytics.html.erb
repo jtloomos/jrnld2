@@ -1,64 +1,187 @@
+<div class="entry-analytics-container justify-content-center mt-5">
+  <h2 class="text-center mt-3">My Journaling Analytics</h2>
 
+  <div class="p-3 row justify-content-center">
 
-<div class="entry-analytics-container row justify-content-center mt-5">
-  <h2 class="text-center col-12 mt-3">My Journaling Analytics</h2>
-
-  <div class="p-2 pt-5 col-11 row justify-content-center">
-
-    <div class="analytics-left col-lg-8 col-sm-12 col-12 p-3">
-      <div class="analytics-table table-wrapper-scroll-y my-customem-scrollbar">
-        <h6 class="entry-header">Data and emotions</h6>
-        <div class="d-flex justify-content-end align-items-end">
-          <div class="progress legend">
-            <div class="progress-bar bg-excited" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">EXCITED</div>
-            <div class="progress-bar bg-happy" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">HAPPY</div>
-            <div class="progress-bar bg-bored" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">BORED</div>
-            <div class="progress-bar bg-sad" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">SAD</div>
-            <div class="progress-bar bg-angry" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">ANGRY</div>
-          <div class="text-center legend-last">FEAR</div>
-          </div>
+    <div class="col-lg-5 col-12 p-3 justify-content-center">
+      <div class="col-12 row justify-content-center">
+        <div class="map-container col-12">
+          <h6>Number of entries</h6>
+          <div id="entries_div" data-region="<%= @region_entries %>"></div>
         </div>
-        <table class="table-hover">
-          <thead>
-            <tr>
-              <th>Emoji</th>
-              <th>Number of entries</th>
-              <th>Average word count</th>
-              <th>Average time</th>
-              <th style="width:30%">Emotion</th>
-              <th>Average temperature</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @user.emojies.each do |emoji| %>
-            <tr>
-              <td><%= render "shared/emoji", emoji: emoji %></td>
-              <td><%= @user.emoji_count(emoji) %></td>
-              <td><%= @user.word_average(emoji).round(0) %></td>
-              <td><%= @user.time_average(emoji).round(0) %> min</td>
-              <td>
-                <div class="progress">
-                  <div class="progress-bar position-relative bg-excited" role="progressbar" style="width: <%= @user.mood_average("excited", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("excited", emoji) %>%</span></div>
-                  <div class="progress-bar position-relative bg-happy" role="progressbar" style="width: <%= @user.mood_average("happy", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("happy", emoji) %>%</span></div>
-                  <div class="progress-bar position-relative bg-bored" role="progressbar" style="width: <%= @user.mood_average("bored", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("bored", emoji) %>%</span></div>
-                  <div class="progress-bar position-relative bg-sad" role="progressbar" style="width: <%= @user.mood_average("sad", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("sad", emoji) %>%</span></div>
-                  <div class="progress-bar position-relative bg-angry" role="progressbar" style="width: <%= @user.mood_average("angry", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("angry", emoji) %>%</span></div>
-                </div>
-              </td>
-              <td><%= @user.temp_average(emoji).round(0) %>°F</td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      <div class="mt-5">
-        <h6 class="entry-header">Your entries around the world</h6>
-        <div class="mt-5" id="regions_div" data-region="<%= @region %>">
+        <div class="map-container col-12 mt-5">
+          <h6>Number of words</h6>
+          <div id="words_div" data-region="<%= @region_words %>"></div>
+        </div>
+        <div class="map-container col-12 mt-5">
+          <h6>Time spent</h6>
+          <div id="times_div" data-region="<%= @region_times %>"></div>
         </div>
       </div>
     </div>
 
-    <div class="analytics-right col-lg-4 col-sm-12 col-12 p-3">
+    <div class="col-lg-7 col-12 p-3 row">
+      <div class="col-12 p-3">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="pills-entries-tab" data-toggle="pill" href="#pills-entries" role="tab" aria-controls="pills-entries" aria-selected="true">Number of entries</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-words-tab" data-toggle="pill" href="#pills-words" role="tab" aria-controls="pills-words" aria-selected="false">Number of words</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-times-tab" data-toggle="pill" href="#pills-times" role="tab" aria-controls="pills-times" aria-selected="false">Time spent</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-entries" role="tabpanel" aria-labelledby="pills-entries-tab"><%= line_chart @entries_count, colors: ['#891B00'] %></div>
+          <div class="tab-pane fade" id="pills-words" role="tabpanel" aria-labelledby="pills-words-tab"><%= line_chart @word_count, colors: ['#891B00']  %></div>
+          <div class="tab-pane fade" id="pills-times" role="tabpanel" aria-labelledby="pills-times-tab"><%= line_chart @time_spent, colors: ['#891B00']  %></div>
+        </div>
+      </div>
+
+      <div class="analytics-table col-12 p-3 mt-5 table-wrapper-scroll-y my-customem-scrollbar">
+        <h6 class="entry-header">Data and emotions</h6>
+        <div class="row d-flex justify-content-end align-items-end">
+          <div class="col-lg-5 col-sm-8 col-10">
+            <div class="progress legend">
+              <div class="progress-bar bg-excited" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">EXCITED</div>
+              <div class="progress-bar bg-happy" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">HAPPY</div>
+              <div class="progress-bar bg-bored" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">BORED</div>
+              <div class="progress-bar bg-sad" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">SAD</div>
+              <div class="progress-bar bg-angry" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">ANGRY</div>
+              <div class="text-center legend-last">FEAR</div>
+            </div>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="table-hover">
+            <thead>
+              <tr>
+                <th>Emoji</th>
+                <th>Number of entries</th>
+                <th>Average word count</th>
+                <th>Average time</th>
+                <th style="width:30%">Emotion</th>
+                <th>Average temperature</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @user.emojies.each do |emoji| %>
+              <tr>
+                <td><%= render "shared/emoji", emoji: emoji %></td>
+                <td><%= @user.emoji_count(emoji) %></td>
+                <td><%= @user.word_average(emoji).round(0) %></td>
+                <td><%= @user.time_average(emoji).round(0) %> min</td>
+                <td>
+                  <div class="progress">
+                    <div class="progress-bar position-relative bg-excited" role="progressbar" style="width: <%= @user.mood_average("excited", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("excited", emoji) %>%</span></div>
+                    <div class="progress-bar position-relative bg-happy" role="progressbar" style="width: <%= @user.mood_average("happy", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("happy", emoji) %>%</span></div>
+                    <div class="progress-bar position-relative bg-bored" role="progressbar" style="width: <%= @user.mood_average("bored", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("bored", emoji) %>%</span></div>
+                    <div class="progress-bar position-relative bg-sad" role="progressbar" style="width: <%= @user.mood_average("sad", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("sad", emoji) %>%</span></div>
+                    <div class="progress-bar position-relative bg-angry" role="progressbar" style="width: <%= @user.mood_average("angry", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("angry", emoji) %>%</span></div>
+                  </div>
+                </td>
+                <td><%= @user.temp_average(emoji).round(0) %>°F</td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="p-3 col-12 row justify-content-center">
+      <div class="word-cloud mt-2 col-lg-8 col-12">
+        <h6 class="entry-header">Most used words</h6>
+        <div id="word-graph" data-words=<%= @data.to_json %>></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+
+
+
+
+
+  <div class="p-2 pt-3 col-11 row justify-content-center">
+    <div class="mt-2 p-3 col-lg-6 col-12">
+      <h6 class="entry-header">Your entries over time</h6>
+
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-entries-tab" data-toggle="pill" href="#pills-entries" role="tab" aria-controls="pills-entries" aria-selected="true">Number of entries</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-words-tab" data-toggle="pill" href="#pills-words" role="tab" aria-controls="pills-words" aria-selected="false">Number of words</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-times-tab" data-toggle="pill" href="#pills-times" role="tab" aria-controls="pills-times" aria-selected="false">Time spent</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-entries" role="tabpanel" aria-labelledby="pills-entries-tab"><%= line_chart @entries_count, colors: ['#891B00'] %></div>
+        <div class="tab-pane fade" id="pills-words" role="tabpanel" aria-labelledby="pills-words-tab"><%= line_chart @word_count, colors: ['#891B00']  %></div>
+        <div class="tab-pane fade" id="pills-times" role="tabpanel" aria-labelledby="pills-times-tab"><%= line_chart @time_spent, colors: ['#891B00']  %></div>
+      </div>
+    </div>
+
+    <div class="analytics-table col-lg-6 col-12 p-3 table-wrapper-scroll-y my-customem-scrollbar">
+      <h6 class="entry-header">Data and emotions</h6>
+      <div class="d-flex justify-content-end align-items-end">
+        <div class="progress legend">
+          <div class="progress-bar bg-excited" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">EXCITED</div>
+          <div class="progress-bar bg-happy" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">HAPPY</div>
+          <div class="progress-bar bg-bored" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">BORED</div>
+          <div class="progress-bar bg-sad" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">SAD</div>
+          <div class="progress-bar bg-angry" role="progressbar" style="width: 16.67%" aria-valuemin="0" aria-valuemax="100">ANGRY</div>
+          <div class="text-center legend-last">FEAR</div>
+        </div>
+      </div>
+      <table class="table-hover">
+        <thead>
+          <tr>
+            <th>Emoji</th>
+            <th>Number of entries</th>
+            <th>Average word count</th>
+            <th>Average time</th>
+            <th style="width:30%">Emotion</th>
+            <th>Average temperature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.emojies.each do |emoji| %>
+          <tr>
+            <td><%= render "shared/emoji", emoji: emoji %></td>
+            <td><%= @user.emoji_count(emoji) %></td>
+            <td><%= @user.word_average(emoji).round(0) %></td>
+            <td><%= @user.time_average(emoji).round(0) %> min</td>
+            <td>
+              <div class="progress">
+                <div class="progress-bar position-relative bg-excited" role="progressbar" style="width: <%= @user.mood_average("excited", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("excited", emoji) %>%</span></div>
+                <div class="progress-bar position-relative bg-happy" role="progressbar" style="width: <%= @user.mood_average("happy", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("happy", emoji) %>%</span></div>
+                <div class="progress-bar position-relative bg-bored" role="progressbar" style="width: <%= @user.mood_average("bored", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("bored", emoji) %>%</span></div>
+                <div class="progress-bar position-relative bg-sad" role="progressbar" style="width: <%= @user.mood_average("sad", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("sad", emoji) %>%</span></div>
+                <div class="progress-bar position-relative bg-angry" role="progressbar" style="width: <%= @user.mood_average("angry", emoji) %>%" aria-valuemin="0" aria-valuemax="100"><span class="d-none position-absolute bg-primary p-1 "><%= @user.mood_average("angry", emoji) %>%</span></div>
+              </div>
+            </td>
+            <td><%= @user.temp_average(emoji).round(0) %>°F</td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="p-2 pt-3 col-11 row justify-content-center">
+    <div class="word-cloud mt-2 p-3 col-lg-6 col-12">
+      <h6 class="entry-header">Most used words</h6>
+      <div id="word-graph" data-words=<%= @data.to_json %>></div>
+    </div>
+    <div class="col-lg-6 col-sm-12 col-12 p-3">
       <div class="word-tags">
         <h6 class="entry-header">Journaling tags</h6>
         <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
@@ -69,11 +192,7 @@
           <% end %>
         </div>
       </div>
-      <div class="word-cloud mt-4">
-        <h6 class="entry-header">Most Used Words</h6>
-        <div id="word-graph" data-words=<%= @data.to_json %>></div>
-      </div>
-      <div class="people mt-4">
+      <div class="people mt-4 p-3">
         <h6 class="entry-header">People mentioned</h6>
         <div class="d-flex flex-column justify-content-start mb-4">
           <% @user.common_people.each do |person| %>
@@ -82,11 +201,29 @@
         </div>
       </div>
     </div>
-
+  </div> -->
+<!--
+  <div class="p-2 pt-3 col-11 row justify-content-center">
+    <div class="mt-2 col-12 row">
+      <h6 class="entry-header">Your entries across the world</h6>
+      <div class="mt-5 col-12 row justify-content-center">
+        <div class="map-container col-lg-4 col-sm-12 col-12 p-3">
+          <h6>Number of entries</h6>
+          <div class="p-3" id="entries_div" data-region="<%= @region_entries %>"></div>
+        </div>
+        <div class="map-container col-lg-4 col-sm-12 col-12 p-3">
+          <h6>Number of words</h6>
+          <div class="p-3" id="words_div" data-region="<%= @region_words %>"></div>
+        </div>
+        <div class="map-container col-lg-4 col-sm-12 col-12 p-3">
+          <h6>Time spent</h6>
+          <div class="p-3" id="times_div" data-region="<%= @region_times %>"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-
+ -->
 
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -96,11 +233,11 @@
     'packages':['geochart'],
     'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
   });
+
   google.charts.setOnLoadCallback(drawRegionsMap);
 
   function drawRegionsMap() {
-    var dataInformation = JSON.parse(document.querySelector("#regions_div").dataset["region"]);
-    console.log(dataInformation);
+    var dataInformation = JSON.parse(document.querySelector("#entries_div").dataset["region"]);
     var data = google.visualization.arrayToDataTable(dataInformation);
     var options = {
       colorAxis: {colors: ['#D1C7C5', '#6E6360']},
@@ -108,9 +245,40 @@
       datalessRegionColor: '#F8F6F5',
       defaultColor: '#F8F6F5',
     };
-    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+    var chart = new google.visualization.GeoChart(document.getElementById('entries_div'));
     chart.draw(data, options);
   }
+
+  google.charts.setOnLoadCallback(drawRegionsMap2);
+
+  function drawRegionsMap2() {
+    var dataInformation2 = JSON.parse(document.querySelector("#words_div").dataset["region"]);
+    var data2 = google.visualization.arrayToDataTable(dataInformation2);
+    var options = {
+      colorAxis: {colors: ['#D1C7C5', '#6E6360']},
+      backgroundColor: '#fff',
+      datalessRegionColor: '#F8F6F5',
+      defaultColor: '#F8F6F5',
+    };
+    var chart2 = new google.visualization.GeoChart(document.getElementById('words_div'));
+    chart2.draw(data2, options);
+  }
+
+  google.charts.setOnLoadCallback(drawRegionsMap3);
+
+  function drawRegionsMap3() {
+    var dataInformation3 = JSON.parse(document.querySelector("#times_div").dataset["region"]);
+    var data3 = google.visualization.arrayToDataTable(dataInformation3);
+    var options = {
+      colorAxis: {colors: ['#D1C7C5', '#6E6360']},
+      backgroundColor: '#fff',
+      datalessRegionColor: '#F8F6F5',
+      defaultColor: '#F8F6F5',
+    };
+    var chart3 = new google.visualization.GeoChart(document.getElementById('times_div'));
+    chart3.draw(data3, options);
+  }
+
 
 </script>
 

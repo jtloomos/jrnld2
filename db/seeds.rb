@@ -9,6 +9,7 @@
 require 'faker'
 
 puts "Destroy old seeds"
+
 EntryTag.destroy_all
 WordFrequency.destroy_all
 NameFrequency.destroy_all
@@ -88,6 +89,7 @@ end
 entry_seed = [
   { user_id: User.first.id,
     start_entry: DateTime.new(2019,5,5,16,19,45),
+    created_at_day: Date.new(2019,5,5),
     created_at: DateTime.new(2019,5,5,16,22,45),
     location: "Chicago, United States",
     title: 'Spring in Mexico: a Heated Experience',
@@ -95,6 +97,7 @@ entry_seed = [
     emoji: "happy" },
   { user_id: User.first.id,
     start_entry: DateTime.new(2019,6,5,18,44,45),
+    created_at_day: Date.new(2019,6,5),
     created_at: DateTime.new(2019,6,5,18,45,45),
     location: "New York, United States",
     title: 'Five Cats and a Birthday.',

@@ -54,26 +54,66 @@ class UsersController < ApplicationController
     @user = current_user
     authorize @user
 
+    # WORD CLOUD
+    @data = @user.common_words.map {|key, value| { 'x': key, 'value': value } }
 
-
+    # ENTRIES COUNT MAP
     all_entries = []
-    # Entry.select...
     @user.entries.map do |entry|
       entry_array = []
       entry_array << entry.country
-      entry_array << entry.analytic.word_count
+      entry_array << 1
       all_entries << entry_array
     end
     entries_hash = all_entries.each_with_object(Hash.new(0)) do |(key, value), hash|
       hash[key] += value
     end
+    @region_entries = [['Country', 'Entries']]
+    entries_hash.each { |key, value| @region_entries << [key, value] }
+    @region_entries.to_json
 
-    @region = [['Country', 'Words']]
-    entries_hash.each { |key, value| @region << [key, value] }
+    # WORD COUNT MAP
+    all_words = []
+    @user.entries.map do |entry|
+      words_array = []
+      words_array << entry.country
+      words_array << entry.analytic.word_count
+      all_words << words_array
+    end
+    words_hash = all_words.each_with_object(Hash.new(0)) do |(key, value), hash|
+      hash[key] += value
+    end
+    @region_words = [['Country', 'Words']]
+    words_hash.each { |key, value| @region_words << [key, value] }
+    @region_words.to_json
 
-    @region.to_json
+    # TIME SPENT MAP
+    all_times = []
+    @user.entries.map do |entry|
+      times_array = []
+      times_array << entry.country
+      times_array << entry.analytic.time_spent
+      all_times << times_array
+    end
+    times_hash = all_times.each_with_object(Hash.new(0)) do |(key, value), hash|
+      hash[key] += value
+    end
+    @region_times = [['Country', 'Time spent']]
+    times_hash.each { |key, value| @region_times << [key, value] }
+    @region_times.to_json
 
-    @data = @user.common_words.map {|key, value| { 'x': key, 'value': value } }
+
+    # ENTRIES GRAPH
+    @entries_count = Hash.new
+    User.joins(:entries).select("COUNT(entries.created_at_day), entries.created_at_day").where(users: { id: current_user.id }).group("entries.created_at_day").each {|r| @entries_count[r.created_at_day] = r.count }
+
+    # WORD COUNT GRAPH
+    @word_count = Hash.new
+    User.joins(entries: :analytic).select("SUM(analytics.word_count), entries.created_at_day").where(users: { id: current_user.id }).group("entries.created_at_day").each {|r| @word_count[r.created_at_day] = r.sum }
+
+    # TIME SPENT GRAPH
+    @time_spent = Hash.new
+    User.joins(entries: :analytic).select("SUM(analytics.time_spent), entries.created_at_day").where(users: { id: current_user.id }).group("entries.created_at_day").each {|r| @time_spent[r.created_at_day] = r.sum }
   end
 
   def destroy

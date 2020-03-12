@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_150340) do
+ActiveRecord::Schema.define(version: 2020_03_12_154431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2020_03_09_150340) do
 
   create_table "analytics", force: :cascade do |t|
     t.integer "word_count"
-    t.string "time_spent"
     t.string "emoji"
     t.string "location"
     t.string "created_day"
@@ -48,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_150340) do
     t.datetime "updated_at", null: false
     t.integer "temperature"
     t.bigint "entry_id"
+    t.integer "time_spent"
     t.index ["entry_id"], name: "index_analytics_on_entry_id"
   end
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_150340) do
     t.float "longitude"
     t.string "emoji"
     t.datetime "start_entry"
+    t.date "created_at_day"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
