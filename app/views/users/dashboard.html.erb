@@ -1,27 +1,29 @@
 <%- title "JRNLD - dashboard" %>
+<div class="bg-white flex-grow-1 mt-4">
 
-<div class="tasks-section mt-5 d-flex flex-column justify-content-center h-100">
-  <div class="tasks-container-header pt-5">
-    <h5 class="pb-2"><b><%= Date.today.strftime('%A, %B %d') %></b></h5>
-    <h1>Welcome, <%= current_user.first_name %>!</h1>
-  </div>
-  <div class="task-container">
-    <div class="tasks-list row justify-content-center">
+  <div class="container pt-5 my-5">
+    <div class="dashboard-header">
+      <h5><%= Date.today.strftime('%A, %B %d') %></h5>
+      <h1>Welcome, <%= current_user.first_name %>!</h1>
+    </div>
+
+    <div class="row mt-5">
       <% if current_user.entries.empty? %>
-        <div class="task-container col-11">
-          <%= link_to new_entry_path, class: 'dashboard-task-card' do %>
+        <div class="col-12">
+          <%= link_to new_entry_path, class: 'task-card-link' do %>
             <div class="task-card">
               <figure>
-                <i class="fas fa-edit"></i>
+                <i class="fas fa-edit" id="edit-symbol-dashboard"></i>
               </figure>
                <h3 class="task-title">Start new entry</h3>
                <p class="task-description">Capture daily thoughts, emotions and images.</p>
             </div>
           <% end %>
         </div>
+
       <% else %>
-        <div class="task-container col-lg-4 col-sm-7 col-11">
-          <%= link_to new_entry_path, class: 'dashboard-task-card' do %>
+        <div class="col-md-4 mb-3">
+          <%= link_to new_entry_path, class: 'task-card-link' do %>
             <div class="task-card">
               <figure>
                 <i class="fas fa-edit" id="edit-symbol-dashboard"></i>
@@ -31,8 +33,9 @@
             </div>
           <% end %>
         </div>
-        <div class="task-container col-lg-4 col-sm-7 col-11">
-          <%= link_to entries_path, class: 'dashboard-task-card' do %>
+
+        <div class="col-md-4 mb-3">
+          <%= link_to entries_path, class: 'task-card-link' do %>
             <div class="task-card">
               <figure>
                 <i class="fas fa-list"></i>
@@ -42,8 +45,9 @@
             </div>
           <% end %>
         </div>
-        <div class="task-container col-lg-4 col-sm-7 col-11">
-          <%= link_to analytics_path, class: 'dashboard-task-card' do %>
+
+        <div class="col-md-4 mb-3">
+          <%= link_to analytics_path, class: 'task-card-link' do %>
             <div class="task-card">
               <figure>
                 <i class="fas fa-chart-bar"></i>
@@ -56,4 +60,5 @@
       <% end %>
     </div>
   </div>
+
 </div>
