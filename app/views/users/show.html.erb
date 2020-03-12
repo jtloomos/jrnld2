@@ -2,14 +2,14 @@
 
 <div class="flex-grow-1">
 
-  <div class="profile-container row justify-content-center mt-5 pb-3">
+  <div class="profile-container row justify-content-center mt-5 pb-3 pb-md-5">
 
     <h2 class="text-center col-12 mt-3">My Profile</h2>
-
-    <div class="profile-information p-3 col-11 row justify-content-center">
+    
+    <div class="profile-information py-3 px-1 px-md-3 col-11 row justify-content-center">
 
       <div class="col-12 col-xl-6 flex-wrap">
-        <div class="profile-settings p-4 mb-5">
+        <div class="profile-settings p-4 mb-3">
           <%= simple_form_for(@user) do |f| %>
             <div class="d-flex justify-content-center pb-4">
               <% if @user.photo.attached? %>
@@ -30,13 +30,8 @@
             </div>
 
             <div class="row">
-              <div class="col-md-4 col-12 3 pr-5 pt-2 pb-2">Email</div>
-              <div class="col-md-8 col-12 pt-0"><%= f.input :email, label: false %></div>
-            </div>
-
-            <div class="row">
               <div class="col-md-4 col-12 3 pr-5 pt-2 pb-2">Gender</div>
-              <div class="col-md-8 col-12 pt-0"><%= f.input :gender, label: false  %></div>
+              <div class="col-md-8 col-12 pt-0"><%= f.input :gender, label: false, collection: %w[Male Female Other] %></div>
             </div>
 
             <div class="row">
@@ -115,7 +110,7 @@
 
       <div class="col-12 col-xl-6 d-flex flex-column justify-content-between">
 
-        <div class="profile-reminders p-4 mb-5">
+        <div class="profile-reminders p-4 mb-3">
           <h4 class="profile-header my-2">Set journaling reminders</h4>
             <div class="d-flex justify-content-between" id="reminder-title">
               <input label= false id="new-reminder" placeholder="New reminder" autocomplete="off"></input>
@@ -145,15 +140,13 @@
           </form>
         </div>
 
-        <div class="profile-reminders p-4 mb-5">
-          <h4 class="profile-header my-2">Set notifications frequency</h4>
-          <%= simple_form_for @user do |f| %>
-            <%= f.input :notifications, collection: @notifications, label: false %>
-            <br>
-            <%= f.button :submit, "Save Changes", class: "btn btn-solid" %>
-          <% end %>
-        </div>
-
+      <div class="profile-reminders p-4 mb-3">
+        <h4 class="profile-header my-2">Set notifications frequency</h4>
+        <%= simple_form_for @user do |f| %>
+          <%= f.input :notifications, collection: @notifications, label: false %>
+          <br>
+          <%= f.button :submit, "Save Changes", class: "btn btn-solid" %>
+        <% end %>
       </div>
 
     </div>
