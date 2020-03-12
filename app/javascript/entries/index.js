@@ -1,5 +1,4 @@
 function sleep(ms) {
-  console.log("bubu")
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -17,3 +16,14 @@ window.onload =  function() {
     })
   };
 };
+
+const input = document.getElementById("search_query")
+const form = document.getElementById("filtering-index-form")
+
+if (input && form) {
+  input.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      form.submit()
+    }
+  })
+}

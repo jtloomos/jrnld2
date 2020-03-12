@@ -1,9 +1,9 @@
 import flatpickr from "flatpickr"
-import "flatpickr/dist/flatpickr.min.css" // Note this is important!
+import "flatpickr/dist/themes/light.css" // Note this is important!
 
 flatpickr(".datepicker", {
   altInput: true,
   allowInput: true,
   mode: "range",
-  maxDate: "today"
+  maxDate: "today",
 })

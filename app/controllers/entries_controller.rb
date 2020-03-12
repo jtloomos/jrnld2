@@ -14,7 +14,7 @@ class EntriesController < ApplicationController
     @query = params[:search][:query] if params.dig(:search, :query)
     @entries = policy_scope(Entry)
     @entries = @entries.left_outer_joins(tags: :entry_tags).where(sql_query, query: "%#{params[:search][:query]}%").distinct if params.dig(:search, :query)
-    @entries = @entries.where(:created_at => start_date.to_date.beginning_of_day..end_date.to_date.end_of_day) if params.dig(:search, :date_range)
+    @entries = @entries.where(:created_at => start_date.to_date.beginning_of_day..end_date.to_date.end_of_day) if start_date && end_date
 
     @user = current_user
   end
