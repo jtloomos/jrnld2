@@ -24,9 +24,10 @@
   }
 
   function alertFunc() {
-    console.log("something 2")
     const alrt = document.querySelector(".alert")
-    alrt.classList.add("d-none")
+    if (alrt) {
+      alrt.classList.add("d-none")
+    }
   }
   myFunction()
 </script>
