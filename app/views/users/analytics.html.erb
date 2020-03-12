@@ -185,7 +185,7 @@
       <div class="word-tags">
         <h6 class="entry-header">Journaling tags</h6>
         <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-          <% @user.tags.each do |tag| %>
+          <% @user.tags.uniq.each do |tag| %>
           <div class="tag px-2 mr-1 mt-1">
             <span><%= tag.title %></span>
           </div>

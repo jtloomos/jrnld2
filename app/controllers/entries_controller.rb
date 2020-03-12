@@ -15,7 +15,6 @@ class EntriesController < ApplicationController
     @entries = policy_scope(Entry)
     @entries = @entries.left_outer_joins(tags: :entry_tags).where(sql_query, query: "%#{params[:search][:query]}%").distinct if params.dig(:search, :query)
     @entries = @entries.where(:created_at => start_date.to_date.beginning_of_day..end_date.to_date.end_of_day) if start_date && end_date
-
     @user = current_user
   end
 
@@ -61,7 +60,6 @@ class EntriesController < ApplicationController
     def new
       @entry = Entry.new(start_entry: Time.now, created_at_day: Date.today)
       authorize @entry
-
       @reminders = Reminder.where(user_id: current_user.id)
     end
 
@@ -72,6 +70,8 @@ class EntriesController < ApplicationController
       @entry.start_entry = params["entry"]["start_entry"]
 
       if @entry.save
+         AnalyticJob.perform_now(self.id)
+
         create_entry_tags
         redirect_to entries_path
       else
@@ -91,6 +91,8 @@ class EntriesController < ApplicationController
       authorize @entry
 
       if @entry.update(entry_params)
+        AnalyticJob.perform_now(self.id)
+
         create_entry_tags
         redirect_to entry_path(@entry)
       else

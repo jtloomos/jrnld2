@@ -55,8 +55,9 @@
           </div>
           <div class="d-flex justify-content-end align-items-center flex-wrap">
             <% entry.entry_tags.each do |entry_tag| %>
+
             <div class="tag px-2 mr-1 mt-1">
-              <span><%= Tag.find(entry_tag.tag_id).title %></span>
+              <span><%= entry_tag.tag.title %></span>
             </div>
             <% end %>
             <%= render "shared/emoji", emoji: entry.emoji, margin_bottom: 0 %>

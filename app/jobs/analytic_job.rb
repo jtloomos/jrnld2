@@ -4,6 +4,11 @@ class AnalyticJob < ApplicationJob
   def perform(entry_id)
     entry = Entry.find(entry_id)
     location = entry.location
+
+    coordinates = Entry.geocode
+    entry.country_code = Geocoder.search(coordinates).first.country_code.upcase
+    entry.save!
+
     created_day = entry.created_at
     created_time = entry.created_at.hour
     if entry.start_entry.nil?

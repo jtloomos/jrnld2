@@ -16,13 +16,14 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   def tags
-    self.entry_tags.map do |entry_tag|
+    self.entry_tags.includes([:tag]).map do |entry_tag|
       entry_tag.tag
     end
   end
 
   def emojies
-    self.entries.map { |entry| entry.emoji }.uniq
+    self.entries.pluck(:emoji).uniq
+
   end
 
   def mood_average(mood, emoji = nil)
@@ -31,7 +32,6 @@ class User < ApplicationRecord
     array_of_mood = first_array.map do |analytic|
       analytic.emotions.find_by(emotion: mood.downcase)
     end
-    p array_of_mood
     sum = 0
     array_of_mood.each do |emotion|
       sum += emotion.level unless emotion.nil?
@@ -41,25 +41,19 @@ class User < ApplicationRecord
 
   def word_average(emoji = nil)
     first_array = emoji ? Entry.where(user: self, emoji: emoji) : Entry.where(user: self)
-    sum = 0
-    first_array.each do |entry|
-      sum += entry.analytic.word_count
-    end
+    sum = first_array.joins(:analytic).sum(:word_count)
     sum.to_f / first_array.size #returns average amount of words per entry
   end
 
   def temp_average(emoji = nil)
     first_array = emoji ? Entry.where(user: self, emoji: emoji) : Entry.where(user: self)
-    sum = 0
-    first_array.each do |entry|
-      sum += entry.analytic.temperature
-    end
+    sum = first_array.joins(:analytic).sum(:temperature)
     sum.to_f / first_array.size #returns average temperature per entry
   end
 
   def time_average(emoji = nil)
     first_array = emoji ? Entry.where(user: self, emoji: emoji) : Entry.where(user: self)
-    sum = 0
+    sum = 0 # first_array.joins(:analytic).sum(:time_spent)
     first_array.each do |entry|
       sum += entry.analytic.time_spent.to_f
     end
@@ -68,7 +62,6 @@ class User < ApplicationRecord
 
   def entrys_per_day_average
     days = (Date.today - self.entries.first.created_at.to_date)
-    p days
     self.entries.size / days.to_f #returns amount of entrys per day in average (We may want to use it per week? just multiply by 7. Maybe also round it)
   end
 
@@ -78,7 +71,7 @@ class User < ApplicationRecord
   end
 
   def common_words
-    user_word_frequencies = self.analytics.flat_map do |analytic|
+    user_word_frequencies = self.analytics.includes(:word_frequencies).flat_map do |analytic|
       analytic.word_frequencies
     end
     user_word_frequencies.each_with_object(Hash.new(0)) do |word_freq, res|
