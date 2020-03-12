@@ -1,3 +1,5 @@
+$navbar-height: 60px;
+
 .navbar-lewagon {
   display: flex;
   background-color: white;
@@ -5,14 +7,18 @@
   position: fixed;
   top: 0;
   width: 100%;
-  height: 50px;
+  height: $navbar-height;
   z-index: 10;
 }
 
 .logo-container {
   display: flex;
   width: 70%;
-  margin-left: 2%;
+  margin-left: 30px;
+}
+
+.dropdown-container {
+  margin-right: 30px;
 }
 
 .navbar-lewagon .navbar-brand {
@@ -28,17 +34,17 @@
 .navbar-lewagon #navbarDropdown {
   border: none;
   background-color: white;
-  margin-right: 8px;
+  // margin-right: 10px;
 }
 
 .navbar-lewagon .dropDown-icon {
   color: $primary-color;
   font-size: 28px;
-  margin-right: 8px;
+  // margin-right: 8px;
 }
 
-.navbar-lewagon .avatar {
-  margin-right: 8px;
+.navbar-lewagon .nav-item:hover {
+  cursor: pointer;
 }
 
 .navbar-border {
