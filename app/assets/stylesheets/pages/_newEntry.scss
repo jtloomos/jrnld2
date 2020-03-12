@@ -19,14 +19,14 @@
 }
 
 .select2-results__options {
-    border: 1px solid #af6353 !important;
-    border-radius: 4px;
-    opacity: 0.7;
+  border: 1px solid #af6353 !important;
+  border-radius: 4px;
+  opacity: 0.7;
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: #af6353 !important;
-    color: white;
+  background-color: #af6353 !important;
+  color: white;
 }
 
 .select2-selection__choice {
@@ -142,10 +142,10 @@ span.tag-label {
   color: #D3D3D3;
   font-size: 40px;
   cursor: pointer;
-   i:hover{
-  color: $primary-color;
-  font-size: 40px;
-  cursor: pointer;
+  i:hover{
+    color: $primary-color;
+    font-size: 40px;
+    cursor: pointer;
   }
 }
 
@@ -159,7 +159,7 @@ span.tag-label {
 .ap-input:focus ~ .ap-input-icon svg,
 .ap-input-icon:hover svg,
 .ap-input-icon svg {
-    fill: $primary-color;
+  fill: $primary-color;
 }
 
 .content-box {
@@ -173,8 +173,10 @@ input#input-entry-page {
   padding-right: 8px;
 }
 
-.fa-arrow-left#entry-back {
-    color: #891b00;
-    font-size: 24px;
-    opacity: 1;
-  }
+.fa-arrow-left#entry-back-new {
+  color: #891b00;
+  font-size: 24px;
+  opacity: 1;
+  position: absolute;
+  left: 0px;
+}
