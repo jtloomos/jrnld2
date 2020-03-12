@@ -12,7 +12,9 @@
       <div class="w-100 px-3">
         <%= simple_form_for :search, url: entries_path, method: "GET", html: { class: '' } do |f| %>
         <div>
+          <%= f.input :date_range, placeholder: "Filter by date", label:false, as: :string, input_html: { class: 'datepicker'} %>
           <%= f.input :query, label: false, placeholder: "Search by location, tag, or entry text...", input_html: { class: '' } %>
+          <%= f.submit %>
         </div>
         <% end %>
       </div>
