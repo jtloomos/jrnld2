@@ -5,23 +5,16 @@ class EntriesController < ApplicationController
 
   def index
     start_date, end_date = params[:search][:date_range].split(" to ") if params.dig(:search, :date_range)
+
+    if end_date.nil?
+      end_date = start_date
+    end
+
     sql_query = "content ILIKE :query OR tags.title ILIKE :query OR location ILIKE :query"
     @query = params[:search][:query] if params.dig(:search, :query)
     @entries = policy_scope(Entry)
-    @entries = @entries.where(sql_query, query: "%#{params[:search][:query]}%").distinct if params.dig(:search, :query)
-    @entries.where(:created_at => start_date..(end_date.to_date + 1.day).to_s) if params.dig(:search, :date_range)
-    # @entries.where("created_at > ? AND created_at < ?", DateTime.parse(start_date), DateTime.parse(end_date) + 1.day) if params.dig(:search, :date_range)
-    # @entries.where(created_at: Date.parse(start_date).beginning_of_day..Date.parse(end_date).end_of_day) if params.dig(:search, :date_range)
-    # @entries.where('DATE(entries.created_at) BETWEEN ? AND ?', Date.parse(start_date), Date.parse(end_date)) if params.dig(:search, :date_range)
-    # if params[:search].present?
-    #   raise
-    # end
-
-    # if params[:search].present? && params[:search][:query].present?
-    #   @entries = policy_scope(Entry).left_outer_joins(tags: :entry_tags).where(sql_query, query: "%#{params[:search][:query]}%").distinct
-    # else
-    #   @entries = policy_scope(Entry)
-    # end
+    @entries = @entries.left_outer_joins(tags: :entry_tags).where(sql_query, query: "%#{params[:search][:query]}%").distinct if params.dig(:search, :query)
+    @entries = @entries.where(:created_at => start_date.to_date.beginning_of_day..end_date.to_date.end_of_day) if params.dig(:search, :date_range)
 
     @user = current_user
   end
