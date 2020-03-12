@@ -8,7 +8,7 @@
 
 
   <div class="dropdown-container ml-auto">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
 
@@ -22,7 +22,6 @@
             <%= link_to "New journal entry", new_entry_path, class: "dropdown-item" %>
             <%= link_to "View all entries", entries_path, class: "dropdown-item" %>
             <%= link_to "My analytics", analytics_path, class: "dropdown-item" %>
-            <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
             <%= link_to "My profile", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
