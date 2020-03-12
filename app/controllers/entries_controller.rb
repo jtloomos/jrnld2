@@ -69,10 +69,14 @@ class EntriesController < ApplicationController
       authorize @entry
       @entry.user = current_user
       @entry.start_entry = params["entry"]["start_entry"]
-      @entry.save!
 
-      create_entry_tags
-      redirect_to entries_path
+      if @entry.save
+        create_entry_tags
+        redirect_to entries_path
+      else
+        @reminders = Reminder.where(user_id: current_user.id)
+        render :new
+      end
     end
 
     def edit
@@ -84,10 +88,14 @@ class EntriesController < ApplicationController
     def update
       @entry = Entry.find(params[:id])
       authorize @entry
-      @entry.update!(entry_params)
 
-      create_entry_tags
-      redirect_to entry_path(@entry)
+      if @entry.update(entry_params)
+        create_entry_tags
+        redirect_to entry_path(@entry)
+      else
+        @reminders = Reminder.where(user_id: current_user.id)
+        render :edit
+      end
     end
 
     def destroy
