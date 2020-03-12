@@ -69,6 +69,9 @@
     <% end %>
 
     <div class="row justify-content-center">
+      <% if @query.present? %>
+        <%= link_to "Show all", entries_path, class: "btn btn-ghost" %>
+      <% end %>
     </div>
   </div>
 </div>
