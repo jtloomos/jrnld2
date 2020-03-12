@@ -1,7 +1,9 @@
 .tasks-section {
   background-color: white;
   padding-bottom: 30px;
-  min-height: calc(100% - $footer-height - 50px); // 50px is the navbar's height
+  // min-height: -webkit-calc(100% - $footer-height - $navbar-height);
+  // min-height: -moz-calc(100% - $footer-height - $navbar-height);
+  // min-height: calc(100% - $footer-height - $navbar-height);
 }
 
 .tasks-container-header {
