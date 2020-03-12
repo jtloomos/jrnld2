@@ -1,9 +1,18 @@
 <%- title "JRNLD - log in" %>
 
-<div class="devise-body log-in-body h-100">
+<div class="devise-body log-in-body">
   <div class="container d-flex justify-content-center align-items-center mt-5 pt-3">
-    <div class="devise-form mb-5 mx-5 mt-4 p-5 rounded col-xs-8 col-md-8 shadow">
+    <div class="devise-form mb-3 mb-md-5 mx-md-5 mt-3 mt-md-4 p-4 p-md-5 rounded col-xs-8 col-md-8 shadow">
       <h2>Log in</h2>
+
+      <div class="social-login mt-3">
+        <a class="btn btn-ghost mr-3 mb-0" href="#" style="width: 150px"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a class="btn btn-ghost mb-0" href="#" style="width: 150px"><i class="fab fa-google"></i> Google</a>
+        <br>
+        <div class="divider my-5">
+          <span>OR</span>
+        </div>
+      </div>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
@@ -18,7 +27,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Log in", class: "btn-solid", style: 'width: 109px' %>
+          <%= f.button :submit, "Log in", class: "btn-solid", style: 'width: 150px' %>
         </div>
       <% end %>
 

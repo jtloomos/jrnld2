@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+  map.fitBounds(bounds, { padding: 70, maxZoom: 100, duration: 0 });
 };
 
 const initMapbox = () => {
@@ -12,22 +12,21 @@ const initMapbox = () => {
   const fitMapToMarkers = (map, markers) => {
     const bounds = new mapboxgl.LngLatBounds();
     markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-    map.fitBounds(bounds, { padding: 30, maxZoom: 12, duration: 0 });
+    map.fitBounds(bounds, { padding: 30, maxZoom: 5, duration: 0 });
   };
 
   const addMarkersToMap = (map, markers) => {
     markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // add this
 
-      // const element = document.createElement('div');
-      // element.className = 'marker';
-      // console.log(marker.image_url)
-      // element.style.backgroundImage = `url('${marker.image_url}')`;
-      // element.style.backgroundSize = 'contain';
-      // element.style.width = '25px';
-      // element.style.height = '25px';
+      const element = document.createElement('div');
+      element.className = 'marker';
+      element.style.backgroundImage = `url('${marker.image_url}')`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '25px';
+      element.style.height = '25px';
 
-       new mapboxgl.Marker() // IF WE WANT A CUSTOM IMAGE, UNCOMMENT THE BLOCK ABOVE, THEN PASS "ELEMENT" AS AN ARGUMENT HERE.
+       new mapboxgl.Marker(element) // IF WE WANT A CUSTOM IMAGE, UNCOMMENT THE BLOCK ABOVE, THEN PASS "ELEMENT" AS AN ARGUMENT HERE.
         .setLngLat([marker.lng, marker.lat])
         .setPopup(popup)
         .addTo(map);

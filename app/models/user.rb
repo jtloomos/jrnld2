@@ -27,12 +27,14 @@ class User < ApplicationRecord
 
   def mood_average(mood, emoji = nil)
     first_array = emoji ? self.analytics.where(emoji: emoji) : self.analytics
+    return 0 if first_array.empty?
     array_of_mood = first_array.map do |analytic|
-      analytic.emotions.select { |emotion| emotion.emotion == mood.downcase }.first
+      analytic.emotions.find_by(emotion: mood.downcase)
     end
+    p array_of_mood
     sum = 0
     array_of_mood.each do |emotion|
-      sum += emotion.level
+      sum += emotion.level unless emotion.nil?
     end
     sum.to_f / first_array.size #returns the average level of the selected mood, looking through all the users entries.
   end

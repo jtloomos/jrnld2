@@ -1,38 +1,44 @@
+require "date"
+
 class EntriesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
   def index
-    if params[:search].present? && params[:search][:query].present?
-      sql_query = "content ILIKE :query OR tags.title ILIKE :query OR location ILIKE :query"
-      @query = params[:search][:query]
-      @entries = policy_scope(Entry).left_outer_joins(tags: :entry_tags).where(sql_query, query: "%#{params[:search][:query]}%").distinct
-    else
-      @entries = policy_scope(Entry)
+    start_date, end_date = params[:search][:date_range].split(" to ") if params.dig(:search, :date_range)
+
+    if end_date.nil?
+      end_date = start_date
     end
+
+    sql_query = "content ILIKE :query OR tags.title ILIKE :query OR location ILIKE :query"
+    @query = params[:search][:query] if params.dig(:search, :query)
+    @entries = policy_scope(Entry)
+    @entries = @entries.left_outer_joins(tags: :entry_tags).where(sql_query, query: "%#{params[:search][:query]}%").distinct if params.dig(:search, :query)
+    @entries = @entries.where(:created_at => start_date.to_date.beginning_of_day..end_date.to_date.end_of_day) if start_date && end_date
 
     @user = current_user
   end
 
   def map
-     if params[:search].present? && params[:search][:location].present?
-      sql_query = "location ILIKE :query"
-      @query = params[:search][:location]
-      @entries = policy_scope(Entry).near(params[:search][:location], 100)
-      authorize @entries
-    else
-      @entries = policy_scope(Entry)
-      authorize @entries
-    end
+   if params[:search].present? && params[:search][:location].present?
+    sql_query = "location ILIKE :query"
+    @query = params[:search][:location]
+    @entries = policy_scope(Entry).near(params[:search][:location], 100)
+    authorize @entries
+  else
+    @entries = policy_scope(Entry)
+    authorize @entries
+  end
 
-    @user = current_user
+  @user = current_user
 
-    @markers = @entries.map do |entry|
-      {
-        lat: entry.latitude,
-        lng: entry.longitude,
-        # image_url: helpers.asset_path("map-marker.svg"),
-        infoWindow: render_to_string(partial: "info_window", locals: { entry: entry })
-      }
+  @markers = @entries.map do |entry|
+    {
+      lat: entry.latitude,
+      lng: entry.longitude,
+      infoWindow: render_to_string(partial: "info_window", locals: { entry: entry }),
+      image_url: helpers.asset_url("pin.png")
+    }
     end
   end
 
@@ -44,64 +50,75 @@ class EntriesController < ApplicationController
     @markers =[
       {
         lat: @entry.latitude,
-        lng: @entry.longitude
-        # image_url: helpers.asset_path("map-marker.svg")
+        lng: @entry.longitude,
+        image_url: helpers.asset_url("pin.png")
       }]
 
-    @data = @entry.analytic.word_frequencies.map {|element| { 'x': element.word, 'value': element.frequency } }
-  end
+      @data = @entry.analytic.word_frequencies.map {|element| { 'x': element.word, 'value': element.frequency } }
+    end
 
-  def new
-    @entry = Entry.new(start_entry: Time.now, created_at_day: Date.today)
-    authorize @entry
 
-    @reminders = Reminder.where(user_id: current_user.id)
-  end
+    def new
+      @entry = Entry.new(start_entry: Time.now, created_at_day: Date.today)
+      authorize @entry
 
-  def create
-    @entry = Entry.new(entry_params)
-    authorize @entry
-    @entry.user = current_user
-    @entry.start_entry = params["entry"]["start_entry"]
-    @entry.save!
+      @reminders = Reminder.where(user_id: current_user.id)
+    end
 
-    create_entry_tags
-    redirect_to entries_path
-  end
+    def create
+      @entry = Entry.new(entry_params)
+      authorize @entry
+      @entry.user = current_user
+      @entry.start_entry = params["entry"]["start_entry"]
 
-  def edit
-    @entry = Entry.find(params[:id])
-    authorize @entry
-    @reminders = Reminder.where(user_id: current_user.id)
-  end
+      if @entry.save
+        create_entry_tags
+        redirect_to entries_path
+      else
+        @reminders = Reminder.where(user_id: current_user.id)
+        render :new
+      end
+    end
 
-  def update
-    @entry = Entry.find(params[:id])
-    authorize @entry
-    @entry.update!(entry_params)
+    def edit
+      @entry = Entry.find(params[:id])
+      authorize @entry
+      @reminders = Reminder.where(user_id: current_user.id)
+    end
 
-    create_entry_tags
-    redirect_to entry_path(@entry)
-  end
+    def update
+      @entry = Entry.find(params[:id])
+      authorize @entry
 
-  def destroy
-    @entry = Entry.find(params[:id])
-    authorize @entry
-    @entry.destroy
+      if @entry.update(entry_params)
+        create_entry_tags
+        redirect_to entry_path(@entry)
+      else
+        @reminders = Reminder.where(user_id: current_user.id)
+        render :edit
+      end
+    end
 
-    redirect_to entries_path
-  end
+    def destroy
+      @entry = Entry.find(params[:id])
+      authorize @entry
+      @entry.destroy
 
-  private
+      redirect_to entries_path
+    end
+
+    private
+
 
   def entry_params
     params.require(:entry).permit(:title, :content, :location, :emoji, :created_at_day, photos: [])
   end
 
-  def create_entry_tags
-    @entry.entry_tags.destroy_all
-    params[:entry][:tag_ids].each do |id|
-      if id.match?(/\A\d+\z/) && @entry.tags.pluck("id").include?(id.to_i)
+
+    def create_entry_tags
+      @entry.entry_tags.destroy_all
+      params[:entry][:tag_ids].each do |id|
+        if id.match?(/\A\d+\z/) && @entry.tags.pluck("id").include?(id.to_i)
         # if tag is already associated with this entry, do nothing
       elsif id.match?(/\A\d+\z/) # if id is a number (current_user.tags exists)
         @entry_tag = EntryTag.create!(tag_id: id, entry: @entry)
