@@ -46,10 +46,11 @@
   justify-content: center;
   text-align: center;
   color: $black-text;
-  margin: 10px;
+  margin: 10px auto;
   padding: 10px;
   height: 100%;
   align-content: flex-start;
+  max-width: 500px;
 
   &:hover {
     box-shadow: 5px 5px 3px #ACA7A6;
