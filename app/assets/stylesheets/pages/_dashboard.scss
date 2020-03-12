@@ -1,41 +1,35 @@
-.tasks-section {
-  background-color: white;
-  padding-bottom: 30px;
-  // min-height: -webkit-calc(100% - $footer-height - $navbar-height);
-  // min-height: -moz-calc(100% - $footer-height - $navbar-height);
-  // min-height: calc(100% - $footer-height - $navbar-height);
-}
+// .tasks-section {
+//   background-color: white;
+//   padding-bottom: 30px;
+//   // min-height: -webkit-calc(100% - $footer-height - $navbar-height);
+//   // min-height: -moz-calc(100% - $footer-height - $navbar-height);
+//   min-height: calc(100% - $footer-height - $navbar-height);
+// }
 
-.tasks-container-header {
-  width: 70%;
-  background-color: white;
+.dashboard-header {
   text-align: center;
   color: $primary-color;
   margin: 0 auto;
+
+  h5 {
+    color: $black-text;
+  }
 }
 
-.tasks-container-header b {
-  color: black;
-}
+// .task-container {
+//   display: flex;
+//   justify-content: center;
+//   align-content: center;
+//   padding-bottom: 16px;
+// }
 
-.tasks-container-header h5 {
-  color: $black-text;
-}
+// .tasks-list {
+//   display: flex;
+//   justify-content: space-between;
+//   margin: 16px;
+// }
 
-.task-container {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  padding-bottom: 16px;
-}
-
-.tasks-list {
-  display: flex;
-  justify-content: space-between;
-  margin: 16px;
-}
-
-.dashboard-task-card:hover {
+.task-card-link:hover {
   text-decoration: none;
   transform: scale(1.01);
   color: black;
@@ -56,7 +50,7 @@
   padding: 10px;
   height: 100%;
   align-content: flex-start;
-  width: 100%;
+
   &:hover {
     box-shadow: 5px 5px 3px #ACA7A6;
     color: black;
@@ -66,36 +60,40 @@
       opacity: 0.9
     }
   }
-}
 
-.task-card .task-description {
-  height: 30%;
-  padding: 16px;
-}
+  .task-description {
+    height: 30%;
+    padding: 16px;
+  }
 
-.task-card .task-title a {
-  height: 20%;
-  color: black;
-  &:hover {
+  .task-title a {
+    height: 20%;
+    color: black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .task-title a:hover {
     text-decoration: none;
   }
-}
 
-.task-card figure {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  background-color: $secondary-color;
-  margin-top: 16px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  figure {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: $secondary-color;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.task-card figure .fas {
-  font-size: 35px;
+  figure .fas {
+    font-size: 35px;
+  }
 }
 
 #edit-symbol-dashboard {
