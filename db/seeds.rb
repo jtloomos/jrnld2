@@ -117,6 +117,7 @@ people = [
   entry.user = User.first
   entry.start_entry = date
   entry.created_at = date + rand(550).seconds
+  entry.created_at_day = entry.created_at.to_date
 
   location = locations.sample
 

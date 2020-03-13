@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 2020_03_12_220641) do
     t.float "longitude"
     t.string "emoji"
     t.datetime "start_entry"
-    t.string "country_code"
     t.date "created_at_day"
+    t.string "country_code"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
