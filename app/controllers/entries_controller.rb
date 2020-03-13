@@ -91,7 +91,7 @@ class EntriesController < ApplicationController
       authorize @entry
 
       if @entry.update(entry_params)
-        AnalyticJob.perform_now(self.id)
+        AnalyticJob.perform_now(@entry.id)
 
         create_entry_tags
         redirect_to entry_path(@entry)
