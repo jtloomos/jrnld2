@@ -17,6 +17,20 @@ window.onload =  function() {
   };
 };
 
+  const rows = document.querySelectorAll(".table-hover tr")
+  if (rows) {
+    const data_rows = [... rows].splice(1)
+    data_rows.forEach((row) => {
+      row.addEventListener("pointerenter", async (event) => {
+        const emoji = row.querySelector(".emoji-target");
+        emoji.classList.remove("active");
+        await sleep(10);
+        emoji.classList.add("active");
+      });
+    })
+  };
+
+
 const symbol = document.getElementById("edit-on-show")
 
 if (symbol) {
