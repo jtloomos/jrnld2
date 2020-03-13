@@ -10,7 +10,7 @@ class EntriesController < ApplicationController
       end_date = start_date
     end
 
-    sql_query = "content ILIKE :query OR tags.title ILIKE :query OR location ILIKE :query"
+    sql_query = "entries.title ILIKE :query OR content ILIKE :query OR tags.title ILIKE :query OR location ILIKE :query"
     @query = params[:search][:query] if params.dig(:search, :query)
     @entries = policy_scope(Entry)
     @entries = @entries.left_outer_joins(tags: :entry_tags).where(sql_query, query: "%#{params[:search][:query]}%").distinct if params.dig(:search, :query)
