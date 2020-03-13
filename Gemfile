@@ -36,7 +36,6 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'rack-mini-profiler'
   gem 'stackprof'
-  gem 'bullet'
 end
 
 group :development, :test do
