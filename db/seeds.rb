@@ -92,10 +92,28 @@ locations = [
   ["Tokyo, Japan",  "JP"],
   ["Athens, Greece", "GR"],
   ["Buenos Aires, Argentina", "AR"],
-  ["Tokyo, Japan",  "JP"],
-  ["Athens, Greece", "GR"],
-  ["Tokyo, Japan",  "JP"],
-  ["Athens, Greece", "GR"]
+  ["Rome, Italy",  "IT"],
+  ["Vancouver, Canada", "CA"],
+  ["Moscow, Russia",  "RU"],
+  ["Melbourne, Australia", "AU"],
+  ["Moscow, Russia",  "RU"],
+  ["Cairo, EGYPT", "EG"],
+  ["Panama City, Panama",  "PA"],
+  ["Dublin, Ireland", "IR"],
+  ["Paris, France",  "FR"],
+  ["Mumbai, India", "IN"],
+  ["Bangkok, Thailand",  "TH"],
+  ["Cape Town, South Africa", "ZA"],
+  ["Oslo, Norway",  "NO"],
+  ["Beijing, China", "CN"],
+  ["Lisbon, Portugal",  "PT"],
+  ["Melbourne, Australia", "AU"],
+  ["Brasilia, Brazil",  "BR"],
+  ["Quito, Ecuador", "EC"],
+  ["Chicago, United States",  "US"],
+  ["Los Angeles, United States", "CA"],
+  ["Athens, Greece",  "GR"],
+  ["Nairobi, Kenya", "KE"]
 ]
 
 weathers = [
@@ -161,7 +179,7 @@ people = [
     emotions[emotion_name] = rand(100-emotions.values.sum)
   end
 
-  emotions_hash[Entry::AVAILABLE_EMOTIONS.last] = 100-emotions_hash.values.sum
+  emotions_hash[Entry::AVAILABLE_EMOTIONS.last] = 100 - emotions_hash.values.sum
 
   emotions_hash.each do  |emotion_name, level|
      emotion = Emotion.find_or_initialize_by(analytic: analytic, emotion: emotion_name.downcase)
