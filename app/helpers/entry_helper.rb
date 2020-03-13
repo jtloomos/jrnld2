@@ -148,14 +148,14 @@ module EntryHelper
   end
 
   def self.emotion(text)
-    response = RestClient.post "https://apis.paralleldots.com/v4/emotion", { api_key: "aaLdmuiYsfEz4SmRmF334ikgml52ndxUSPJR83pAxDQ", text: text }
+    response = RestClient.post "https://apis.paralleldots.com/v4/emotion", { api_key: "YX5UmA0PseHi5WoR2ORWumEYHKm5XwRaBDGeNofM7xY", text: text }
     data = JSON.parse( response )
     return [] if [400, 403].include? data["code"]
     data["emotion"]
   end
 
   def self.names(text)
-    response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "aaLdmuiYsfEz4SmRmF334ikgml52ndxUSPJR83pAxDQ", text: text }
+    response = RestClient.post "https://apis.paralleldots.com/v4/ner", { api_key: "YX5UmA0PseHi5WoR2ORWumEYHKm5XwRaBDGeNofM7xY", text: text }
     data = JSON.parse( response )
     return [] if [400, 403].include? data["code"]
     names_array = []
