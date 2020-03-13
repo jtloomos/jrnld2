@@ -24,18 +24,18 @@
       <div class="col-12 p-3">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="pills-entries-tab" data-toggle="pill" href="#pills-entries" role="tab" aria-controls="pills-entries" aria-selected="true">Number of entries</a>
+            <a class="nav-link" id="pills-entries-tab" data-toggle="pill" href="#pills-entries" role="tab" aria-controls="pills-entries" aria-selected="true">Number of entries</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="pills-words-tab" data-toggle="pill" href="#pills-words" role="tab" aria-controls="pills-words" aria-selected="false">Number of words</a>
+            <a class="nav-link active" id="pills-words-tab" data-toggle="pill" href="#pills-words" role="tab" aria-controls="pills-words" aria-selected="false">Number of words</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="pills-times-tab" data-toggle="pill" href="#pills-times" role="tab" aria-controls="pills-times" aria-selected="false">Time spent</a>
           </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
-          <div class="tab-pane fade show active" id="pills-entries" role="tabpanel" aria-labelledby="pills-entries-tab"><%= line_chart @entries_count, colors: ['#891B00'] %></div>
-          <div class="tab-pane fade" id="pills-words" role="tabpanel" aria-labelledby="pills-words-tab"><%= line_chart @word_count, colors: ['#891B00']  %></div>
+          <div class="tab-pane fade" id="pills-entries" role="tabpanel" aria-labelledby="pills-entries-tab"><%= line_chart @entries_count, colors: ['#891B00'] %></div>
+          <div class="tab-pane fade show active" id="pills-words" role="tabpanel" aria-labelledby="pills-words-tab"><%= line_chart @word_count, colors: ['#891B00']  %></div>
           <div class="tab-pane fade" id="pills-times" role="tabpanel" aria-labelledby="pills-times-tab"><%= line_chart @time_spent, colors: ['#891B00']  %></div>
         </div>
       </div>
