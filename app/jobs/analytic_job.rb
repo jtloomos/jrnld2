@@ -5,14 +5,14 @@ class AnalyticJob < ApplicationJob
     entry = Entry.find(entry_id)
     location = entry.location
 
-    coordinates = Entry.geocode
+    coordinates = entry.geocode
     entry.country_code = Geocoder.search(coordinates).first.country_code.upcase
     entry.save!
 
     created_day = entry.created_at
     created_time = entry.created_at.hour
     if entry.start_entry.nil?
-      time_spent = 0
+      time_spent = 1
     else
       time_spent = ((entry.created_at - entry.start_entry) / 60)
     end

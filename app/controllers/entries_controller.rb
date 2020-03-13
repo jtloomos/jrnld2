@@ -70,7 +70,7 @@ class EntriesController < ApplicationController
       @entry.start_entry = params["entry"]["start_entry"]
 
       if @entry.save
-         AnalyticJob.perform_now(self.id)
+         AnalyticJob.perform_now(@entry.id)
 
         create_entry_tags
         redirect_to entries_path
