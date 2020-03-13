@@ -1,6 +1,6 @@
 class Entry < ApplicationRecord
   AVAILABLE_EMOJIS = %w[angry sad ok good happy]
-  AVAILABLE_EMOTIONS = %w[fear sad bored happy excited angry]
+  AVAILABLE_EMOTIONS = %w[happy excited fear sad bored angry]
 
   belongs_to :user
   has_one :analytic, dependent: :destroy

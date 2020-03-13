@@ -8,6 +8,142 @@
 
 require 'faker'
 
+
+STOPWORDSS = ["i",
+   "me",
+   "my",
+   "myself",
+   "we",
+   "our",
+   "ours",
+   "ourselves",
+   "you",
+   "your",
+   "yours",
+   "yourself",
+   "yourselves",
+   "he",
+   "him",
+   "his",
+   "himself",
+   "she",
+   "her",
+   "hers",
+   "herself",
+   "it",
+   "its",
+   "itself",
+   "they",
+   "them",
+   "their",
+   "theirs",
+   "themselves",
+   "what",
+   "which",
+   "who",
+   "whom",
+   "this",
+   "that",
+   "these",
+   "those",
+   "am",
+   "is",
+   "are",
+   "was",
+   "were",
+   "be",
+   "been",
+   "being",
+   "have",
+   "has",
+   "had",
+   "having",
+   "do",
+   "does",
+   "did",
+   "doing",
+   "a",
+   "an",
+   "the",
+   "and",
+   "but",
+   "if",
+   "or",
+   "because",
+   "as",
+   "until",
+   "while",
+   "of",
+   "at",
+   "by",
+   "for",
+   "with",
+   "about",
+   "against",
+   "between",
+   "into",
+   "through",
+   "during",
+   "before",
+   "after",
+   "above",
+   "below",
+   "to",
+   "from",
+   "in",
+   "out",
+   "on",
+   "off",
+   "over",
+   "under",
+   "again",
+   "further",
+   "then",
+   "once",
+   "here",
+   "there",
+   "when",
+   "where",
+   "why",
+   "how",
+   "all",
+   "any",
+   "both",
+   "each",
+   "few",
+   "more",
+   "most",
+   "other",
+   "some",
+   "such",
+   "no",
+   "nor",
+   "not",
+   "only",
+   "own",
+   "same",
+   "so",
+   "than",
+   "too",
+   "very",
+   "s",
+   "t",
+   "can",
+   "will",
+   "just",
+   "don",
+   "should",
+   "now",
+   "ll",
+   "wasn",
+   "-",
+   "_",
+   ".",
+   "?",
+   "!",
+   "'",
+   ":"]
+
 puts "Destroy old seeds"
 
 EntryTag.destroy_all
@@ -123,10 +259,12 @@ weathers = [
 ]
 
 people = [
-  "John",
-  "Carl",
-  "Jeff",
-  "Thomas"
+  "Ross",
+  "Rachel",
+  "Monica",
+  "Phoebe",
+  "Chandler",
+  "Joey"
   ]
 
 
@@ -151,7 +289,10 @@ people = [
   analytic.entry = entry
   analytic.word_count = WordsCounted.count(entry.content).token_count
 
-  WordsCounted.count(entry.content).token_frequency.first(30).each do |pair|
+  dirty_array = entry.content.downcase.split(/\b/)
+  cleaned_array = dirty_array.reject {|term| (STOPWORDSS.include? term) || (term.length < 3)}
+  text = cleaned_array.join(" ")
+  WordsCounted.count(text).token_frequency.first(30).each do |pair|
     word_freq = WordFrequency.find_or_initialize_by(analytic: analytic, word: pair[0])
     word_freq.frequency = pair[1]
     word_freq.save!
@@ -167,7 +308,7 @@ people = [
   end
   analytic.emoji = entry.emoji
   analytic.weather = weathers.sample
-  analytic.temperature = rand(10..80).to_s
+  analytic.temperature = rand(20..80).to_s
 
   people.sample(3).each do |word|
     NameFrequency.find_or_initialize_by(analytic: analytic, name: word.capitalize).save!
